@@ -1,20 +1,16 @@
+import { useTranslation } from 'react-i18next'
 import { cn } from '@/shared/lib/cn'
-import { THEME_PREFERENCES, useThemeStore, type ThemePreference } from '@/shared/lib/theme'
-
-const LABELS: Record<ThemePreference, string> = {
-  system: 'حسب الجهاز',
-  light: 'نهاري',
-  dark: 'ليلي',
-}
+import { THEME_PREFERENCES, useThemeStore } from '@/shared/lib/theme'
 
 /** Three-way switch: device, light, dark. Real radio inputs, so keyboard and screen readers work. */
 export function ThemeSwitcher() {
+  const { t } = useTranslation()
   const preference = useThemeStore((state) => state.preference)
   const setPreference = useThemeStore((state) => state.setPreference)
 
   return (
     <fieldset className="inline-flex overflow-hidden rounded-md border border-border-strong">
-      <legend className="sr-only">المظهر</legend>
+      <legend className="sr-only">{t('theme.label')}</legend>
       {THEME_PREFERENCES.map((option) => (
         <label
           key={option}
@@ -31,7 +27,7 @@ export function ThemeSwitcher() {
             onChange={() => setPreference(option)}
             className="sr-only"
           />
-          {LABELS[option]}
+          {t(`theme.${option}`)}
         </label>
       ))}
     </fieldset>

@@ -21,8 +21,10 @@
     "@fontsource/readex-pro": "^5.3.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "i18next": "^27.2.6",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
+    "react-i18next": "^18.0.3",
     "tailwind-merge": "^3.7.1",
     "zustand": "^5.1.0"
   },
