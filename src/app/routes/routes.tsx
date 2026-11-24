@@ -14,6 +14,10 @@ export const routes: RouteObject[] = [
         lazy: async () => ({ Component: (await import('@/pages/home')).HomePage }),
       },
       {
+        path: 'ui-kit',
+        lazy: async () => ({ Component: (await import('@/pages/ui-kit')).UiKitPage }),
+      },
+      {
         path: '*',
         lazy: async () => ({ Component: (await import('@/pages/not-found')).NotFoundPage }),
       },
