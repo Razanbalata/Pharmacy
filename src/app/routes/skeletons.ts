@@ -9,8 +9,19 @@ const SKELETON_BY_PATH: Record<string, PageSkeletonVariant> = {
   [paths.settings]: 'form',
   [paths.setup]: 'form',
   [paths.gettingStarted]: 'dashboard',
+  [paths.productNew]: 'form',
+  [paths.productLabels]: 'form',
+  [paths.productImport]: 'form',
 }
 
+/** Addresses with an id: /products/12 shows details, /products/12/edit a form. */
+const SKELETON_BY_PATTERN: [RegExp, PageSkeletonVariant][] = [
+  [/^\/products\/\d+$/, 'detail'],
+  [/^\/products\/\d+\/edit$/, 'form'],
+]
+
 export function skeletonFor(pathname: string): PageSkeletonVariant {
-  return SKELETON_BY_PATH[pathname] ?? 'list'
+  const exact = SKELETON_BY_PATH[pathname]
+  if (exact) return exact
+  return SKELETON_BY_PATTERN.find(([pattern]) => pattern.test(pathname))?.[1] ?? 'list'
 }

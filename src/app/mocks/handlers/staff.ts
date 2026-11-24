@@ -1,9 +1,9 @@
 import { http, HttpResponse } from 'msw'
-import type { ActivityEntry } from '@/entities/activity'
 import type { PharmacySettingsInput } from '@/entities/pharmacy'
 import type { StaffInput, StaffMember } from '@/entities/staff-member'
 import { normalizeArabic } from '@/shared/lib/arabic-search'
 import { normalizePhone } from '@/shared/lib/validation'
+import { logActivity as log } from '../activity-log'
 import { apiUrl } from '../api-url'
 import { db } from '../db'
 
@@ -11,15 +11,6 @@ let passwordCounter = 0
 function temporaryPassword(): string {
   passwordCounter += 1
   return `K7-M4P-${String(91 + passwordCounter).padStart(2, '0')}`
-}
-
-function log(entry: Omit<ActivityEntry, 'id' | 'at' | 'actor'>) {
-  db.activity.unshift({
-    ...entry,
-    id: Math.max(0, ...db.activity.map((item) => item.id)) + 1,
-    at: new Date().toISOString(),
-    actor: { id: 1, name: 'رزان' },
-  })
 }
 
 function phoneTaken(phone: string, exceptId?: number): boolean {

@@ -2,6 +2,7 @@ import type { ActivityEntry } from '@/entities/activity'
 import type { JoinRequest } from '@/entities/join-request'
 import type { OnboardingStatus, PharmacyProfile, PharmacySettings } from '@/entities/pharmacy'
 import type { StaffMember } from '@/entities/staff-member'
+import { initialCatalog } from './catalog-data'
 
 /**
  * The fake server's memory. Starts from the design data and changes as you use the app,
@@ -272,6 +273,7 @@ function initial() {
     backup: { lastBackupAt: '2026-11-24T01:00:00Z' },
   }
   return {
+    ...initialCatalog(),
     staff,
     activity,
     settings,

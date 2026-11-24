@@ -12,6 +12,8 @@ export const AREAS = [
   'returns',
   'customers',
   'products',
+  /** Adding, editing and importing products, categories and ingredients. */
+  'catalog',
   'categories',
   'ingredients',
   'stock',
@@ -36,6 +38,7 @@ const ROLE_AREAS: Record<Role, readonly Area[]> = {
     'returns',
     'customers',
     'products',
+    'catalog',
     'categories',
     'ingredients',
     'stock',
@@ -50,4 +53,12 @@ const ROLE_AREAS: Record<Role, readonly Area[]> = {
 
 export function canAccess(role: Role, area: Area): boolean {
   return ROLE_AREAS[role].includes(area)
+}
+
+/**
+ * Adding, editing and importing products, categories and active ingredients.
+ * The cashier looks products up while selling but does not change them.
+ */
+export function canManageCatalog(role: Role): boolean {
+  return canAccess(role, 'catalog')
 }

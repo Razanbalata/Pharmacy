@@ -1,3 +1,4 @@
+import { catalogAr } from './catalog.ar'
 /** Arabic is the source of truth: every key starts here, English must match its shape. */
 export const ar = {
   app: { name: 'فارما سمارت' },
@@ -50,6 +51,11 @@ export const ar = {
     settings: 'الإعدادات',
     login: 'تسجيل الدخول',
     join: 'طلب انضمام',
+    productNew: 'إضافة صنف',
+    productImport: 'استيراد الأصناف',
+    productLabels: 'ملصقات الباركود',
+    productDetail: 'تفاصيل الصنف',
+    productEdit: 'تعديل صنف',
     uiKit: 'مكتبة المكونات',
     activate: 'تفعيل الحساب',
     forgotPassword: 'نسيت كلمة المرور',
@@ -493,6 +499,7 @@ export const ar = {
     downloadCta: 'تنزيل',
     languageHint: 'لكل مستخدم لحاله',
   },
+  ...catalogAr,
   forbidden: {
     title: 'هالصفحة للمدير',
     body: 'اطلبي من المديرة تعطيكِ الصلاحية.',

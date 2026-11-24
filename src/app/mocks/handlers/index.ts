@@ -1,4 +1,5 @@
 import { alertHandlers } from './alerts'
+import { catalogHandlers } from './catalog'
 import { joinRequestHandlers } from './join-requests'
 import { pharmacyHandlers } from './pharmacy'
 import { sessionHandlers } from './session'
@@ -11,4 +12,5 @@ export const handlers = [
   ...joinRequestHandlers,
   ...pharmacyHandlers,
   ...staffHandlers,
+  ...catalogHandlers,
 ]

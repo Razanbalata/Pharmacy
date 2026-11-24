@@ -1,4 +1,5 @@
 import type { Messages } from './ar'
+import { catalogEn } from './catalog.en'
 
 /** Typed against Arabic: a missing or extra key fails the type check. */
 export const en: Messages = {
@@ -52,6 +53,11 @@ export const en: Messages = {
     settings: 'Settings',
     login: 'Log in',
     join: 'Join request',
+    productNew: 'Add product',
+    productImport: 'Import products',
+    productLabels: 'Barcode labels',
+    productDetail: 'Product details',
+    productEdit: 'Edit product',
     uiKit: 'Component library',
     activate: 'Activate account',
     forgotPassword: 'Forgot password',
@@ -509,6 +515,7 @@ export const en: Messages = {
     downloadCta: 'Download',
     languageHint: 'Per user',
   },
+  ...catalogEn,
   forbidden: {
     title: 'This page is for the manager',
     body: 'Ask the manager for access.',
