@@ -34,7 +34,7 @@
       "id": 1,
       "name": "صيدلية الشفاء",
       "plan": "trial",
-      "planEndsAt": "2026-12-11"
+      "planEndsAt": "2026-12-12"
     }
   }
 }

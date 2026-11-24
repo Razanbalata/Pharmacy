@@ -11,7 +11,7 @@ export const users = {
     phone: '0599920307',
     role: 'manager',
     discountLimit: null,
-    pharmacy: { id: 1, name: 'صيدلية الشفاء', plan: 'trial', planEndsAt: '2026-12-11' },
+    pharmacy: { id: 1, name: 'صيدلية الشفاء', plan: 'trial', planEndsAt: '2026-12-12' },
   },
   pharmacist: {
     id: 2,
@@ -19,7 +19,7 @@ export const users = {
     phone: '0598210774',
     role: 'pharmacist',
     discountLimit: 10,
-    pharmacy: { id: 1, name: 'صيدلية الشفاء', plan: 'trial', planEndsAt: '2026-12-11' },
+    pharmacy: { id: 1, name: 'صيدلية الشفاء', plan: 'trial', planEndsAt: '2026-12-12' },
   },
   cashier: {
     id: 3,
@@ -27,7 +27,7 @@ export const users = {
     phone: '0597640118',
     role: 'cashier',
     discountLimit: 5,
-    pharmacy: { id: 1, name: 'صيدلية الشفاء', plan: 'trial', planEndsAt: '2026-12-11' },
+    pharmacy: { id: 1, name: 'صيدلية الشفاء', plan: 'trial', planEndsAt: '2026-12-12' },
   },
 } satisfies Record<string, CurrentUser>
 

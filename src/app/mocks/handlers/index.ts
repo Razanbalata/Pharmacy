@@ -1,4 +1,5 @@
+import { alertHandlers } from './alerts'
 import { sessionHandlers } from './session'
 
 /** Every fake endpoint. Each module adds its own file here. */
-export const handlers = [...sessionHandlers]
+export const handlers = [...sessionHandlers, ...alertHandlers]
