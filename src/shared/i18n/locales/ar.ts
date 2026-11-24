@@ -13,6 +13,7 @@ export const ar = {
     search: 'ابحث…',
     noResultsFor: 'ما لقينا "{{query}}"',
     addNew: 'أضيفي "{{value}}"',
+    notifications: 'الرسائل',
     selected: 'محدد: {{count}}',
   },
   theme: { label: 'المظهر', system: 'حسب الجهاز', light: 'نهاري', dark: 'ليلي' },

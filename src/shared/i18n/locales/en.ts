@@ -15,6 +15,7 @@ export const en: Messages = {
     search: 'Search…',
     noResultsFor: 'No results for "{{query}}"',
     addNew: 'Add "{{value}}"',
+    notifications: 'Notifications',
     selected: 'Selected: {{count}}',
   },
   theme: { label: 'Theme', system: 'System', light: 'Light', dark: 'Dark' },
