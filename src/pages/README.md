@@ -25,6 +25,7 @@
 | `purchasing/supplier-statement/` | `/suppliers/:id`                       | كشف حساب المورد بفترة، والدفعات                              |
 | `purchasing/purchases/`          | `/purchases`                           | طلبات الشراء بفلاترها، والطلبيات المقترحة للنواقص            |
 | `purchasing/purchase-order/`     | `/purchases/new` و `/purchases/:id`    | طلب جديد أو مسودة للتعديل، أو عرض طلب انبعت                  |
+| `purchasing/purchase-receive/`   | `/purchases/:id/receive`               | استلام البضاعة: الكميات والدفعات والتواريخ والدفع            |
 | `coming-soon/`                   | كل شاشة لسا ما انبنت                   | صفحة مؤقتة بتقول بأي وحدة رح تنبنى الشاشة                    |
 | `ui-kit/`                        | `/ui-kit`                              | مكتبة المكونات                                               |
 | `not-found/`                     | أي رابط مش موجود                       | صفحة مش موجودة                                               |

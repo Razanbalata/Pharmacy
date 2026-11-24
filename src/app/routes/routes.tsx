@@ -125,6 +125,11 @@ export const routes: RouteObject[] = [
             async () => (await import('@/pages/purchasing/purchase-order')).PurchaseOrderPage,
           ),
           guarded(
+            paths.purchaseReceive,
+            'purchases',
+            async () => (await import('@/pages/purchasing/purchase-receive')).PurchaseReceivePage,
+          ),
+          guarded(
             paths.suppliers,
             'suppliers',
             async () => (await import('@/pages/purchasing/suppliers')).SuppliersPage,
