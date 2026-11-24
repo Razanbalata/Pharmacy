@@ -9,8 +9,8 @@
 | 2. الموظفون والإعدادات      | [02-staff-settings.md](modules/02-staff-settings.md)           | خلصت   |
 | 3. الأصناف والتصنيفات       | [03-products-catalog.md](modules/03-products-catalog.md)       | خلصت   |
 | 4. المشتريات والموردون      | [04-purchases-suppliers.md](modules/04-purchases-suppliers.md) | خلصت   |
-| 5. المخزون                  |                                                                | الجاية |
-| 6. البيع                    |                                                                |        |
+| 5. المخزون                  | [05-stock.md](modules/05-stock.md)                             | خلصت   |
+| 6. البيع                    |                                                                | الجاية |
 | 7. الزبائن والديون          |                                                                |        |
 | 8. الورديات والمصاريف       |                                                                |        |
 | 9. لوحة التحكم والتنبيهات   |                                                                |        |
