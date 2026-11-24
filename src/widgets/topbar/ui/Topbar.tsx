@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import { useAlertSummary } from '@/entities/alert'
 import { canAccess, type CurrentUser } from '@/entities/session'
+import { LogoutButton } from '@/features/auth/logout'
 import { LanguageSwitcher } from '@/features/switch-language'
 import { ThemeSwitcher } from '@/features/switch-theme'
 import { paths } from '@/shared/config'
@@ -47,6 +48,7 @@ function UserMenu({ user }: { user: CurrentUser }) {
           <span className="text-caption text-ink-muted">{t('theme.label')}</span>
           <ThemeSwitcher />
         </div>
+        <LogoutButton />
       </div>
     </details>
   )

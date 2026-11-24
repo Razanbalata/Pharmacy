@@ -2,6 +2,7 @@ import '@testing-library/jest-dom/vitest'
 import { cleanup } from '@testing-library/react'
 import { setupServer } from 'msw/node'
 import { afterAll, afterEach, beforeAll, beforeEach } from 'vitest'
+import { resetDb } from '@/app/mocks/db'
 import { handlers } from '@/app/mocks/handlers'
 import { i18n } from '@/shared/i18n'
 
@@ -13,6 +14,7 @@ beforeAll(() => server.listen({ onUnhandledFrame: 'error' }))
 // Tests read Arabic labels, the app's default language.
 beforeEach(async () => {
   localStorage.clear()
+  resetDb()
   await i18n.changeLanguage('ar')
 })
 

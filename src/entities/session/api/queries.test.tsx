@@ -14,7 +14,8 @@ describe('useCurrentUser', () => {
     const { result } = renderHook(() => useCurrentUser(), { wrapper })
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.data?.role).toBe('manager')
-    expect(result.current.data?.pharmacy.name).toBe('صيدلية الشفاء')
+    const user = result.current.data
+    expect(user && 'pharmacy' in user ? user.pharmacy.name : null).toBe('صيدلية الشفاء')
   })
 
   it('returns the role chosen for the fake server', async () => {

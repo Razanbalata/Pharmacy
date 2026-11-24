@@ -1,10 +1,8 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { http, HttpResponse } from 'msw'
 import { createMemoryRouter, RouterProvider } from 'react-router'
 import { describe, expect, it } from 'vitest'
-import { server } from '@test/setup'
 import { routes } from './routes'
 
 function renderAt(path: string) {
@@ -19,17 +17,31 @@ function renderAt(path: string) {
 }
 
 describe('routes', () => {
-  it('opens the app frame with the dashboard at /', async () => {
+  it('shows a new manager the getting-started list instead of the dashboard', async () => {
+    const router = renderAt('/')
+    expect(
+      await screen.findByRole('heading', {
+        level: 1,
+        name: 'أهلاً رزان، صيدلية الشفاء جاهزة تقريباً',
+      }),
+    ).toBeInTheDocument()
+    expect(router.state.location.pathname).toBe('/getting-started')
+  })
+
+  it('shows other roles the dashboard at /', async () => {
+    localStorage.setItem('mockRole', 'pharmacist')
     renderAt('/')
     expect(
       await screen.findByRole('heading', { level: 1, name: 'لوحة التحكم' }),
     ).toBeInTheDocument()
-    expect(screen.getByRole('navigation', { name: 'القائمة الرئيسية' })).toBeInTheDocument()
+    expect(screen.getAllByRole('navigation', { name: 'القائمة الرئيسية' }).length).toBeGreaterThan(
+      0,
+    )
   })
 
   it('moves between screens from the sidebar', async () => {
-    const router = renderAt('/')
-    await screen.findByRole('heading', { level: 1, name: 'لوحة التحكم' })
+    const router = renderAt('/products')
+    await screen.findByRole('heading', { level: 1, name: 'الأصناف' })
     const nav = screen.getAllByRole('navigation', { name: 'القائمة الرئيسية' })[0]
     if (!nav) throw new Error('no sidebar')
     await userEvent.click(nav.querySelector('a[href="/suppliers"]') as HTMLElement)
@@ -43,15 +55,29 @@ describe('routes', () => {
   })
 
   it('sends a signed-out user to the login screen', async () => {
-    server.use(
-      http.get('*/api/me', () =>
-        HttpResponse.json({ message: 'Unauthenticated.' }, { status: 401 }),
-      ),
-    )
+    localStorage.setItem('mockRole', 'none')
     const router = renderAt('/products')
     expect(
-      await screen.findByRole('heading', { level: 1, name: 'تسجيل الدخول' }),
+      await screen.findByRole('heading', { level: 1, name: 'أهلاً فيكِ من جديد' }),
     ).toBeInTheDocument()
     expect(router.state.location.pathname).toBe('/login')
+  })
+
+  it('sends the platform owner to the join requests', async () => {
+    localStorage.setItem('mockRole', 'platform')
+    const router = renderAt('/products')
+    expect(
+      await screen.findByRole('heading', { level: 1, name: 'طلبات الانضمام' }),
+    ).toBeInTheDocument()
+    expect(router.state.location.pathname).toBe('/platform/requests')
+  })
+
+  it('sends a pharmacy user away from the platform screens', async () => {
+    localStorage.setItem('mockRole', 'pharmacist')
+    const router = renderAt('/platform/requests')
+    expect(
+      await screen.findByRole('heading', { level: 1, name: 'لوحة التحكم' }),
+    ).toBeInTheDocument()
+    expect(router.state.location.pathname).toBe('/')
   })
 })

@@ -18,3 +18,17 @@ export function renderWithProviders(
   }
   return { client, ...render(ui, { wrapper: Wrapper, ...options }) }
 }
+
+/** Renders the whole app at an address, with the real routes and the fake server. */
+export async function renderApp(path: string) {
+  const { createMemoryRouter, RouterProvider } = await import('react-router')
+  const { routes } = await import('@/app/routes/routes')
+  const client = new QueryClient({ defaultOptions: { queries: { retry: false } } })
+  const router = createMemoryRouter(routes, { initialEntries: [path] })
+  render(
+    <QueryClientProvider client={client}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>,
+  )
+  return { router, client }
+}

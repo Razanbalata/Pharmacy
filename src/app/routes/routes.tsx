@@ -1,9 +1,16 @@
+import type { ComponentType } from 'react'
 import type { RouteObject } from 'react-router'
 import type { PathKey } from '@/shared/config'
 import { paths } from '@/shared/config'
 import { AppLayout } from './AppLayout'
 import { AppSkeleton } from './AppSkeleton'
+import { PlatformLayout } from './PlatformLayout'
+import { RequireAuth } from './RequireAuth'
 import { RootLayout } from './RootLayout'
+
+function page(path: string, load: () => Promise<{ Component: ComponentType }>): RouteObject {
+  return { path, lazy: load }
+}
 
 /** A screen whose module is not built yet: the link works and says when it comes. */
 function comingSoon(key: PathKey, module: number): RouteObject {
@@ -29,7 +36,13 @@ export const routes: RouteObject[] = [
       {
         element: <AppLayout />,
         children: [
-          comingSoon('dashboard', 9),
+          {
+            index: true,
+            lazy: async () => ({ Component: (await import('./DashboardEntry')).DashboardEntry }),
+          },
+          page(paths.gettingStarted, async () => ({
+            Component: (await import('@/pages/getting-started')).GettingStartedPage,
+          })),
           comingSoon('alerts', 9),
           comingSoon('pos', 6),
           comingSoon('invoices', 6),
@@ -57,8 +70,30 @@ export const routes: RouteObject[] = [
           },
         ],
       },
-      comingSoon('login', 1),
-      comingSoon('join', 1),
+      {
+        element: <PlatformLayout />,
+        children: [
+          page(paths.platformRequests, async () => ({
+            Component: (await import('@/pages/platform-requests')).PlatformRequestsPage,
+          })),
+          comingSoon('platformPharmacies', 11),
+          comingSoon('platformBilling', 11),
+        ],
+      },
+      {
+        element: <RequireAuth />,
+        children: [
+          page(paths.setup, async () => ({ Component: (await import('@/pages/setup')).SetupPage })),
+        ],
+      },
+      page(paths.login, async () => ({ Component: (await import('@/pages/login')).LoginPage })),
+      page(paths.join, async () => ({ Component: (await import('@/pages/join')).JoinPage })),
+      page(paths.activate, async () => ({
+        Component: (await import('@/pages/activate')).ActivatePage,
+      })),
+      page(paths.forgotPassword, async () => ({
+        Component: (await import('@/pages/forgot-password')).ForgotPasswordPage,
+      })),
     ],
   },
 ]

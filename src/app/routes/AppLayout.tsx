@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Navigate, Outlet, useNavigation } from 'react-router'
-import { useCurrentUser } from '@/entities/session'
+import { isPlatformOwner, useCurrentUser } from '@/entities/session'
 import { ApiError } from '@/shared/api'
 import { paths } from '@/shared/config'
 import { Drawer } from '@/shared/ui/dialog'
@@ -27,6 +27,7 @@ export function AppLayout() {
   if (error instanceof ApiError && error.isUnauthenticated)
     return <Navigate to={paths.login} replace />
   if (isPending || !user) return <AppSkeleton />
+  if (isPlatformOwner(user)) return <Navigate to={paths.platformRequests} replace />
 
   const nextPath = navigation.state === 'loading' ? navigation.location.pathname : null
 

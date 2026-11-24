@@ -7,6 +7,8 @@ const SKELETON_BY_PATH: Record<string, PageSkeletonVariant> = {
   [paths.pos]: 'detail',
   [paths.assistant]: 'detail',
   [paths.settings]: 'form',
+  [paths.setup]: 'form',
+  [paths.gettingStarted]: 'dashboard',
 }
 
 export function skeletonFor(pathname: string): PageSkeletonVariant {

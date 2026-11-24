@@ -10,7 +10,13 @@ const base: CurrentUser = {
   phone: '0599920307',
   role: 'manager',
   discountLimit: null,
-  pharmacy: { id: 1, name: 'صيدلية الشفاء', plan: 'trial', planEndsAt: '2999-01-01' },
+  pharmacy: {
+    id: 1,
+    name: 'صيدلية الشفاء',
+    plan: 'trial',
+    planEndsAt: '2999-01-01',
+    onboardingDone: true,
+  },
 }
 
 describe('Sidebar', () => {
