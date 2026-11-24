@@ -1,3 +1,3 @@
 export { isAcceptablePassword, passwordStrength } from './password'
 export type { PasswordStrength } from './password'
-export { formatPhone, isMobileNumber, normalizePhone } from './phone'
+export { formatPhone, isMobileNumber, isPhoneNumber, normalizePhone, whatsappLink } from './phone'

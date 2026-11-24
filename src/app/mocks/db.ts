@@ -3,6 +3,7 @@ import type { JoinRequest } from '@/entities/join-request'
 import type { OnboardingStatus, PharmacyProfile, PharmacySettings } from '@/entities/pharmacy'
 import type { StaffMember } from '@/entities/staff-member'
 import { initialCatalog } from './catalog-data'
+import { initialPurchases } from './purchases-data'
 
 /**
  * The fake server's memory. Starts from the design data and changes as you use the app,
@@ -274,6 +275,7 @@ function initial() {
   }
   return {
     ...initialCatalog(),
+    ...initialPurchases(),
     staff,
     activity,
     settings,

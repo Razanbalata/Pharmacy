@@ -1,4 +1,5 @@
 import { catalogAr } from './catalog.ar'
+import { purchasesAr } from './purchases.ar'
 /** Arabic is the source of truth: every key starts here, English must match its shape. */
 export const ar = {
   app: { name: 'فارما سمارت' },
@@ -57,6 +58,10 @@ export const ar = {
     productLabels: 'ملصقات الباركود',
     productDetail: 'تفاصيل الصنف',
     productEdit: 'تعديل صنف',
+    purchaseNew: 'طلب شراء جديد',
+    purchaseDetail: 'طلب شراء',
+    purchaseReceive: 'استلام طلب',
+    supplierDetail: 'كشف حساب مورد',
     uiKit: 'مكتبة المكونات',
     activate: 'تفعيل الحساب',
     forgotPassword: 'نسيت كلمة المرور',
@@ -501,6 +506,7 @@ export const ar = {
     languageHint: 'لكل مستخدم لحاله',
   },
   ...catalogAr,
+  ...purchasesAr,
   forbidden: {
     title: 'هالصفحة مش ضمن صلاحياتك',
     body: 'اطلبي من المديرة تعطيكِ الصلاحية.',

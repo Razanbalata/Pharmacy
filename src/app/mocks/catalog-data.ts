@@ -1,7 +1,6 @@
 import type { Category } from '@/entities/category'
 import type { Ingredient } from '@/entities/ingredient'
 import type { Batch, CatalogEntry, DosageForm, Movement, SaleUnit } from '@/entities/product'
-import type { SupplierOption } from '@/entities/supplier'
 
 /** A product as the fake server keeps it. Quantity, status and names are worked out on read. */
 export interface StoredProduct {
@@ -123,13 +122,6 @@ export function initialCatalog() {
     { id: 13, name: 'Cetirizine', nameAr: 'سيتريزين', fromCatalog: true },
     { id: 14, name: 'Cholecalciferol', nameAr: 'فيتامين د3', fromCatalog: true },
     { id: 15, name: 'Ibuprofen', nameAr: 'إيبوبروفين', fromCatalog: true },
-  ]
-
-  const suppliers: SupplierOption[] = [
-    { id: 1, name: 'المستودع الطبي الحديث' },
-    { id: 2, name: 'شركة الشفاء للأدوية' },
-    { id: 3, name: 'مستودع القدس' },
-    { id: 4, name: 'شركة دار الدواء' },
   ]
 
   const augmentin = product(1, 'Augmentin 625mg 14 Tablets', {
@@ -511,5 +503,5 @@ export function initialCatalog() {
     ingredientIds: number[]
   }[] = []
 
-  return { categories, ingredients, suppliers, products, catalog, imports }
+  return { categories, ingredients, products, catalog, imports }
 }

@@ -24,7 +24,7 @@ function today(): Date {
   return new Date(`${db.today}T12:00:00`)
 }
 
-function quantityOf(product: StoredProduct): number {
+export function quantityOf(product: StoredProduct): number {
   return product.batches.reduce((sum, item) => sum + item.quantity, 0)
 }
 
@@ -37,7 +37,7 @@ function nearestExpiry(product: StoredProduct): string | null {
 }
 
 /** The same rule the real server uses: nothing, expired, expiring, short, fine. */
-function statusOf(product: StoredProduct): StockStatus {
+export function statusOf(product: StoredProduct): StockStatus {
   const quantity = quantityOf(product)
   const expiry = nearestExpiry(product)
   if (quantity === 0 || !expiry) return 'out'
@@ -326,8 +326,6 @@ export const catalogHandlers = [
       })
     return HttpResponse.json({ data: found })
   }),
-
-  http.get(apiUrl('/api/suppliers/options'), () => HttpResponse.json({ data: db.suppliers })),
 
   http.get(apiUrl('/api/categories'), () =>
     HttpResponse.json({ data: db.categories.map(categoryWithCounts) }),

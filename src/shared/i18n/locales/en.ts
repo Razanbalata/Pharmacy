@@ -1,5 +1,6 @@
 import type { Messages } from './ar'
 import { catalogEn } from './catalog.en'
+import { purchasesEn } from './purchases.en'
 
 /** Typed against Arabic: a missing or extra key fails the type check. */
 export const en: Messages = {
@@ -59,6 +60,10 @@ export const en: Messages = {
     productLabels: 'Barcode labels',
     productDetail: 'Product details',
     productEdit: 'Edit product',
+    purchaseNew: 'New purchase order',
+    purchaseDetail: 'Purchase order',
+    purchaseReceive: 'Receive order',
+    supplierDetail: 'Supplier statement',
     uiKit: 'Component library',
     activate: 'Activate account',
     forgotPassword: 'Forgot password',
@@ -517,6 +522,7 @@ export const en: Messages = {
     languageHint: 'Per user',
   },
   ...catalogEn,
+  ...purchasesEn,
   forbidden: {
     title: 'This page is not part of your role',
     body: 'Ask the manager for access.',

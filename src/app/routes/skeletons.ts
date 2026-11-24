@@ -18,6 +18,9 @@ const SKELETON_BY_PATH: Record<string, PageSkeletonVariant> = {
 const SKELETON_BY_PATTERN: [RegExp, PageSkeletonVariant][] = [
   [/^\/products\/\d+$/, 'detail'],
   [/^\/products\/\d+\/edit$/, 'form'],
+  [/^\/suppliers\/\d+$/, 'detail'],
+  [/^\/purchases\/(new|\d+)$/, 'form'],
+  [/^\/purchases\/\d+\/receive$/, 'form'],
 ]
 
 export function skeletonFor(pathname: string): PageSkeletonVariant {
