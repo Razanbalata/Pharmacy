@@ -2,7 +2,9 @@ import type { ComponentType } from 'react'
 import type { RouteObject } from 'react-router'
 import type { PathKey } from '@/shared/config'
 import { paths } from '@/shared/config'
+import type { Area } from '@/entities/session'
 import { AppLayout } from './AppLayout'
+import { AreaGuard } from './AreaGuard'
 import { AppSkeleton } from './AppSkeleton'
 import { PlatformLayout } from './PlatformLayout'
 import { RequireAuth } from './RequireAuth'
@@ -10,6 +12,23 @@ import { RootLayout } from './RootLayout'
 
 function page(path: string, load: () => Promise<{ Component: ComponentType }>): RouteObject {
   return { path, lazy: load }
+}
+
+/** A page only some roles may open. */
+function guarded(path: string, area: Area, load: () => Promise<ComponentType>): RouteObject {
+  return {
+    path,
+    lazy: async () => {
+      const Page = await load()
+      return {
+        Component: () => (
+          <AreaGuard area={area}>
+            <Page />
+          </AreaGuard>
+        ),
+      }
+    },
+  }
 }
 
 /** A screen whose module is not built yet: the link works and says when it comes. */
@@ -58,8 +77,17 @@ export const routes: RouteObject[] = [
           comingSoon('shifts', 8),
           comingSoon('reports', 10),
           comingSoon('assistant', 10),
-          comingSoon('staff', 2),
-          comingSoon('settings', 2),
+          guarded(paths.staff, 'staff', async () => (await import('@/pages/staff')).StaffPage),
+          guarded(
+            paths.activity,
+            'staff',
+            async () => (await import('@/pages/activity')).ActivityPage,
+          ),
+          guarded(
+            paths.settings,
+            'settings',
+            async () => (await import('@/pages/settings')).SettingsPage,
+          ),
           {
             path: paths.uiKit,
             lazy: async () => ({ Component: (await import('@/pages/ui-kit')).UiKitPage }),

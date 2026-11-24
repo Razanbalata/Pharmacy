@@ -15,3 +15,5 @@ export {
 } from './api/pharmacy-api'
 export { pharmacyQueries } from './api/queries'
 export { CityPicker } from './ui/CityPicker'
+export type { PharmacySettings, PharmacySettingsInput, ReceiptSize } from './model/settings'
+export { backupDownloadUrl, getSettings, updateSettings } from './api/settings-api'

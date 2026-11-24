@@ -20,6 +20,7 @@ export const paths = {
   reports: '/reports',
   assistant: '/assistant',
   staff: '/staff',
+  activity: '/staff/activity',
   settings: '/settings',
   login: '/login',
   join: '/join',

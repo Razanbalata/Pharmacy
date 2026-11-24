@@ -5,6 +5,7 @@ import { afterAll, afterEach, beforeAll, beforeEach } from 'vitest'
 import { resetDb } from '@/app/mocks/db'
 import { handlers } from '@/app/mocks/handlers'
 import { i18n } from '@/shared/i18n'
+import { useToastStore } from '@/shared/ui/toast'
 
 /** The same fake server the browser uses, so tests and development see the same data. */
 export const server = setupServer(...handlers)
@@ -14,6 +15,7 @@ beforeAll(() => server.listen({ onUnhandledFrame: 'error' }))
 // Tests read Arabic labels, the app's default language.
 beforeEach(async () => {
   localStorage.clear()
+  useToastStore.setState({ toasts: [] })
   resetDb()
   await i18n.changeLanguage('ar')
 })
