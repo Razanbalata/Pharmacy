@@ -131,7 +131,7 @@ export const purchasesAr = {
       title: 'طلب شراء {{number}}',
       supplier: 'المورد',
       owed: 'مستحق إله: {{amount}} ₪',
-      lastOrder: 'آخر طلبية: {{number}} · {{date}}',
+      lastOrder: 'آخر طلبية:',
       addLow: 'نواقص هالمورد · {{count}}',
       addProduct: 'أضيفي صنف بالبحث',
       columns: {

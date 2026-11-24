@@ -138,7 +138,7 @@ export const purchasesEn: typeof purchasesAr = {
       title: 'Purchase order {{number}}',
       supplier: 'Supplier',
       owed: 'Owed: {{amount}} ₪',
-      lastOrder: 'Last order: {{number}} · {{date}}',
+      lastOrder: 'Last order:',
       addLow: "This supplier's shortages · {{count}}",
       addProduct: 'Add a product by search',
       columns: {

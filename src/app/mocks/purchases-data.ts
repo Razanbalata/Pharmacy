@@ -133,7 +133,7 @@ export function initialPurchases() {
       sentAt: '2026-11-12T09:00:00Z',
       note: '',
       paid: 1300,
-      lines: [line(12, 20, 37, 20), line(17, 30, 18.67, 30)],
+      lines: [line(12, 20, 37, 20), line(17, 28, 20, 28)],
     },
     {
       id: 10,

@@ -109,7 +109,21 @@ export const routes: RouteObject[] = [
           ),
           comingSoon('stockCounts', 5),
           comingSoon('movements', 5),
-          comingSoon('purchases', 4),
+          guarded(
+            paths.purchases,
+            'purchases',
+            async () => (await import('@/pages/purchasing/purchases')).PurchasesPage,
+          ),
+          guarded(
+            paths.purchaseNew,
+            'purchases',
+            async () => (await import('@/pages/purchasing/purchase-order')).PurchaseOrderPage,
+          ),
+          guarded(
+            paths.purchaseDetail,
+            'purchases',
+            async () => (await import('@/pages/purchasing/purchase-order')).PurchaseOrderPage,
+          ),
           guarded(
             paths.suppliers,
             'suppliers',
