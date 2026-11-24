@@ -5,12 +5,34 @@ export type FieldErrors = Record<string, string[]>
 export class ApiError extends Error {
   readonly status: number
   readonly fieldErrors: FieldErrors
+  /** The whole JSON body, for extra details some endpoints send (e.g. attemptsLeft). */
+  readonly body: Record<string, unknown>
 
-  constructor(status: number, message: string, fieldErrors: FieldErrors = {}) {
+  constructor(
+    status: number,
+    message: string,
+    fieldErrors: FieldErrors = {},
+    body: Record<string, unknown> = {},
+  ) {
     super(message)
     this.name = 'ApiError'
     this.status = status
     this.fieldErrors = fieldErrors
+    this.body = body
+  }
+
+  /** Too many attempts; wait before trying again. */
+  get isRateLimited(): boolean {
+    return this.status === 429
+  }
+
+  /** The thing existed but is no longer valid, e.g. an expired link. */
+  get isGone(): boolean {
+    return this.status === 410
+  }
+
+  get isNotFound(): boolean {
+    return this.status === 404
   }
 
   /** Not signed in, or the session ended. */

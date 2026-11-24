@@ -1,6 +1,6 @@
 import { createInstance } from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import { ar } from './locales/ar'
+import { ar, type Messages } from './locales/ar'
 import { en } from './locales/en'
 
 export const LANGUAGES = ['ar', 'en'] as const
@@ -30,3 +30,14 @@ void i18n.use(initReactI18next).init({
 })
 
 export { i18n }
+
+type Leaves<T, Prefix extends string = ''> = {
+  [K in keyof T & string]: T[K] extends string
+    ? `${Prefix}${K}`
+    : T[K] extends readonly unknown[]
+      ? never
+      : Leaves<T[K], `${Prefix}${K}.`>
+}[keyof T & string]
+
+/** Any translation key, e.g. 'validation.required'. Used for messages chosen at runtime. */
+export type TranslationKey = Leaves<Messages>

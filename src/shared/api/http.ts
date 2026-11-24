@@ -27,14 +27,16 @@ function buildUrl(path: string, query: RequestOptions['query']): string {
 async function readError(response: Response): Promise<ApiError> {
   let message = response.statusText
   let fieldErrors: FieldErrors = {}
+  let body: Record<string, unknown> = {}
   try {
-    const data = (await response.json()) as { message?: string; errors?: FieldErrors }
-    message = data.message ?? message
-    fieldErrors = data.errors ?? {}
+    body = (await response.json()) as Record<string, unknown>
+    if (typeof body['message'] === 'string') message = body['message']
+    if (body['errors'] && typeof body['errors'] === 'object')
+      fieldErrors = body['errors'] as FieldErrors
   } catch {
     // The body was not JSON; keep the status text.
   }
-  return new ApiError(response.status, message, fieldErrors)
+  return new ApiError(response.status, message, fieldErrors, body)
 }
 
 /**
@@ -69,8 +71,9 @@ export async function request<T>(
   }
 
   if (!response.ok) throw await readError(response)
-  if (response.status === 204) return undefined as T
-  return (await response.json()) as T
+  // 204, or 202 "accepted" with nothing to say: no body to read.
+  const text = await response.text()
+  return (text ? JSON.parse(text) : undefined) as T
 }
 
 /** Must be called once before login, so Laravel sets the XSRF cookie. */

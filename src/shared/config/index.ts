@@ -1,3 +1,3 @@
 export { env } from './env'
-export { paths } from './routes'
+export { paths, to } from './routes'
 export type { PathKey } from './routes'

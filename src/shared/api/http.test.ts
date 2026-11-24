@@ -64,6 +64,11 @@ describe('http', () => {
     expect(error.isUnauthenticated).toBe(true)
   })
 
+  it('accepts success answers without a body', async () => {
+    fetchMock.mockResolvedValue(new Response(null, { status: 202 }))
+    await expect(http.post('/api/activation/abc/resend')).resolves.toBeUndefined()
+  })
+
   it('reports a network failure with status 0', async () => {
     fetchMock.mockRejectedValue(new TypeError('Failed to fetch'))
     const error = (await http.get('/api/me').catch((e: unknown) => e)) as ApiError

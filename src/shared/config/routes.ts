@@ -23,7 +23,19 @@ export const paths = {
   settings: '/settings',
   login: '/login',
   join: '/join',
+  activate: '/activate/:token',
+  forgotPassword: '/forgot-password',
+  setup: '/setup',
+  gettingStarted: '/getting-started',
+  platformRequests: '/platform/requests',
+  platformPharmacies: '/platform/pharmacies',
+  platformBilling: '/platform/billing',
   uiKit: '/ui-kit',
 } as const
 
 export type PathKey = keyof typeof paths
+
+/** Fills :params in an address, e.g. to(paths.activate, { token: 'abc' }) → /activate/abc */
+export function to(path: string, params: Record<string, string | number>): string {
+  return path.replace(/:(\w+)/g, (_, key: string) => encodeURIComponent(String(params[key] ?? '')))
+}

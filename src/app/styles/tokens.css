@@ -6,6 +6,11 @@
 
 :root {
   color-scheme: light;
+  /* Platform owner area (not in the pharmacy design system): purple so it never looks like a pharmacy screen. */
+  --ps-platform: #1a1330;
+  --ps-platform-accent: #5b3fb8;
+  --ps-platform-muted: #c8b8f0;
+  --ps-platform-soft: #ece6fb;
   --ps-surface-0: #f4f7f7;
   --ps-surface-100: #ffffff;
   --ps-surface-200: #ecf2f2;
@@ -35,6 +40,10 @@
 
 :root[data-theme='dark'] {
   color-scheme: dark;
+  --ps-platform: #120d22;
+  --ps-platform-accent: #7a5cd6;
+  --ps-platform-muted: #c8b8f0;
+  --ps-platform-soft: #251b45;
   --ps-surface-0: #0a131e;
   --ps-surface-100: #101c2a;
   --ps-surface-200: #162536;
@@ -63,6 +72,10 @@
 }
 
 @theme inline {
+  --color-platform: var(--ps-platform);
+  --color-platform-accent: var(--ps-platform-accent);
+  --color-platform-muted: var(--ps-platform-muted);
+  --color-platform-soft: var(--ps-platform-soft);
   --color-surface-0: var(--ps-surface-0);
   --color-surface-100: var(--ps-surface-100);
   --color-surface-200: var(--ps-surface-200);
