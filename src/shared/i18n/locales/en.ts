@@ -3,6 +3,20 @@ import type { Messages } from './ar'
 /** Typed against Arabic: a missing or extra key fails the type check. */
 export const en: Messages = {
   app: { name: 'PharmaSmart' },
+  common: {
+    optional: 'optional',
+    loading: 'Loading…',
+    close: 'Close',
+    cancel: 'Cancel',
+    confirm: 'Confirm',
+    back: 'Back',
+    undo: 'Undo',
+    retry: 'Retry',
+    search: 'Search…',
+    noResultsFor: 'No results for "{{query}}"',
+    addNew: 'Add "{{value}}"',
+    selected: 'Selected: {{count}}',
+  },
   theme: { label: 'Theme', system: 'System', light: 'Light', dark: 'Dark' },
   language: { label: 'Language', ar: 'العربية', en: 'English' },
   home: {

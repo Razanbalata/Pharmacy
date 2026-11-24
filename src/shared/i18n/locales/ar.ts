@@ -1,6 +1,20 @@
 /** Arabic is the source of truth: every key starts here, English must match its shape. */
 export const ar = {
   app: { name: 'فارما سمارت' },
+  common: {
+    optional: 'اختياري',
+    loading: 'جاري التحميل…',
+    close: 'إغلاق',
+    cancel: 'إلغاء',
+    confirm: 'تأكيد',
+    back: 'رجوع',
+    undo: 'تراجع',
+    retry: 'إعادة',
+    search: 'ابحث…',
+    noResultsFor: 'ما لقينا "{{query}}"',
+    addNew: 'أضيفي "{{value}}"',
+    selected: 'محدد: {{count}}',
+  },
   theme: { label: 'المظهر', system: 'حسب الجهاز', light: 'نهاري', dark: 'ليلي' },
   language: { label: 'اللغة', ar: 'العربية', en: 'English' },
   home: {
