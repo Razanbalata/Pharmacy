@@ -7,10 +7,11 @@ import { Button, buttonVariants } from '@/shared/ui/button'
 interface SelectionBarProps {
   ids: number[]
   onClear: () => void
+  onBulkEdit: () => void
 }
 
 /** What can be done to the ticked products at once. Shows only while something is ticked. */
-export function SelectionBar({ ids, onClear }: SelectionBarProps) {
+export function SelectionBar({ ids, onClear, onBulkEdit }: SelectionBarProps) {
   const { t } = useTranslation()
   const query = `ids=${ids.join(',')}`
 
@@ -23,6 +24,9 @@ export function SelectionBar({ ids, onClear }: SelectionBarProps) {
         {t('products.selection.count', { count: ids.length })}
       </span>
       <span className="grow" />
+      <Button size="sm" onClick={onBulkEdit}>
+        {t('products.selection.bulkEdit')}
+      </Button>
       <Link
         to={`${paths.productLabels}?${query}`}
         className={buttonVariants({ variant: 'secondary', size: 'sm' })}

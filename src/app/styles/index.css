@@ -41,3 +41,23 @@
     transform: translateX(-100%);
   }
 }
+
+/*
+ * Printing. A page that prints (barcode labels, later receipts) marks the part to print
+ * with .print-area; everything else, the sidebar and top bar included, is left off paper.
+ */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+  .print-area {
+    position: absolute;
+    inset: 0;
+    padding: 0;
+    background: white;
+  }
+}

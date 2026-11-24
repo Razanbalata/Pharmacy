@@ -77,4 +77,43 @@ describe('ProductsPage', () => {
     expect(screen.queryByRole('checkbox')).not.toBeInTheDocument()
     expect(screen.queryByRole('link', { name: /^تعديل/ })).not.toBeInTheDocument()
   })
+
+  it('edits ticked products together after showing what will change', async () => {
+    await renderApp('/products')
+    await table()
+    await userEvent.click(screen.getByRole('checkbox', { name: 'تحديد Ventolin Inhaler 100mcg' }))
+    await userEvent.click(screen.getByRole('checkbox', { name: 'تحديد Zyrtec 10mg 20 Tablets' }))
+    await userEvent.click(screen.getByRole('button', { name: 'تعديل جماعي' }))
+
+    const drawer = screen.getByRole('dialog', { name: 'تعديل 2 أصناف مع بعض' })
+    const apply = within(drawer).getByRole('button', { name: 'طبّقي على 2 أصناف' })
+    expect(apply).toBeDisabled()
+    expect(within(drawer).getByText(/علّمي على حقل واحد على الأقل/)).toBeInTheDocument()
+
+    await userEvent.click(within(drawer).getByRole('checkbox', { name: 'غيّري الحد الأدنى' }))
+    await userEvent.clear(within(drawer).getByRole('textbox', { name: 'الحد الأدنى' }))
+    await userEvent.type(within(drawer).getByRole('textbox', { name: 'الحد الأدنى' }), '15')
+    await userEvent.click(
+      within(drawer).getByRole('checkbox', { name: 'غيّري تعديل الأسعار بنسبة' }),
+    )
+    await userEvent.clear(within(drawer).getByRole('textbox', { name: 'تعديل الأسعار بنسبة' }))
+    await userEvent.type(within(drawer).getByRole('textbox', { name: 'تعديل الأسعار بنسبة' }), '10')
+
+    const preview = await within(drawer).findByRole('table', { name: 'شو رح يتغير' })
+    const ventolin = within(within(preview).getByText('Ventolin Inhaler 100mcg').closest('tr')!)
+    expect(ventolin.getByText('10')).toBeInTheDocument()
+    expect(ventolin.getAllByText('15')).toHaveLength(1)
+    expect(ventolin.getByText('26.40')).toBeInTheDocument()
+    expect(within(drawer).getByText(/2 أصناف رح تصير تحت الحد الأدنى/)).toBeInTheDocument()
+
+    await userEvent.click(apply)
+    expect(await screen.findByText('تعدلوا 2 أصناف')).toBeInTheDocument()
+    expect(screen.queryByRole('region', { name: '2 أصناف محددة' })).not.toBeInTheDocument()
+    const row = within(
+      (await within(screen.getByRole('table', { name: 'الأصناف' })).findByText('26.40 ₪')).closest(
+        'tr',
+      )!,
+    )
+    expect(row.getByText('Ventolin Inhaler 100mcg')).toBeInTheDocument()
+  })
 })

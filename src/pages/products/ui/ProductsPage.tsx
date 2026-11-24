@@ -19,6 +19,7 @@ import {
 } from '@/entities/product'
 import { canManageCatalog, useCurrentUser } from '@/entities/session'
 import { supplierQueries } from '@/entities/supplier'
+import { BulkEditDrawer } from '@/features/product/bulk-edit'
 import { paths, to } from '@/shared/config'
 import { cn } from '@/shared/lib/cn'
 import { formatMoney } from '@/shared/lib/money'
@@ -78,6 +79,7 @@ export function ProductsPage() {
   const { data: user } = useCurrentUser()
   const canManage = user && 'pharmacy' in user ? canManageCatalog(user.role) : false
   const [selected, setSelected] = useState<Set<string>>(new Set())
+  const [bulkOpen, setBulkOpen] = useState(false)
 
   const { data: page, isPending } = useQuery(productQueries.list(filters))
   const { data: categories = [] } = useQuery(categoryQueries.list())
@@ -285,7 +287,11 @@ export function ProductsPage() {
       </div>
 
       {canManage && selected.size > 0 && (
-        <SelectionBar ids={[...selected].map(Number)} onClear={() => setSelected(new Set())} />
+        <SelectionBar
+          ids={[...selected].map(Number)}
+          onClear={() => setSelected(new Set())}
+          onBulkEdit={() => setBulkOpen(true)}
+        />
       )}
 
       <DataTable
@@ -349,6 +355,18 @@ export function ProductsPage() {
             </select>
           </label>
         </div>
+      )}
+
+      {canManage && bulkOpen && (
+        <BulkEditDrawer
+          open
+          ids={[...selected].map(Number)}
+          onClose={() => setBulkOpen(false)}
+          onDone={() => {
+            setBulkOpen(false)
+            setSelected(new Set())
+          }}
+        />
       )}
     </div>
   )
