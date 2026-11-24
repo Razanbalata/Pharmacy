@@ -172,7 +172,8 @@ function categoryWithCounts(category: (typeof db.categories)[number]): Category 
 }
 
 function ingredientWithCounts(ingredient: (typeof db.ingredients)[number]): Ingredient {
-  const products = db.products.filter((item) => item.ingredientId === ingredient.id)
+  // Stopped products are not offered as alternatives, so they are not counted here.
+  const products = db.products.filter((item) => item.ingredientId === ingredient.id && item.active)
   return {
     ...ingredient,
     productCount: products.length,

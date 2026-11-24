@@ -326,7 +326,7 @@ export function initialCatalog() {
       units: box(34),
     }),
     product(15, 'Curam 1g 14 Tablets', {
-      ingredientId: 1,
+      ingredientId: 3,
       categoryId: 1,
       strength: '1 غ',
       manufacturer: 'Sandoz',
