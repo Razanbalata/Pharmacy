@@ -22,3 +22,13 @@ afterEach(() => {
 })
 
 afterAll(() => server.close())
+
+// jsdom has <dialog> but not its modal methods yet; this is just enough for tests.
+if (!HTMLDialogElement.prototype.showModal) {
+  HTMLDialogElement.prototype.showModal = function showModal(this: HTMLDialogElement) {
+    this.open = true
+  }
+  HTMLDialogElement.prototype.close = function close(this: HTMLDialogElement) {
+    this.open = false
+  }
+}
