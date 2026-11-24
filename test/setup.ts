@@ -4,6 +4,7 @@ import { setupServer } from 'msw/node'
 import { afterAll, afterEach, beforeAll, beforeEach } from 'vitest'
 import { resetDb } from '@/app/mocks/db'
 import { handlers } from '@/app/mocks/handlers'
+import { useCart } from '@/entities/cart'
 import { i18n } from '@/shared/i18n'
 import { useToastStore } from '@/shared/ui/toast'
 
@@ -16,6 +17,7 @@ beforeAll(() => server.listen({ onUnhandledFrame: 'error' }))
 beforeEach(async () => {
   localStorage.clear()
   useToastStore.setState({ toasts: [] })
+  useCart.getState().clear('فاتورة 1')
   resetDb()
   await i18n.changeLanguage('ar')
 })

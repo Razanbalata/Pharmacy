@@ -23,3 +23,4 @@ export {
   listHeld,
   listInvoices,
 } from './api/invoice-api'
+export { Receipt } from './ui/Receipt'
