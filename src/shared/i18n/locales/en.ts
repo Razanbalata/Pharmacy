@@ -23,6 +23,7 @@ export const en: Messages = {
     next: 'Next',
     showing: 'Showing {{from}}–{{to}} of {{total}}',
     pagination: 'Pages',
+    breadcrumb: 'Breadcrumb',
     selected: 'Selected: {{count}}',
   },
   nav: {
@@ -517,7 +518,7 @@ export const en: Messages = {
   },
   ...catalogEn,
   forbidden: {
-    title: 'This page is for the manager',
+    title: 'This page is not part of your role',
     body: 'Ask the manager for access.',
   },
   theme: { label: 'Theme', system: 'System', light: 'Light', dark: 'Dark' },

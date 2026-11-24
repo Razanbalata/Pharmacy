@@ -21,6 +21,7 @@ export const ar = {
     next: 'التالي',
     showing: 'عرض {{from}}–{{to}} من {{total}}',
     pagination: 'الصفحات',
+    breadcrumb: 'مسار الصفحة',
     selected: 'محدد: {{count}}',
   },
   nav: {
@@ -501,7 +502,7 @@ export const ar = {
   },
   ...catalogAr,
   forbidden: {
-    title: 'هالصفحة للمدير',
+    title: 'هالصفحة مش ضمن صلاحياتك',
     body: 'اطلبي من المديرة تعطيكِ الصلاحية.',
   },
   theme: { label: 'المظهر', system: 'حسب الجهاز', light: 'نهاري', dark: 'ليلي' },

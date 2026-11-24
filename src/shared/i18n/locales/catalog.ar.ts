@@ -151,7 +151,7 @@ export const catalogAr = {
       unitPrice: 'سعر البيع',
       unitEnabled: 'البيع فيها',
       baseUnit: 'الوحدة الأساسية',
-      inParent: 'ب{{unit}}',
+      inParent: 'بال{{unit}}',
       addUnit: 'أضيفي وحدة',
       removeUnit: 'احذفي الوحدة',
       stock: 'المخزون',

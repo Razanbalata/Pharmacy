@@ -73,7 +73,7 @@ describe('StaffPage', () => {
   it('is closed to the pharmacist even by typing the address', async () => {
     localStorage.setItem('mockRole', 'pharmacist')
     await renderApp('/staff')
-    expect(await screen.findByText('هالصفحة للمدير')).toBeInTheDocument()
+    expect(await screen.findByText('هالصفحة مش ضمن صلاحياتك')).toBeInTheDocument()
     expect(screen.queryByRole('table')).not.toBeInTheDocument()
   })
 })
