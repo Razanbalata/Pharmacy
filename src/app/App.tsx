@@ -1,3 +1,11 @@
+import { HomePage } from '@/pages/home'
+import { ThemeProvider } from './theme/ThemeProvider'
+import './styles/index.css'
+
 export function App() {
-  return <h1>PharmaSmart</h1>
+  return (
+    <ThemeProvider>
+      <HomePage />
+    </ThemeProvider>
+  )
 }

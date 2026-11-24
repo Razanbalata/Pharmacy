@@ -1,0 +1,127 @@
+/*
+ * ألوان وخطوط نظام التصميم "فارما سمارت".
+ * المصدر: نظام التصميم المنشور (tokens.json). أي تعديل بالألوان بيصير هناك أول، وبعدين هون.
+ * النهاري هو الافتراضي، والليلي بيشتغل لما يكون عالصفحة data-theme="dark".
+ */
+
+:root {
+  color-scheme: light;
+  --ps-surface-0: #f4f7f7;
+  --ps-surface-100: #ffffff;
+  --ps-surface-200: #ecf2f2;
+  --ps-border: #d6e0e1;
+  --ps-border-strong: #76879a;
+  --ps-ink: #0f1f33;
+  --ps-ink-muted: #4f5f6e;
+  --ps-brand: #0e7c7b;
+  --ps-brand-strong: #0a5f5e;
+  --ps-brand-soft: #d7efed;
+  --ps-on-brand: #ffffff;
+  --ps-navy: #0f1f33;
+  --ps-navy-soft: #1c3150;
+  --ps-on-navy: #e8eef3;
+  --ps-success: #1d7a45;
+  --ps-success-soft: #dcf2e4;
+  --ps-warning: #a64b07;
+  --ps-warning-soft: #fcebd7;
+  --ps-danger: #b92f25;
+  --ps-danger-soft: #fadedb;
+  --ps-info: #1f5fbf;
+  --ps-info-soft: #e0eafa;
+  --ps-focus: #0e7c7b;
+  --ps-shadow-card: 0 1px 2px rgba(15, 31, 51, 0.06), 0 4px 12px rgba(15, 31, 51, 0.05);
+  --ps-shadow-pop: 0 12px 32px rgba(15, 31, 51, 0.16);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --ps-surface-0: #0a131e;
+  --ps-surface-100: #101c2a;
+  --ps-surface-200: #162536;
+  --ps-border: #24364a;
+  --ps-border-strong: #5b6f84;
+  --ps-ink: #e8eef3;
+  --ps-ink-muted: #9aabbb;
+  --ps-brand: #2bb3ac;
+  --ps-brand-strong: #5fd0c8;
+  --ps-brand-soft: #0f3a3b;
+  --ps-on-brand: #04201f;
+  --ps-navy: #060d16;
+  --ps-navy-soft: #121f31;
+  --ps-on-navy: #e8eef3;
+  --ps-success: #3ecf7f;
+  --ps-success-soft: #0f3322;
+  --ps-warning: #f2a93b;
+  --ps-warning-soft: #3a2709;
+  --ps-danger: #f07067;
+  --ps-danger-soft: #3d1714;
+  --ps-info: #7aaaf5;
+  --ps-info-soft: #14233d;
+  --ps-focus: #5fd0c8;
+  --ps-shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --ps-shadow-pop: 0 12px 32px rgba(0, 0, 0, 0.55);
+}
+
+@theme inline {
+  --color-surface-0: var(--ps-surface-0);
+  --color-surface-100: var(--ps-surface-100);
+  --color-surface-200: var(--ps-surface-200);
+  --color-border: var(--ps-border);
+  --color-border-strong: var(--ps-border-strong);
+  --color-ink: var(--ps-ink);
+  --color-ink-muted: var(--ps-ink-muted);
+  --color-brand: var(--ps-brand);
+  --color-brand-strong: var(--ps-brand-strong);
+  --color-brand-soft: var(--ps-brand-soft);
+  --color-on-brand: var(--ps-on-brand);
+  --color-navy: var(--ps-navy);
+  --color-navy-soft: var(--ps-navy-soft);
+  --color-on-navy: var(--ps-on-navy);
+  --color-success: var(--ps-success);
+  --color-success-soft: var(--ps-success-soft);
+  --color-warning: var(--ps-warning);
+  --color-warning-soft: var(--ps-warning-soft);
+  --color-danger: var(--ps-danger);
+  --color-danger-soft: var(--ps-danger-soft);
+  --color-info: var(--ps-info);
+  --color-info-soft: var(--ps-info-soft);
+  --color-focus: var(--ps-focus);
+  --shadow-card: var(--ps-shadow-card);
+  --shadow-pop: var(--ps-shadow-pop);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+  --font-display: 'Readex Pro', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-sans: 'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, system-ui, sans-serif;
+  --text-display: 32px;
+  --text-display--line-height: 40px;
+  --text-display--font-weight: 700;
+  --text-heading: 22px;
+  --text-heading--line-height: 30px;
+  --text-heading--font-weight: 700;
+  --text-subheading: 17px;
+  --text-subheading--line-height: 26px;
+  --text-subheading--font-weight: 600;
+  --text-body: 15px;
+  --text-body--line-height: 24px;
+  --text-body--font-weight: 400;
+  --text-body-strong: 15px;
+  --text-body-strong--line-height: 24px;
+  --text-body-strong--font-weight: 600;
+  --text-small: 13px;
+  --text-small--line-height: 20px;
+  --text-small--font-weight: 400;
+  --text-caption: 12px;
+  --text-caption--line-height: 16px;
+  --text-caption--font-weight: 600;
+  --text-number-xl: 40px;
+  --text-number-xl--line-height: 44px;
+  --text-number-xl--font-weight: 700;
+  --text-number-lg: 26px;
+  --text-number-lg--line-height: 32px;
+  --text-number-lg--font-weight: 700;
+  --text-number: 15px;
+  --text-number--line-height: 24px;
+  --text-number--font-weight: 600;
+}
