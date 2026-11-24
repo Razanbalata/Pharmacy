@@ -1,9 +1,20 @@
 import { useTranslation } from 'react-i18next'
 import { cn } from '@/shared/lib/cn'
 
-/** Grey placeholder in the shape of the content, instead of a spinner in the middle. */
+/** Grey placeholder in the shape of the content, with a soft shimmer, instead of a spinner. */
 export function Skeleton({ className }: { className?: string }) {
-  return <div aria-hidden className={cn('animate-pulse rounded-md bg-surface-200', className)} />
+  return (
+    <div
+      aria-hidden
+      className={cn(
+        'relative overflow-hidden rounded-md bg-surface-200',
+        'after:absolute after:inset-0 after:animate-[ps-shimmer_1.4s_ease-in-out_infinite]',
+        'after:bg-gradient-to-l after:from-transparent after:via-surface-100/60 after:to-transparent',
+        'motion-reduce:after:hidden',
+        className,
+      )}
+    />
+  )
 }
 
 /** Placeholder rows for a table or list while it loads. */

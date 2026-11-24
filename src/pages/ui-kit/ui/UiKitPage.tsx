@@ -7,7 +7,7 @@ import { Combobox, type ComboboxOption } from '@/shared/ui/combobox'
 import { ConfirmDialog, Drawer } from '@/shared/ui/dialog'
 import { EmptyState } from '@/shared/ui/empty-state'
 import { Field, Input } from '@/shared/ui/field'
-import { Skeleton } from '@/shared/ui/skeleton'
+import { PageSkeleton, Skeleton, type PageSkeletonVariant } from '@/shared/ui/skeleton'
 import { DataTable, Pagination, type Column } from '@/shared/ui/table'
 import { toast } from '@/shared/ui/toast'
 
@@ -72,6 +72,7 @@ export function UiKitPage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [page, setPage] = useState(1)
+  const [skeleton, setSkeleton] = useState<PageSkeletonVariant>('list')
 
   return (
     <main className="mx-auto flex max-w-5xl flex-col gap-6 p-8">
@@ -196,6 +197,24 @@ export function UiKitPage() {
             <Skeleton className="h-3.5 w-3/5" />
             <Skeleton className="h-3.5 w-2/3" />
           </div>
+        </div>
+      </Section>
+
+      <Section title="هيكل تحميل الصفحات">
+        <div className="flex flex-wrap gap-2">
+          {(['list', 'dashboard', 'detail', 'form'] as const).map((variant) => (
+            <Button
+              key={variant}
+              size="sm"
+              variant={skeleton === variant ? 'primary' : 'secondary'}
+              onClick={() => setSkeleton(variant)}
+            >
+              {{ list: 'قائمة', dashboard: 'لوحة تحكم', detail: 'تفاصيل', form: 'نموذج' }[variant]}
+            </Button>
+          ))}
+        </div>
+        <div className="rounded-lg bg-surface-0 p-4">
+          <PageSkeleton variant={skeleton} />
         </div>
       </Section>
 

@@ -31,3 +31,13 @@
     outline-offset: 2px;
   }
 }
+
+/* Skeleton shimmer: a light band that sweeps across the grey block. */
+@keyframes ps-shimmer {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
