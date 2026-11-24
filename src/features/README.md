@@ -26,6 +26,8 @@
 | `purchase/suggested-orders/`    | تجهيز مسودات من الأصناف الناقصة، طلبية لكل مورد                           |
 | `purchase/receive-order/`       | الاستلام: الواصل والدفعة والانتهاء لكل صنف، والدفع للمورد                 |
 | `purchase/cancel-order/`        | إلغاء طلب ما وصل منه شي                                                   |
+| `stock-count/start-count/`      | بدء جرد لتصنيف أو للصيدلية كلها                                           |
+| `stock-count/conduct-count/`    | ورقة الجرد: العدد والفرق والسبب، الحفظ والاعتماد                          |
 | `damage/record-damage/`         | تسجيل تالف لدفعة: الكمية والسبب والخسارة                                  |
 | `damage/write-off-expired/`     | تسجيل كل الدفعات المنتهية تالف مرة وحدة                                   |
 | `settings/edit-settings/`       | نموذج الإعدادات كامل، وشريط "في تعديلات ما انحفظت"                        |

@@ -26,6 +26,7 @@
 | `purchasing/purchases/`          | `/purchases`                           | طلبات الشراء بفلاترها، والطلبيات المقترحة للنواقص            |
 | `purchasing/purchase-order/`     | `/purchases/new` و `/purchases/:id`    | طلب جديد أو مسودة للتعديل، أو عرض طلب انبعت                  |
 | `purchasing/purchase-receive/`   | `/purchases/:id/receive`               | استلام البضاعة: الكميات والدفعات والتواريخ والدفع            |
+| `stock/counts/`                  | `/stock/counts`                        | الجرد المفتوح وفروقاته واعتماده، أو بدء جرد، والجرود السابقة |
 | `stock/movements/`               | `/stock/movements`                     | سجل كل حركات المخزون بفلاتره ومجاميعه                        |
 | `stock/damage/`                  | `/stock/damage`                        | التالف: خسارة الشهر، المنتهي بالمخزون، التسجيل، والسجل       |
 | `coming-soon/`                   | كل شاشة لسا ما انبنت                   | صفحة مؤقتة بتقول بأي وحدة رح تنبنى الشاشة                    |
