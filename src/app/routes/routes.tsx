@@ -63,7 +63,16 @@ export const routes: RouteObject[] = [
             Component: (await import('@/pages/getting-started')).GettingStartedPage,
           })),
           comingSoon('alerts', 9),
-          comingSoon('invoices', 6),
+          guarded(
+            paths.invoices,
+            'invoices',
+            async () => (await import('@/pages/sales/invoices')).InvoicesPage,
+          ),
+          guarded(
+            paths.invoiceDetail,
+            'invoices',
+            async () => (await import('@/pages/sales/invoice-detail')).InvoiceDetailPage,
+          ),
           comingSoon('returns', 6),
           comingSoon('customers', 7),
           guarded(

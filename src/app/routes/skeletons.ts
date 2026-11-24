@@ -20,6 +20,7 @@ const SKELETON_BY_PATTERN: [RegExp, PageSkeletonVariant][] = [
   [/^\/products\/\d+$/, 'detail'],
   [/^\/products\/\d+\/edit$/, 'form'],
   [/^\/suppliers\/\d+$/, 'detail'],
+  [/^\/sales\/invoices\/\d+$/, 'detail'],
   [/^\/purchases\/(new|\d+)$/, 'form'],
   [/^\/purchases\/\d+\/receive$/, 'form'],
 ]

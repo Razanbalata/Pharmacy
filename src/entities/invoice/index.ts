@@ -24,3 +24,4 @@ export {
   listInvoices,
 } from './api/invoice-api'
 export { Receipt } from './ui/Receipt'
+export { InvoiceStatusBadge, PaymentMethodBadge } from './ui/InvoiceBadges'
