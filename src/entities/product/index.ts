@@ -39,3 +39,15 @@ export {
 export { productQueries } from './api/queries'
 export { ExpiryInfo } from './ui/ExpiryInfo'
 export { StockStatusBadge } from './ui/StockStatusBadge'
+export type {
+  DuplicateChoice,
+  ImportField,
+  ImportIssue,
+  ImportPreview,
+  ImportProblem,
+  ImportRequest,
+  ImportResult,
+  ImportRow,
+} from './model/import'
+export { IMPORT_FIELDS, IMPORT_PROBLEMS, REQUIRED_IMPORT_FIELDS } from './model/import'
+export { previewImport, runImport, undoImport } from './api/import-api'

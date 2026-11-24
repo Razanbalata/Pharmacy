@@ -503,5 +503,13 @@ export function initialCatalog() {
     },
   ]
 
-  return { categories, ingredients, suppliers, products, catalog }
+  /** What each import added, so it can be undone. */
+  const imports: {
+    id: number
+    productIds: number[]
+    categoryIds: number[]
+    ingredientIds: number[]
+  }[] = []
+
+  return { categories, ingredients, suppliers, products, catalog, imports }
 }

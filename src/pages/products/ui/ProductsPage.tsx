@@ -178,7 +178,7 @@ export function ProductsPage() {
               {t('products.exportAll')}
             </a>
             <Link to={paths.productImport} className={buttonVariants({ variant: 'secondary' })}>
-              {t('products.import')}
+              {t('products.importLink')}
             </Link>
             <Link to={paths.productNew} className={buttonVariants()}>
               + {t('products.add')}
