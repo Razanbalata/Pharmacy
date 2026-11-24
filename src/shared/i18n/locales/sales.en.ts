@@ -237,7 +237,7 @@ export const salesEn: typeof salesAr = {
     findInvoice: 'Invoice number',
     find: 'Find',
     notFound: 'No invoice with this number.',
-    invoiceLine: '{{number}} · {{date}} · {{customer}} · {{total}} ₪',
+    invoiceLine: '{{customer}} · {{total}} ₪',
     change: 'Change',
     withinPeriod: 'Within the return period · {{count}} days left',
     tooOld: 'The return period ({{days}} days) has passed for this invoice.',
@@ -267,7 +267,7 @@ export const salesEn: typeof salesAr = {
     refunds: {
       cash: 'Cash from the drawer',
       bank: 'Transfer by bank app',
-      debt: "Off {{name}}'s debt (owes {{amount}} ₪)",
+      debt: "Off {{name}}'s debt",
     },
     approver: 'Approved by a pharmacist or manager',
     approverHint: 'A cashier cannot make a return alone',

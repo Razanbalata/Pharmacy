@@ -369,6 +369,12 @@ export const salesHandlers = [
     })
   }),
 
+  http.get(apiUrl('/api/invoices/lookup'), ({ request }) => {
+    const number = (new URL(request.url).searchParams.get('number') ?? '').replace(/\D/g, '')
+    const invoice = db.invoices.find((item) => item.id === Number(number))
+    return invoice ? HttpResponse.json({ data: invoiceView(invoice) }) : notFound()
+  }),
+
   http.get(apiUrl('/api/invoices/:id'), ({ params }) => {
     const invoice = db.invoices.find((item) => item.id === Number(params.id))
     return invoice ? HttpResponse.json({ data: invoiceView(invoice) }) : notFound()

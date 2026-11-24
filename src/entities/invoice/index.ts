@@ -17,6 +17,7 @@ export { INVOICE_PERIODS, INVOICE_STATUSES, SALE_PAYMENT_METHODS } from './model
 export {
   createSale,
   deleteHeld,
+  findInvoice,
   getInvoice,
   holdSale,
   invoiceQueries,

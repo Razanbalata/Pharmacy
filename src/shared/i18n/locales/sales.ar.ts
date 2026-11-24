@@ -236,7 +236,7 @@ export const salesAr = {
     findInvoice: 'رقم الفاتورة',
     find: 'ابحثي',
     notFound: 'ما لقينا فاتورة بهالرقم.',
-    invoiceLine: '{{number}} · {{date}} · {{customer}} · {{total}} ₪',
+    invoiceLine: '{{customer}} · {{total}} ₪',
     change: 'تغيير',
     withinPeriod: 'ضمن مدة الإرجاع · باقي {{count}} يوم',
     tooOld: 'مرت مدة الإرجاع ({{days}} يوم). ما بينفع مرتجع على هالفاتورة.',
@@ -266,7 +266,7 @@ export const salesAr = {
     refunds: {
       cash: 'نقدي من الدرج',
       bank: 'تحويل على التطبيق البنكي',
-      debt: 'خصم من دين {{name}} (عليه {{amount}} ₪)',
+      debt: 'خصم من دين {{name}}',
     },
     approver: 'موافقة صيدلي أو مدير',
     approverHint: 'الكاشير ما بيقدر يعمل مرتجع لحاله',

@@ -30,6 +30,11 @@ export async function getInvoice(id: number): Promise<Invoice> {
   return (await http.get<{ data: Invoice }>(`/api/invoices/${id}`)).data
 }
 
+/** By the number on the receipt, e.g. INV-000241 or just 241. */
+export async function findInvoice(number: string): Promise<Invoice> {
+  return (await http.get<{ data: Invoice }>('/api/invoices/lookup', { query: { number } })).data
+}
+
 export async function listHeld(): Promise<HeldSale[]> {
   return (await http.get<{ data: HeldSale[] }>('/api/sales/held')).data
 }

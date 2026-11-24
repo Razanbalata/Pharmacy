@@ -73,7 +73,11 @@ export const routes: RouteObject[] = [
             'invoices',
             async () => (await import('@/pages/sales/invoice-detail')).InvoiceDetailPage,
           ),
-          comingSoon('returns', 6),
+          guarded(
+            paths.returns,
+            'returns',
+            async () => (await import('@/pages/sales/returns')).ReturnsPage,
+          ),
           comingSoon('customers', 7),
           guarded(
             paths.products,
