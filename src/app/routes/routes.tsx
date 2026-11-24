@@ -190,6 +190,11 @@ export const routes: RouteObject[] = [
       {
         element: <RequireAuth />,
         children: [
+          guarded(
+            paths.shift,
+            'sales',
+            async () => (await import('@/pages/sales/shift')).ShiftPage,
+          ),
           page(paths.setup, async () => ({ Component: (await import('@/pages/setup')).SetupPage })),
         ],
       },

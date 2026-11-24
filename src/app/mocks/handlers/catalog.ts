@@ -201,7 +201,10 @@ export const catalogHandlers = [
         (!ingredient || item.ingredientId === Number(ingredient)) &&
         (!supplier || item.supplierId === Number(supplier)) &&
         (!search ||
-          matchesSearch(`${item.name} ${item.nameAr ?? ''} ${item.barcode ?? ''}`, search) ||
+          matchesSearch(
+            `${item.name} ${item.nameAr ?? ''} ${item.barcode ?? ''} ${db.ingredients.find((entry) => entry.id === item.ingredientId)?.name ?? ''}`,
+            search,
+          ) ||
           item.barcode === search.trim()),
     )
     const counts = Object.fromEntries(

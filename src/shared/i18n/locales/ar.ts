@@ -1,6 +1,7 @@
 import { catalogAr } from './catalog.ar'
 import { purchasesAr } from './purchases.ar'
 import { stockAr } from './stock.ar'
+import { salesAr } from './sales.ar'
 /** Arabic is the source of truth: every key starts here, English must match its shape. */
 export const ar = {
   app: { name: 'فارما سمارت' },
@@ -64,6 +65,8 @@ export const ar = {
     purchaseReceive: 'استلام طلب',
     supplierDetail: 'كشف حساب مورد',
     stockDamage: 'التالف',
+    shift: 'الوردية',
+    invoiceDetail: 'تفاصيل الفاتورة',
     uiKit: 'مكتبة المكونات',
     activate: 'تفعيل الحساب',
     forgotPassword: 'نسيت كلمة المرور',
@@ -510,6 +513,7 @@ export const ar = {
   ...catalogAr,
   ...purchasesAr,
   ...stockAr,
+  ...salesAr,
   forbidden: {
     title: 'هالصفحة مش ضمن صلاحياتك',
     body: 'اطلبي من المديرة تعطيكِ الصلاحية.',

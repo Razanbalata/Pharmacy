@@ -4,6 +4,7 @@ import type { OnboardingStatus, PharmacyProfile, PharmacySettings } from '@/enti
 import type { StaffMember } from '@/entities/staff-member'
 import { initialCatalog } from './catalog-data'
 import { initialPurchases } from './purchases-data'
+import { initialSales } from './sales-data'
 import { initialStock } from './stock-data'
 
 /**
@@ -278,6 +279,7 @@ function initial() {
   return {
     ...catalog,
     ...initialStock(catalog.products),
+    ...initialSales(catalog.products),
     ...initialPurchases(),
     staff,
     activity,

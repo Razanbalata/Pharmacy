@@ -10,6 +10,7 @@ const SKELETON_BY_PATH: Record<string, PageSkeletonVariant> = {
   [paths.setup]: 'form',
   [paths.gettingStarted]: 'dashboard',
   [paths.productNew]: 'form',
+  [paths.shift]: 'form',
   [paths.productLabels]: 'form',
   [paths.productImport]: 'form',
 }

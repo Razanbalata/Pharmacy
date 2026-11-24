@@ -2,6 +2,7 @@ import type { Messages } from './ar'
 import { catalogEn } from './catalog.en'
 import { purchasesEn } from './purchases.en'
 import { stockEn } from './stock.en'
+import { salesEn } from './sales.en'
 
 /** Typed against Arabic: a missing or extra key fails the type check. */
 export const en: Messages = {
@@ -66,6 +67,8 @@ export const en: Messages = {
     purchaseReceive: 'Receive order',
     supplierDetail: 'Supplier statement',
     stockDamage: 'Damage',
+    shift: 'Shift',
+    invoiceDetail: 'Invoice details',
     uiKit: 'Component library',
     activate: 'Activate account',
     forgotPassword: 'Forgot password',
@@ -526,6 +529,7 @@ export const en: Messages = {
   ...catalogEn,
   ...purchasesEn,
   ...stockEn,
+  ...salesEn,
   forbidden: {
     title: 'This page is not part of your role',
     body: 'Ask the manager for access.',
