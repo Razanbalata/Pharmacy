@@ -106,7 +106,7 @@ function Header({ product, canManage }: { product: ProductDetail; canManage: boo
               <Link to={`${paths.purchases}?ids=${product.id}`} className={action}>
                 {t('products.detail.addToPurchase')}
               </Link>
-              <Link to={`${paths.stockCounts}?damage=${product.id}`} className={action}>
+              <Link to={`${paths.stockDamage}?product=${product.id}`} className={action}>
                 {t('products.detail.damage')}
               </Link>
               <Link to={`${paths.productLabels}?ids=${product.id}`} className={action}>

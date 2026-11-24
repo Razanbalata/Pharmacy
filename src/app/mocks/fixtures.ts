@@ -19,6 +19,7 @@ export const users = {
     phone: '0599920307',
     role: 'manager',
     discountLimit: null,
+    permissions: { sellOnCredit: true, seePurchasePrice: true, approveCounts: true },
     pharmacy,
   },
   pharmacist: {
@@ -27,6 +28,7 @@ export const users = {
     phone: '0598210774',
     role: 'pharmacist',
     discountLimit: 10,
+    permissions: { sellOnCredit: true, seePurchasePrice: true, approveCounts: true },
     pharmacy,
   },
   cashier: {
@@ -35,6 +37,7 @@ export const users = {
     phone: '0597640118',
     role: 'cashier',
     discountLimit: 5,
+    permissions: { sellOnCredit: false, seePurchasePrice: false, approveCounts: false },
     pharmacy,
   },
   platform: {

@@ -62,3 +62,8 @@ export function canAccess(role: Role, area: Area): boolean {
 export function canManageCatalog(role: Role): boolean {
   return canAccess(role, 'catalog')
 }
+
+/** Approving count differences changes stock, so it is the manager's, or given to a pharmacist. */
+export function canApproveCounts(user: { role: Role; permissions: { approveCounts: boolean } }) {
+  return user.role === 'manager' || (user.role === 'pharmacist' && user.permissions.approveCounts)
+}

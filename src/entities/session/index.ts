@@ -1,6 +1,6 @@
 export type { CurrentUser, PharmacySummary, PlatformUser, Role, SessionUser } from './model/types'
 export { ROLES, isPlatformOwner } from './model/types'
-export { AREAS, canAccess, canManageCatalog } from './model/permissions'
+export { AREAS, canAccess, canApproveCounts, canManageCatalog } from './model/permissions'
 export type { Area } from './model/permissions'
 export { sessionQueries, useCurrentUser } from './api/queries'
 export { NAVIGATION, navigationFor } from './model/navigation'

@@ -108,7 +108,16 @@ export const routes: RouteObject[] = [
             async () => (await import('@/pages/catalog/ingredients')).IngredientsPage,
           ),
           comingSoon('stockCounts', 5),
-          comingSoon('movements', 5),
+          guarded(
+            paths.movements,
+            'movements',
+            async () => (await import('@/pages/stock/movements')).MovementsPage,
+          ),
+          guarded(
+            paths.stockDamage,
+            'stock',
+            async () => (await import('@/pages/stock/damage')).DamagePage,
+          ),
           guarded(
             paths.purchases,
             'purchases',

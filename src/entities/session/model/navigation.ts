@@ -7,6 +7,8 @@ export interface NavItem {
   /** Also the i18n key under "nav." and the key in shared/config paths. */
   key: PathKey
   area: Area
+  /** Other screens that belong under this item, so it stays highlighted there too. */
+  also?: PathKey[]
 }
 
 export interface NavGroup {
@@ -39,7 +41,7 @@ export const NAVIGATION: NavGroup[] = [
       { key: 'products', area: 'products' },
       { key: 'categories', area: 'categories' },
       { key: 'ingredients', area: 'ingredients' },
-      { key: 'stockCounts', area: 'stock' },
+      { key: 'stockCounts', area: 'stock', also: ['stockDamage'] },
       { key: 'movements', area: 'movements' },
     ],
   },

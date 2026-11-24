@@ -18,6 +18,7 @@ export const paths = {
   categories: '/categories',
   ingredients: '/ingredients',
   stockCounts: '/stock/counts',
+  stockDamage: '/stock/damage',
   movements: '/stock/movements',
   purchases: '/purchases',
   purchaseNew: '/purchases/new',

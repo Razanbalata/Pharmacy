@@ -10,6 +10,7 @@ const base: CurrentUser = {
   phone: '0599920307',
   role: 'manager',
   discountLimit: null,
+  permissions: { sellOnCredit: true, seePurchasePrice: true, approveCounts: true },
   pharmacy: {
     id: 1,
     name: 'صيدلية الشفاء',

@@ -4,6 +4,7 @@ import type { OnboardingStatus, PharmacyProfile, PharmacySettings } from '@/enti
 import type { StaffMember } from '@/entities/staff-member'
 import { initialCatalog } from './catalog-data'
 import { initialPurchases } from './purchases-data'
+import { initialStock } from './stock-data'
 
 /**
  * The fake server's memory. Starts from the design data and changes as you use the app,
@@ -273,8 +274,10 @@ function initial() {
     },
     backup: { lastBackupAt: '2026-11-24T01:00:00Z' },
   }
+  const catalog = initialCatalog()
   return {
-    ...initialCatalog(),
+    ...catalog,
+    ...initialStock(catalog.products),
     ...initialPurchases(),
     staff,
     activity,

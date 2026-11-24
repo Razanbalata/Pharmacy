@@ -100,6 +100,10 @@ export interface Movement {
   kind: MovementKind
   reference: string | null
   actor: string
+  /** The batch it touched, when known. */
+  batch?: string | null
+  /** The batch's quantity right after, when known. */
+  balanceAfter?: number | null
 }
 
 export interface ProductDetail extends Product {

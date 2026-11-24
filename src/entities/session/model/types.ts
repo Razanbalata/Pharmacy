@@ -21,6 +21,8 @@ export interface CurrentUser {
   role: Role
   /** Highest discount this user may give on one invoice, in percent. null = no limit (manager). */
   discountLimit: number | null
+  /** The extras the manager gave this person (see staff). The manager has them all. */
+  permissions: { sellOnCredit: boolean; seePurchasePrice: boolean; approveCounts: boolean }
   pharmacy: PharmacySummary
 }
 

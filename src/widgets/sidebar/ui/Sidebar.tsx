@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Link, NavLink } from 'react-router'
+import { Link, NavLink, useLocation } from 'react-router'
 import { useAlertSummary } from '@/entities/alert'
 import { navigationFor, type CurrentUser } from '@/entities/session'
 import { paths } from '@/shared/config'
@@ -25,6 +25,7 @@ export function Sidebar({ user, onNavigate }: SidebarProps) {
   const { t } = useTranslation()
   const { data: alerts } = useAlertSummary()
   const groups = navigationFor(user.role)
+  const { pathname } = useLocation()
 
   return (
     <nav
@@ -55,6 +56,7 @@ export function Sidebar({ user, onNavigate }: SidebarProps) {
             )}
             {group.items.map((item) => {
               const count = item.key === 'alerts' && alerts?.unread ? alerts.unread : null
+              const related = item.also?.some((key) => pathname.startsWith(paths[key])) ?? false
               return (
                 <NavLink
                   key={item.key}
@@ -64,7 +66,9 @@ export function Sidebar({ user, onNavigate }: SidebarProps) {
                   className={({ isActive }) =>
                     cn(
                       'flex items-center justify-between rounded-md px-3 py-2 text-body transition-colors',
-                      isActive ? 'bg-brand font-semibold text-on-brand' : 'hover:bg-navy-soft',
+                      isActive || related
+                        ? 'bg-brand font-semibold text-on-brand'
+                        : 'hover:bg-navy-soft',
                     )
                   }
                 >
