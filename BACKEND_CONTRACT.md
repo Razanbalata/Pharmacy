@@ -925,6 +925,135 @@
 - تعديل المصروف أو حذفه. لازم يكون للمديرة بس، وينكتب بسجل النشاط.
 - إنشاء المصاريف الشهرية تلقائياً أول كل شهر.
 
+## الوحدة 9: لوحة التحكم والتنبيهات
+
+### التنبيهات
+
+للمديرة والصيدلي (المنطقة `alerts`).
+
+| الطريقة | الرابط                  | الرد                    |
+| ------- | ----------------------- | ----------------------- |
+| GET     | `/api/alerts/summary`   | `{ "unread": 8 }` للجرس |
+| GET     | `/api/alerts`           | التنبيهات، و`summary`   |
+| POST    | `/api/alerts/{id}/read` | 204                     |
+| POST    | `/api/alerts/read-all`  | 204                     |
+
+```json
+{
+  "id": "low:5",
+  "group": "shortage",
+  "severity": "danger",
+  "kind": "lowUrgent",
+  "params": {
+    "productId": 5,
+    "name": "Ventolin Inhaler 100mcg",
+    "quantity": 3,
+    "minStock": 10,
+    "draft": { "id": 15, "number": "PO-0015" }
+  },
+  "count": 1,
+  "at": "2026-11-24T06:00:00Z",
+  "read": false
+}
+```
+
+**التنبيه ما بينحفظ، بينحسب:** كل مرة بيطلب، السيرفر بيشوف البيانات وبيطلّع التنبيهات. لما المشكلة تنحل (انسجل التالف، انستلمت الطلبية، انسدد الدين)، التنبيه بيختفي لحاله.
+
+**الأنواع:**
+
+| `kind`           | `group`     | `severity`                              | متى                                           | `params`                                               |
+| ---------------- | ----------- | --------------------------------------- | --------------------------------------------- | ------------------------------------------------------ |
+| `expiredInStock` | `expiry`    | `danger`                                | دفعة منتهية فيها كمية                         | `batches`، `names` ("الاسم · الكمية"، مفصولين بـ "، ") |
+| `expiringSoon`   | `expiry`    | `warning` لو 30 يوم أو أقل، وإلا `info` | أقرب صنف بينتهي ضمن أيام التنبيه من الإعدادات | `productId`، `name`، `days`، `batch`، `quantity`       |
+| `expiringMore`   | `expiry`    | `warning`                               | باقي الأصناف اللي بتنتهي ضمن الأيام           | `count`، `value` (كل اللي بينتهي بسعر الشراء)          |
+| `lowUrgent`      | `shortage`  | `danger`                                | أقل صنف نسبة لحده الأدنى، والمتوفر قبل النافد | `productId`، `name`، `quantity`، `minStock`، `draft`   |
+| `lowMore`        | `shortage`  | `warning`                               | كم صنف تاني تحت الحد أو نافد                  | `count`                                                |
+| `debtOverLimit`  | `debts`     | `danger`                                | زبون دينه أكبر من حده                         | `customerId`، `name`، `debt`، `limit`، `days`          |
+| `debtLate`       | `debts`     | `warning`                               | زبون أقدم دينه أكتر من 30 يوم (ومش متجاوز)    | `customerId`، `name`، `debt`، `days`                   |
+| `orderSent`      | `purchases` | `info`                                  | طلب شراء انبعت ولسا ما انستلم                 | `orderId`، `number`، `supplier`، `items`               |
+| `orderPartial`   | `purchases` | `info`                                  | طلب مستلم جزئياً                               | `orderId`، `number`، `supplier`                        |
+| `trialEnding`    | `system`    | `neutral`                               | الفترة التجريبية بتخلص خلال 30 يوم            | `days`                                                 |
+
+- بس الأصناف الفعالة.
+- `id` ثابت لنفس الموضوع (زي `expiring:3` أو `debtLate:6`)، عشان المقروء يضل مقروء.
+- `count`: كم شي بيغطي التنبيه (دفعات، أصناف، زبائن). أرقام الفلاتر مجموعه.
+- `summary`: `unread`، `counts` (لكل `group` و`all`)، و`expiryAlertDays` من الإعدادات.
+- المقروء بينحفظ لكل مستخدم.
+- الكلام بتكتبه الواجهة من `kind` و`params`، والزر بيوديها للشاشة اللي بتحل المشكلة.
+
+### لوحة التحكم
+
+| الطريقة | الرابط                 | الطلب                    | الرد                                 |
+| ------- | ---------------------- | ------------------------ | ------------------------------------ |
+| GET     | `/api/dashboard`       |                          | كل اللي بتحتاجه الشاشة               |
+| GET     | `/api/dashboard/sales` | `days` (`7`، `30`، `90`) | مبيعات كل يوم. للمديرة بس، غيرها 403 |
+
+**`/api/dashboard`:**
+
+```json
+{
+  "attention": {
+    "expired": { "batches": 1 },
+    "expiring": {
+      "count": 2,
+      "nearest": { "productId": 3, "name": "Azithromycin 500mg 3 Tablets", "expiry": "2026-11-29" }
+    },
+    "low": {
+      "count": 7,
+      "urgent": { "productId": 5, "name": "Ventolin Inhaler 100mcg", "quantity": 3, "minStock": 10 }
+    },
+    "lateDebts": { "count": 2, "amount": 530 }
+  },
+  "sales": { "today": 488, "invoices": 6, "yesterday": 39, "profit": 149, "margin": 31 },
+  "drawer": { "shiftNumber": 14, "expected": 496 },
+  "expiredProducts": 1,
+  "notes": [
+    { "kind": "expiring", "productId": 3, "name": "…", "expiry": "2026-11-29", "quantity": 12 }
+  ],
+  "activity": [
+    {
+      "at": "2026-11-24T13:42:00Z",
+      "kind": "sale",
+      "actor": "محمد",
+      "params": { "amount": 196, "number": "INV-000245" }
+    }
+  ],
+  "tasks": {
+    "expired": { "batches": 1, "names": "Cough Syrup 120ml" },
+    "count": { "id": 8, "scope": "مضادات حيوية", "counted": 5, "total": 6, "differences": 4 },
+    "receive": {
+      "orderId": 14,
+      "number": "PO-0014",
+      "supplier": "المستودع الطبي الحديث",
+      "items": 5
+    }
+  },
+  "expiring": { "total": 3, "items": [] },
+  "low": { "total": 7, "items": [], "draft": { "id": 15, "number": "PO-0015" } },
+  "mine": { "total": 0, "invoices": 0 },
+  "shift": { "number": 14, "cashier": "محمد سالم" }
+}
+```
+
+- `attention.expiring`: خلال 30 يوم بس. و`expiring` (للصيدلي) ضمن أيام التنبيه من الإعدادات، أول 3.
+- `low`: كل صنف فعال كميته أقل من حده الأدنى أو قده، الأقل نسبة أول. `draft`: المسودة اللي فيها أول صنف.
+- `sales.profit` = الصافي − تكلفة الأسطر بسعر الدفعة. `margin` بالمية، مقرب.
+- `profit` و`margin` و`drawer`: `null` لغير المديرة.
+- `notes`: أقرب انتهاء، النقص الأعجل (ومسودته لو في)، والأكثر مبيعاً هالشهر بالوحدات.
+- `activity`: آخر 6 أحداث اليوم. الأنواع: `sale`، `shiftOpened`، `damage`، `countStarted`، `customerPayment`، `expense`، `return`.
+- `mine`: مبيعات المستخدم نفسه اليوم.
+
+**`/api/dashboard/sales`:**
+
+```json
+[
+  { "date": "2026-11-18", "total": 2450 },
+  { "date": "2026-11-24", "total": 488 }
+]
+```
+
+- يوم لكل يوم بالفترة، آخرها اليوم، حتى لو مجموعه صفر.
+
 ### للسيرفر بشكل عام
 
 أي رد ناجح بدون محتوى (204 أو 202) بيكون فاضي تماماً، والواجهة بتتعامل معه.

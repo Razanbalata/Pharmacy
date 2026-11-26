@@ -13,6 +13,6 @@
 | 6. البيع                    | [06-sales.md](modules/06-sales.md)                             | خلصت   |
 | 7. الزبائن والديون          | [07-customers.md](modules/07-customers.md)                     | خلصت   |
 | 8. الورديات والمصاريف       | [08-shifts-expenses.md](modules/08-shifts-expenses.md)         | خلصت   |
-| 9. لوحة التحكم والتنبيهات   |                                                                | الجاية |
-| 10. التقارير والمساعد الذكي |                                                                |        |
+| 9. لوحة التحكم والتنبيهات   | [09-dashboard-alerts.md](modules/09-dashboard-alerts.md)       | خلصت   |
+| 10. التقارير والمساعد الذكي |                                                                | الجاية |
 | 11. لوحة صاحبة المنصة       |                                                                |        |
