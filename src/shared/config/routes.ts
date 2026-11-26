@@ -30,6 +30,7 @@ export const paths = {
   suppliers: '/suppliers',
   supplierDetail: '/suppliers/:id',
   shifts: '/finance/shifts',
+  expenses: '/finance/expenses',
   reports: '/reports',
   assistant: '/assistant',
   staff: '/staff',

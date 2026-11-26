@@ -159,6 +159,7 @@ export const salesEn: typeof salesAr = {
       cashRefunds: 'Cash refunds',
       supplierPayments: 'Supplier payments from the drawer',
       debtPayments: 'Debt paid in cash',
+      expenses: 'Expenses from the drawer',
     },
     expected: 'Expected cash in the drawer',
     counted: 'Cash counted',

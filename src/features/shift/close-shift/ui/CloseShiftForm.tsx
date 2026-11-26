@@ -66,10 +66,13 @@ export function CloseShiftForm({ onClosed, onShowHeld }: CloseShiftFormProps) {
     ['creditSales', summary.creditSales, t('shift.lines.creditNote'), 0],
     ['cashRefunds', summary.cashRefunds, null, -1],
     ['supplierPayments', summary.supplierPayments, null, -1],
+    ['expenses', summary.expenses, null, -1],
   ]
 
-  // Debt paid in cash only shows on the shifts that took some.
-  const shown = lines.filter(([key, amount]) => key !== 'debtPayments' || amount > 0)
+  // Debt paid in cash and drawer expenses only show on the shifts that had some.
+  const shown = lines.filter(
+    ([key, amount]) => (key !== 'debtPayments' && key !== 'expenses') || amount > 0,
+  )
 
   return (
     <form

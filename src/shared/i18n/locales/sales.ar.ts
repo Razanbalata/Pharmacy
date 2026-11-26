@@ -158,6 +158,7 @@ export const salesAr = {
       cashRefunds: 'مرتجعات نقدية',
       supplierPayments: 'دفعات موردين من الدرج',
       debtPayments: 'تسديد ديون نقدي',
+      expenses: 'مصاريف من الدرج',
     },
     expected: 'النقد المتوقع بالدرج',
     counted: 'النقد الفعلي بعد العد',

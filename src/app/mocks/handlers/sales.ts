@@ -32,7 +32,7 @@ function openShift(): StoredShift | undefined {
   return db.shifts.find((shift) => shift.status === 'open')
 }
 
-function shiftView(shift: StoredShift): Shift {
+export function shiftView(shift: StoredShift): Shift {
   return {
     id: shift.id,
     number: shift.number,
@@ -73,6 +73,11 @@ function shiftSummary(shift: StoredShift) {
       )
       .reduce((total, entry) => total + entry.credit, 0),
   )
+  const expenses = roundMoney(
+    db.expenses
+      .filter((expense) => expense.source === 'drawer' && expense.shiftNumber === shift.number)
+      .reduce((total, expense) => total + expense.amount, 0),
+  )
   return {
     shift: shiftView(shift),
     invoiceCount: invoices.length,
@@ -82,8 +87,9 @@ function shiftSummary(shift: StoredShift) {
     cashRefunds,
     supplierPayments,
     debtPayments,
+    expenses,
     expectedCash: roundMoney(
-      shift.openingCash + cashSales + debtPayments - cashRefunds - supplierPayments,
+      shift.openingCash + cashSales + debtPayments - cashRefunds - supplierPayments - expenses,
     ),
     heldCount: db.held.length,
   }

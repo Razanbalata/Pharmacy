@@ -1,10 +1,12 @@
-import { queryOptions } from '@tanstack/react-query'
+import { keepPreviousData, queryOptions } from '@tanstack/react-query'
 import { http } from '@/shared/api'
 import type {
   ClosedShift,
   CloseShiftInput,
   CurrentShift,
   Shift,
+  ShiftFilters,
+  ShiftLog,
   ShiftSummary,
 } from '../model/types'
 
@@ -26,10 +28,26 @@ export async function closeShift(input: CloseShiftInput): Promise<ClosedShift> {
   return (await http.post<{ data: ClosedShift }>('/api/shifts/current/close', input)).data
 }
 
+export async function listShifts(filters: ShiftFilters): Promise<ShiftLog> {
+  return http.get<ShiftLog>('/api/shifts', {
+    query: {
+      period: filters.period,
+      cashier: filters.cashierId ?? undefined,
+      difference: filters.withDifference ? 1 : undefined,
+    },
+  })
+}
+
 export const shiftQueries = {
   all: ['shift'] as const,
   current: () =>
     queryOptions({ queryKey: [...shiftQueries.all, 'current'], queryFn: getCurrentShift }),
   summary: () =>
     queryOptions({ queryKey: [...shiftQueries.all, 'summary'], queryFn: getShiftSummary }),
+  list: (filters: ShiftFilters) =>
+    queryOptions({
+      queryKey: [...shiftQueries.all, 'list', filters],
+      queryFn: () => listShifts(filters),
+      placeholderData: keepPreviousData,
+    }),
 }

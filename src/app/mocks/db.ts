@@ -3,6 +3,7 @@ import type { JoinRequest } from '@/entities/join-request'
 import type { OnboardingStatus, PharmacyProfile, PharmacySettings } from '@/entities/pharmacy'
 import type { StaffMember } from '@/entities/staff-member'
 import { initialCustomers } from './customers-data'
+import { initialFinance } from './finance-data'
 import { initialCatalog } from './catalog-data'
 import { initialPurchases } from './purchases-data'
 import { initialSales } from './sales-data'
@@ -282,6 +283,7 @@ function initial() {
     ...initialStock(catalog.products),
     ...initialSales(catalog.products),
     ...initialCustomers(),
+    ...initialFinance(),
     ...initialPurchases(),
     staff,
     activity,

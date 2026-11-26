@@ -55,7 +55,7 @@ export const NAVIGATION: NavGroup[] = [
   {
     title: 'finance',
     items: [
-      { key: 'shifts', area: 'finance' },
+      { key: 'shifts', area: 'finance', also: ['expenses'] },
       { key: 'reports', area: 'reports' },
       { key: 'assistant', area: 'assistant' },
     ],

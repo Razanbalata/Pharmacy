@@ -14,6 +14,8 @@ export interface StoredShift {
   countedCash: number | null
   note: string
   status: 'open' | 'closed'
+  /** Sales of shifts older than the invoices kept here; newer shifts add up their invoices. */
+  archivedSales?: number
 }
 
 export interface StoredInvoice {
@@ -45,7 +47,38 @@ export interface StoredReturn {
 }
 
 export function initialSales(products: StoredProduct[]) {
+  /** Older closed shifts: two a day, 8 to 4 and 4 to 11, Gaza time. */
+  const past = (
+    number: number,
+    day: string,
+    late: boolean,
+    cashierId: number,
+    cashierName: string,
+    archivedSales: number,
+    expectedCash: number,
+    countedCash: number,
+    note = '',
+  ): StoredShift => ({
+    id: number,
+    number,
+    cashierId,
+    cashierName,
+    openedAt: `${day}T${late ? '14' : '06'}:00:00Z`,
+    closedAt: `${day}T${late ? '21' : '14'}:00:00Z`,
+    openingCash: 200,
+    expectedCash,
+    countedCash,
+    note,
+    status: 'closed',
+    archivedSales,
+  })
+
   const shifts: StoredShift[] = [
+    past(8, '2026-11-20', false, 3, 'محمد سالم', 1345, 960, 960),
+    past(9, '2026-11-20', true, 1, 'رزان', 980, 700, 690, 'خطأ بعد الرصيد الافتتاحي'),
+    past(10, '2026-11-21', false, 3, 'محمد سالم', 1515, 1010, 1010),
+    past(11, '2026-11-21', true, 2, 'سارة يوسف', 1230, 840, 834, 'غلطة بالباقي'),
+    past(12, '2026-11-22', false, 3, 'محمد سالم', 1690, 1105, 1107, 'زبون ما استنى الباقي'),
     {
       id: 14,
       number: 14,
