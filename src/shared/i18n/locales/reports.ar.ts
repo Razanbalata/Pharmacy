@@ -15,7 +15,7 @@ export const reportsAr = {
       stock: 'وين مالك قاعد على الرفوف، وشو ممكن يضيع.',
       debts: 'مين مدين إلك، ولمين إنتِ مدينة.',
     },
-    assistant: '✦ تحليل ذكي',
+    assistant: 'تحليل ذكي',
     excel: 'تصدير إكسل',
     pdf: 'PDF',
     period: 'الفترة',
@@ -149,7 +149,7 @@ export const reportsAr = {
       customers: 'الزبائن والديون',
     },
     analysis: {
-      open: '✦ التحليل الذكي',
+      open: 'التحليل الذكي',
       title: 'التحليل الذكي',
       subtitle: 'مبيعات ومخزون {{month}} · {{time}}',
       refresh: 'تحديث التحليل',

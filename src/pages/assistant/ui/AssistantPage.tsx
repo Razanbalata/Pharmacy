@@ -10,7 +10,7 @@ import { SkeletonRows } from '@/shared/ui/skeleton'
 import { toast } from '@/shared/ui/toast'
 import { ask, assistantQueries, startConversation } from '../api/assistant-api'
 import type { AssistantMessage, Conversation } from '../model/types'
-import { AnalysisDrawer } from './AnalysisDrawer'
+import { AnalysisDrawer } from '@/widgets/smart-analysis'
 import { Answer } from './Answer'
 
 const DAY_MS = 86_400_000
@@ -87,6 +87,7 @@ export function AssistantPage() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <h1 className="font-display text-display">{t('assistant.title')}</h1>
         <Button variant="secondary" onClick={() => setQuery({ view: 'analysis' })}>
+          <Sparkles aria-hidden className="size-4" />
           {t('assistant.analysis.open')}
         </Button>
       </div>

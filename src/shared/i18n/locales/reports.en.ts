@@ -16,7 +16,7 @@ export const reportsEn: typeof reportsAr = {
       stock: 'Where your money sits on the shelves, and what could be lost.',
       debts: 'Who owes you, and whom you owe.',
     },
-    assistant: '✦ Smart analysis',
+    assistant: 'Smart analysis',
     excel: 'Export to Excel',
     pdf: 'PDF',
     period: 'Period',
@@ -152,7 +152,7 @@ export const reportsEn: typeof reportsAr = {
       customers: 'Customers & debts',
     },
     analysis: {
-      open: '✦ Smart analysis',
+      open: 'Smart analysis',
       title: 'Smart analysis',
       subtitle: 'Sales and stock for {{month}} · {{time}}',
       refresh: 'Refresh the analysis',

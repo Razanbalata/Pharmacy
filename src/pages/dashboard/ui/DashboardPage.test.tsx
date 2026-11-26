@@ -87,4 +87,11 @@ describe('DashboardPage', () => {
     expect(within(mine).getByText(/6 فاتورة · الوردية 14 مفتوحة/)).toBeInTheDocument()
     expect(screen.queryByRole('region', { name: 'مهام اليوم' })).not.toBeInTheDocument()
   })
+
+  it('opens the smart analysis in place, without leaving the dashboard', async () => {
+    const { router } = await asManager()
+    await userEvent.click(await screen.findByRole('button', { name: 'تحليل ذكي' }))
+    expect(await screen.findByRole('dialog', { name: 'التحليل الذكي' })).toBeVisible()
+    expect(router.state.location.pathname).toBe('/')
+  })
 })

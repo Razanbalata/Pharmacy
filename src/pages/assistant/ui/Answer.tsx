@@ -2,7 +2,7 @@ import { Link } from 'react-router'
 import { formatMoney } from '@/shared/lib/money'
 import { buttonVariants } from '@/shared/ui/button'
 import type { AssistantBlock } from '../model/types'
-import { useActionLink } from '../model/use-action-link'
+import { useActionLink } from '@/widgets/smart-analysis'
 
 /** One answer: text, a small table, bars to compare, and buttons to the screens it mentions. */
 export function Answer({ blocks }: { blocks: AssistantBlock[] }) {

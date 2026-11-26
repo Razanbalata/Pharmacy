@@ -1,5 +1,6 @@
 import { http, HttpResponse } from 'msw'
-import type { Analysis, AssistantBlock, AssistantMessage } from '@/pages/assistant'
+import type { AssistantBlock, AssistantMessage } from '@/pages/assistant'
+import type { Analysis } from '@/widgets/smart-analysis'
 import { normalizeArabic } from '@/shared/lib/arabic-search'
 import { formatMoney, roundMoney } from '@/shared/lib/money'
 import { apiUrl } from '../api-url'

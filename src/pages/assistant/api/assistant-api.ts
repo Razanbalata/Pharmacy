@@ -1,6 +1,6 @@
 import { queryOptions } from '@tanstack/react-query'
 import { http } from '@/shared/api'
-import type { Analysis, AssistantMessage, Conversation, ConversationSummary } from '../model/types'
+import type { AssistantMessage, Conversation, ConversationSummary } from '../model/types'
 
 export async function startConversation(): Promise<Conversation> {
   return (await http.post<{ data: Conversation }>('/api/assistant/conversations')).data
@@ -33,12 +33,5 @@ export const assistantQueries = {
             query: { language },
           })
         ).data,
-    }),
-  analysis: (language: string) =>
-    queryOptions({
-      queryKey: [...assistantQueries.all, 'analysis', language],
-      queryFn: async () =>
-        (await http.get<{ data: Analysis }>('/api/assistant/analysis', { query: { language } }))
-          .data,
     }),
 }

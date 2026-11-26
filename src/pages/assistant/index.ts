@@ -1,6 +1,4 @@
 export type {
-  Analysis,
-  AssistantAction,
   AssistantBlock,
   AssistantMessage,
   Conversation,

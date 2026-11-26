@@ -6,7 +6,7 @@ import { cn } from '@/shared/lib/cn'
 import { Button } from '@/shared/ui/button'
 import { Drawer } from '@/shared/ui/dialog'
 import { SkeletonRows } from '@/shared/ui/skeleton'
-import { assistantQueries } from '../api/assistant-api'
+import { analysisQuery } from '../api/analysis-api'
 import { useActionLink } from '../model/use-action-link'
 
 const TAG = {
@@ -25,7 +25,7 @@ const STATUS = {
 export function AnalysisDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { t, i18n } = useTranslation()
   const { data, isFetching, refetch } = useQuery({
-    ...assistantQueries.analysis(i18n.language),
+    ...analysisQuery(i18n.language),
     enabled: open,
   })
   const link = useActionLink()

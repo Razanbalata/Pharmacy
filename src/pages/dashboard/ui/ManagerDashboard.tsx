@@ -18,6 +18,7 @@ import { buttonVariants } from '@/shared/ui/button'
 import type { Dashboard, DashboardEvent, DashboardNote } from '../model/types'
 import { Greeting } from './parts'
 import { SalesTrend } from './SalesTrend'
+import { SmartAnalysisButton } from '@/widgets/smart-analysis'
 
 const TONES = {
   danger: 'border-danger/40 bg-danger-soft text-danger',
@@ -209,13 +210,10 @@ export function ManagerDashboard({ data }: { data: Dashboard }) {
               ? t('dashboard.attentionOne')
               : t('dashboard.attention', { count: cards.length })}
         </Greeting>
-        <Link
-          to={`${paths.assistant}?view=analysis`}
-          className={buttonVariants({ variant: 'secondary' })}
-        >
+        <SmartAnalysisButton className={buttonVariants({ variant: 'secondary' })}>
           <Sparkles className="size-4" />
           {t('dashboard.assistant')}
-        </Link>
+        </SmartAnalysisButton>
       </div>
 
       {cards.length > 0 && (
@@ -289,12 +287,9 @@ export function ManagerDashboard({ data }: { data: Dashboard }) {
               })}
             </ul>
           )}
-          <Link
-            to={`${paths.assistant}?view=analysis`}
-            className="mt-auto text-small font-semibold text-brand-strong hover:underline"
-          >
+          <SmartAnalysisButton className="mt-auto self-start text-small font-semibold text-brand-strong hover:underline">
             {t('dashboard.notes.full')}
-          </Link>
+          </SmartAnalysisButton>
         </section>
       </div>
 

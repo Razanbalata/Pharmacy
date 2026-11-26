@@ -1,13 +1,13 @@
 import { useState, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router'
-import { paths } from '@/shared/config'
 import { cn } from '@/shared/lib/cn'
 import { downloadCsv } from '@/shared/lib/csv'
 import { formatMoney } from '@/shared/lib/money'
 import { Button, buttonVariants } from '@/shared/ui/button'
 import { Segmented } from '@/shared/ui/segmented'
 import { REPORT_PERIODS, type ReportPeriod, type ReportRange } from '../model/types'
+import { SmartAnalysisButton } from '@/widgets/smart-analysis'
+import { Sparkles } from 'lucide-react'
 
 export function Card({
   title,
@@ -127,12 +127,10 @@ export function ReportActions({ name, rows }: { name: string; rows: () => (strin
   const { t } = useTranslation()
   return (
     <div className="flex flex-wrap gap-2 print:hidden">
-      <Link
-        to={`${paths.assistant}?view=analysis`}
-        className={buttonVariants({ variant: 'secondary', size: 'sm' })}
-      >
+      <SmartAnalysisButton className={buttonVariants({ variant: 'secondary', size: 'sm' })}>
+        <Sparkles aria-hidden className="size-4" />
         {t('reports.assistant')}
-      </Link>
+      </SmartAnalysisButton>
       <Button size="sm" variant="secondary" onClick={() => downloadCsv(name, rows())}>
         {t('reports.excel')}
       </Button>
