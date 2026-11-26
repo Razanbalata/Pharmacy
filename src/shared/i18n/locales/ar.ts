@@ -531,8 +531,15 @@ export const ar = {
     title: 'هالصفحة مش ضمن صلاحياتك',
     body: 'اطلبي من المديرة تعطيكِ الصلاحية.',
   },
-  theme: { label: 'المظهر', system: 'حسب الجهاز', light: 'نهاري', dark: 'ليلي' },
-  language: { label: 'اللغة', ar: 'العربية', en: 'English' },
+  theme: {
+    label: 'المظهر',
+    system: 'حسب الجهاز',
+    light: 'نهاري',
+    dark: 'ليلي',
+    toDark: 'التبديل للوضع الليلي',
+    toLight: 'التبديل للوضع النهاري',
+  },
+  language: { label: 'اللغة', ar: 'العربية', en: 'English', switchTo: 'Switch to English' },
   home: {
     title: 'نظام التصميم شغال',
     body: 'الألوان والخطوط جاية من نظام التصميم، وبتتبدل مع المظهر.',

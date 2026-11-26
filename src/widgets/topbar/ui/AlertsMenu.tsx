@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import { AlertItem, alertQueries } from '@/entities/alert'
 import { MarkAllReadButton, useMarkAlertRead } from '@/features/alert/mark-read'
 import { paths } from '@/shared/config'
+import { useDismiss } from '@/shared/lib/dismiss'
 import { Bell } from 'lucide-react'
 
 /** The bell: how many are new, and the latest few, each with its button. */
@@ -17,24 +18,8 @@ export function AlertsMenu({ unread }: { unread: number }) {
   // New ones first, then the rest, as the server orders them.
   const alerts = [...(data?.data ?? [])].sort((a, b) => Number(a.read) - Number(b.read))
 
-  useEffect(() => {
-    if (!open) return
-    function close(event: MouseEvent | KeyboardEvent) {
-      if (
-        event instanceof KeyboardEvent
-          ? event.key === 'Escape'
-          : !box.current?.contains(event.target as Node)
-      ) {
-        setOpen(false)
-      }
-    }
-    document.addEventListener('mousedown', close)
-    document.addEventListener('keydown', close)
-    return () => {
-      document.removeEventListener('mousedown', close)
-      document.removeEventListener('keydown', close)
-    }
-  }, [open])
+  const close = useCallback(() => setOpen(false), [])
+  useDismiss(box, open, close)
 
   return (
     <div ref={box} className="relative">

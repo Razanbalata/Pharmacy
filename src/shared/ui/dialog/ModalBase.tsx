@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
+import { X } from 'lucide-react'
 import { cn } from '@/shared/lib/cn'
 
 export interface ModalBaseProps {
@@ -13,8 +14,14 @@ export interface ModalBaseProps {
 
 /**
  * Built on the native <dialog>: the browser traps focus inside, closes on Escape and
- * returns focus to the button that opened it. We only style it.
+ * returns focus to the button that opened it. We add closing on a click outside the box
+ * (on the dim backdrop), which the browser does not do by itself.
  */
+function isOutside(dialog: HTMLDialogElement, x: number, y: number) {
+  const box = dialog.getBoundingClientRect()
+  return x < box.left || x > box.right || y < box.top || y > box.bottom
+}
+
 export function ModalBase({
   open,
   onClose,
@@ -29,6 +36,9 @@ export function ModalBase({
   const ref = useRef<HTMLDialogElement>(null)
   const titleId = useId()
   const descriptionId = useId()
+  // Only close when the press both started and ended outside, so selecting text
+  // inside the box and releasing over the backdrop does not close it.
+  const pressedOutside = useRef(false)
 
   useEffect(() => {
     const dialog = ref.current
@@ -36,6 +46,36 @@ export function ModalBase({
     if (open && !dialog.open) dialog.showModal()
     if (!open && dialog.open) dialog.close()
   }, [open])
+
+  // Escape is handled natively (onCancel below); this adds the mouse path.
+  const closeRef = useRef(onClose)
+  useEffect(() => {
+    closeRef.current = onClose
+  }, [onClose])
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    const dialog: HTMLDialogElement = node
+    function onDown(event: MouseEvent) {
+      pressedOutside.current =
+        event.target === dialog && isOutside(dialog, event.clientX, event.clientY)
+    }
+    function onUp(event: MouseEvent) {
+      if (
+        pressedOutside.current &&
+        event.target === dialog &&
+        isOutside(dialog, event.clientX, event.clientY)
+      )
+        closeRef.current()
+      pressedOutside.current = false
+    }
+    dialog.addEventListener('mousedown', onDown)
+    dialog.addEventListener('click', onUp)
+    return () => {
+      dialog.removeEventListener('mousedown', onDown)
+      dialog.removeEventListener('click', onUp)
+    }
+  }, [])
 
   return (
     <dialog
@@ -48,7 +88,7 @@ export function ModalBase({
         onClose()
       }}
       className={cn(
-        'flex-col bg-surface-100 text-ink shadow-pop backdrop:bg-navy/45 open:flex',
+        'flex-col bg-surface-100 text-ink shadow-pop backdrop:bg-[rgba(8,20,32,0.5)] backdrop:backdrop-blur-[2px] open:flex',
         className,
       )}
     >
@@ -67,9 +107,9 @@ export function ModalBase({
           type="button"
           onClick={onClose}
           aria-label={t('common.close')}
-          className="rounded-md px-2 py-1 text-ink-muted hover:bg-surface-200"
+          className="grid size-9 place-items-center rounded-lg text-ink-muted transition-colors hover:bg-surface-200 hover:text-ink"
         >
-          ✕
+          <X aria-hidden className="size-5" strokeWidth={2} />
         </button>
       </header>
       {children && (

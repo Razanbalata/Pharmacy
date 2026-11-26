@@ -547,8 +547,15 @@ export const en: Messages = {
     title: 'This page is not part of your role',
     body: 'Ask the manager for access.',
   },
-  theme: { label: 'Theme', system: 'System', light: 'Light', dark: 'Dark' },
-  language: { label: 'Language', ar: 'العربية', en: 'English' },
+  theme: {
+    label: 'Theme',
+    system: 'System',
+    light: 'Light',
+    dark: 'Dark',
+    toDark: 'Switch to dark mode',
+    toLight: 'Switch to light mode',
+  },
+  language: { label: 'Language', ar: 'العربية', en: 'English', switchTo: 'التبديل للعربية' },
   home: {
     title: 'The design system is wired',
     body: 'Colors and fonts come from the design system and follow the theme.',

@@ -1,12 +1,15 @@
+import { useCallback, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import { useAlertSummary } from '@/entities/alert'
 import { canAccess, type CurrentUser } from '@/entities/session'
 import { LogoutButton } from '@/features/auth/logout'
-import { LanguageSwitcher } from '@/features/switch-language'
-import { ThemeSwitcher } from '@/features/switch-theme'
+import { LanguageToggle } from '@/features/switch-language'
+import { ThemeToggle } from '@/features/switch-theme'
 import { paths } from '@/shared/config'
-import { ChevronDown, Menu, Plus, Search } from 'lucide-react'
+import { cn } from '@/shared/lib/cn'
+import { useDismiss } from '@/shared/lib/dismiss'
+import { ChevronDown, Menu, Plus, Search, Settings } from 'lucide-react'
 import { AlertsMenu } from './AlertsMenu'
 
 interface TopbarProps {
@@ -22,39 +25,64 @@ interface TopbarProps {
 
 function UserMenu({ user }: { user: CurrentUser }) {
   const { t } = useTranslation()
+  const [open, setOpen] = useState(false)
+  const box = useRef<HTMLDivElement>(null)
+  const close = useCallback(() => setOpen(false), [])
+  useDismiss(box, open, close)
+
   return (
-    <details className="group relative">
-      <summary
+    <div ref={box} className="relative">
+      <button
+        type="button"
         aria-label={t('shell.userMenu')}
-        className="flex cursor-pointer list-none items-center gap-2 rounded-md px-2 py-1.5 hover:bg-surface-200 [&::-webkit-details-marker]:hidden"
+        aria-expanded={open}
+        onClick={() => setOpen((value) => !value)}
+        className="flex items-center gap-2 rounded-lg px-2 py-1.5 transition-colors hover:bg-surface-200"
       >
-        <span className="flex size-8 items-center justify-center rounded-pill bg-brand-soft font-display text-small font-semibold text-brand-strong">
+        <span className="flex size-9 items-center justify-center rounded-pill bg-brand-soft font-display text-small font-semibold text-brand-strong">
           {user.name.slice(0, 1)}
         </span>
         <span className="hidden flex-col text-start leading-tight sm:flex">
           <span className="text-small font-semibold text-ink">{user.name}</span>
           <span className="text-caption text-ink-muted">{t(`role.${user.role}`)}</span>
         </span>
-        <ChevronDown aria-hidden className="hidden size-4 text-ink-muted sm:block" />
-      </summary>
-      <div className="absolute end-0 top-full z-30 mt-2 flex w-72 flex-col gap-4 rounded-lg border border-border bg-surface-100 shadow-card p-4 shadow-pop">
-        <div>
-          <p className="text-body-strong">{user.name}</p>
-          <p className="text-small text-ink-muted">
-            {t(`role.${user.role}`)} · {user.pharmacy.name}
-          </p>
+        <ChevronDown
+          aria-hidden
+          className={cn(
+            'hidden size-4 text-ink-muted transition-transform sm:block',
+            open && 'rotate-180',
+          )}
+        />
+      </button>
+      {open && (
+        <div className="absolute end-0 top-full z-30 mt-2 flex w-64 flex-col overflow-hidden rounded-xl border border-border bg-surface-100 shadow-pop">
+          <div className="flex items-center gap-3 border-b border-border px-4 py-3.5">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-pill bg-brand-soft font-display text-body font-semibold text-brand-strong">
+              {user.name.slice(0, 1)}
+            </span>
+            <div className="min-w-0">
+              <p className="truncate text-body font-semibold text-ink">{user.name}</p>
+              <p className="truncate text-caption text-ink-muted">
+                {t(`role.${user.role}`)} · {user.pharmacy.name}
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col p-1.5">
+            {canAccess(user.role, 'settings') && (
+              <Link
+                to={paths.settings}
+                onClick={close}
+                className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-small font-medium text-ink transition-colors hover:bg-surface-200"
+              >
+                <Settings aria-hidden className="size-4 text-ink-muted" />
+                {t('nav.settings')}
+              </Link>
+            )}
+            <LogoutButton />
+          </div>
         </div>
-        <div className="flex flex-col gap-2">
-          <span className="text-caption text-ink-muted">{t('language.label')}</span>
-          <LanguageSwitcher />
-        </div>
-        <div className="flex flex-col gap-2">
-          <span className="text-caption text-ink-muted">{t('theme.label')}</span>
-          <ThemeSwitcher />
-        </div>
-        <LogoutButton />
-      </div>
-    </details>
+      )}
+    </div>
   )
 }
 
@@ -96,7 +124,12 @@ export function Topbar({ user, onOpenMenu, onOpenSearch }: TopbarProps) {
           <Plus aria-hidden className="size-4" strokeWidth={2.5} />
           {t('shell.newSale')}
         </Link>
-        {showAlerts && <AlertsMenu unread={unread} />}
+        <div className="flex items-center">
+          <LanguageToggle />
+          <ThemeToggle />
+          {showAlerts && <AlertsMenu unread={unread} />}
+        </div>
+        <span aria-hidden className="mx-1 hidden h-7 w-px bg-border sm:block" />
         <UserMenu user={user} />
       </div>
     </header>
