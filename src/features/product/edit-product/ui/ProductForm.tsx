@@ -45,7 +45,7 @@ interface ProductFormProps {
 
 function Section({ title, hint, children }: { title: string; hint?: string; children: ReactNode }) {
   return (
-    <section className="flex flex-col gap-4 rounded-lg border border-border bg-surface-100 p-5">
+    <section className="flex flex-col gap-4 rounded-lg border border-border bg-surface-100 shadow-card p-5">
       <div>
         <h2 className="font-display text-title">{title}</h2>
         {hint && <p className="mt-0.5 text-small text-ink-muted">{hint}</p>}
@@ -199,7 +199,7 @@ export function ProductForm({ product, defaultMinStock = 5, onSaved, onCancel }:
                 <select
                   {...field}
                   {...register('form', { setValueAs: (value) => (value === '' ? null : value) })}
-                  className="h-10 rounded-md border border-border-strong bg-surface-100 px-3 text-body"
+                  className="h-10 rounded-lg border border-border bg-surface-100 px-3 text-body"
                 >
                   <option value="">{t('products.form.none')}</option>
                   {DOSAGE_FORMS.map((dosage) => (
@@ -370,7 +370,7 @@ export function ProductForm({ product, defaultMinStock = 5, onSaved, onCancel }:
       </div>
 
       <aside className="flex flex-col gap-4 lg:sticky lg:top-20">
-        <section className="rounded-lg border border-border bg-surface-100 p-4">
+        <section className="rounded-lg border border-border bg-surface-100 shadow-card p-4">
           <h2 className="text-small text-ink-muted">{t('products.form.preview')}</h2>
           <div className="mt-3 rounded-md border border-border p-3">
             <bdi className="block font-semibold">{name || t('products.form.name')}</bdi>
@@ -385,7 +385,7 @@ export function ProductForm({ product, defaultMinStock = 5, onSaved, onCancel }:
             </div>
           </div>
         </section>
-        <label className="flex items-center gap-3 rounded-lg border border-border bg-surface-100 p-4 text-body">
+        <label className="flex items-center gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-4 text-body">
           <Switch {...register('active')} />
           {t('products.form.active')}
         </label>

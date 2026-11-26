@@ -5,6 +5,7 @@ import { Link } from 'react-router'
 import { AlertItem, alertQueries } from '@/entities/alert'
 import { MarkAllReadButton, useMarkAlertRead } from '@/features/alert/mark-read'
 import { paths } from '@/shared/config'
+import { Bell } from 'lucide-react'
 
 /** The bell: how many are new, and the latest few, each with its button. */
 export function AlertsMenu({ unread }: { unread: number }) {
@@ -42,13 +43,13 @@ export function AlertsMenu({ unread }: { unread: number }) {
         aria-expanded={open}
         aria-label={t('shell.alertsCount', { count: unread })}
         onClick={() => setOpen((value) => !value)}
-        className="relative rounded-md px-2.5 py-2 hover:bg-surface-200"
+        className="relative flex size-10 items-center justify-center rounded-lg text-ink-muted transition-colors hover:bg-surface-200 hover:text-ink"
       >
-        <span aria-hidden>🔔</span>
+        <Bell aria-hidden className="size-5" />
         {unread > 0 && (
           <span
             aria-hidden
-            className="tabular absolute -top-0.5 -end-0.5 rounded-pill bg-danger px-1.5 text-caption text-surface-100"
+            className="tabular absolute top-0.5 end-0 flex min-w-4.5 items-center justify-center rounded-pill bg-danger px-1 text-[11px] leading-4 font-semibold text-white ring-2 ring-surface-100"
           >
             {unread}
           </span>
@@ -57,7 +58,7 @@ export function AlertsMenu({ unread }: { unread: number }) {
       {open && (
         <section
           aria-label={t('alerts.dropdown.title')}
-          className="absolute end-0 top-full z-30 mt-2 flex w-96 max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-lg border border-border bg-surface-100 shadow-pop"
+          className="absolute end-0 top-full z-30 mt-2 flex w-96 max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-lg border border-border bg-surface-100 shadow-card shadow-pop"
         >
           <header className="flex items-center justify-between gap-2 border-b border-border px-4 py-3">
             <span className="flex items-center gap-2">

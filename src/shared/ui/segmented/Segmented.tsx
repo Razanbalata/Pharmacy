@@ -19,14 +19,16 @@ export function Segmented<Value extends string>({
 }: SegmentedProps<Value>) {
   const fallbackName = useId()
   return (
-    <fieldset className="inline-flex overflow-hidden rounded-md border border-border-strong">
+    <fieldset className="inline-flex gap-0.5 rounded-lg bg-surface-200 p-1">
       <legend className="sr-only">{label}</legend>
       {options.map((option) => (
         <label
           key={option.value}
           className={cn(
-            'cursor-pointer px-3.5 py-1.5 text-small has-focus-visible:outline-3 has-focus-visible:outline-focus',
-            value === option.value ? 'bg-ink text-surface-100' : 'text-ink hover:bg-surface-200',
+            'cursor-pointer rounded-md px-3.5 py-1.5 text-small font-medium whitespace-nowrap transition-colors has-focus-visible:outline-3 has-focus-visible:outline-focus',
+            value === option.value
+              ? 'bg-surface-100 font-semibold text-ink shadow-card'
+              : 'text-ink-muted hover:text-ink',
           )}
         >
           <input

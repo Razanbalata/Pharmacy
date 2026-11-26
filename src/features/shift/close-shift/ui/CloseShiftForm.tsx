@@ -79,7 +79,7 @@ export function CloseShiftForm({ onClosed, onShowHeld }: CloseShiftFormProps) {
       noValidate
       onSubmit={submit}
       aria-labelledby="close-shift"
-      className="print-area flex w-full max-w-lg flex-col gap-4 rounded-lg border border-border bg-surface-100 p-6"
+      className="print-area flex w-full max-w-lg flex-col gap-4 rounded-lg border border-border bg-surface-100 shadow-card p-6"
     >
       <div>
         <h1 id="close-shift" className="font-display text-title">

@@ -6,6 +6,7 @@ import { LogoutButton } from '@/features/auth/logout'
 import { LanguageSwitcher } from '@/features/switch-language'
 import { ThemeSwitcher } from '@/features/switch-theme'
 import { paths } from '@/shared/config'
+import { ChevronDown, Menu, Plus, Search } from 'lucide-react'
 import { AlertsMenu } from './AlertsMenu'
 
 interface TopbarProps {
@@ -30,11 +31,13 @@ function UserMenu({ user }: { user: CurrentUser }) {
         <span className="flex size-8 items-center justify-center rounded-pill bg-brand-soft font-display text-small font-semibold text-brand-strong">
           {user.name.slice(0, 1)}
         </span>
-        <span className="hidden text-small sm:inline">
-          {user.name} · {t(`role.${user.role}`)}
+        <span className="hidden flex-col text-start leading-tight sm:flex">
+          <span className="text-small font-semibold text-ink">{user.name}</span>
+          <span className="text-caption text-ink-muted">{t(`role.${user.role}`)}</span>
         </span>
+        <ChevronDown aria-hidden className="hidden size-4 text-ink-muted sm:block" />
       </summary>
-      <div className="absolute end-0 top-full z-30 mt-2 flex w-72 flex-col gap-4 rounded-lg border border-border bg-surface-100 p-4 shadow-pop">
+      <div className="absolute end-0 top-full z-30 mt-2 flex w-72 flex-col gap-4 rounded-lg border border-border bg-surface-100 shadow-card p-4 shadow-pop">
         <div>
           <p className="text-body-strong">{user.name}</p>
           <p className="text-small text-ink-muted">
@@ -63,22 +66,22 @@ export function Topbar({ user, onOpenMenu, onOpenSearch }: TopbarProps) {
   const unread = showAlerts ? (alerts?.unread ?? 0) : 0
 
   return (
-    <header className="flex h-16 items-center gap-3 border-b border-border bg-surface-100 px-4 lg:px-7">
+    <header className="sticky top-0 z-20 flex h-16 items-center gap-3 border-b border-border bg-surface-100/95 px-4 backdrop-blur sm:px-6 lg:px-8">
       <button
         type="button"
         onClick={onOpenMenu}
         aria-label={t('nav.openMenu')}
-        className="rounded-md px-2 py-1.5 text-subheading hover:bg-surface-200 lg:hidden"
+        className="rounded-md p-2 hover:bg-surface-200 lg:hidden"
       >
-        ☰
+        <Menu aria-hidden className="size-5" />
       </button>
 
       <button
         type="button"
         onClick={onOpenSearch}
-        className="flex h-10 max-w-md flex-1 items-center gap-2 rounded-md border border-border bg-surface-0 px-3 text-start text-small text-ink-muted hover:border-border-strong"
+        className="flex h-10 max-w-lg flex-1 items-center gap-2.5 rounded-lg border border-border bg-surface-0 px-3.5 text-start text-small text-ink-muted transition-colors hover:border-border-strong hover:text-ink"
       >
-        <span aria-hidden>⌕</span>
+        <Search aria-hidden className="size-4 shrink-0" />
         <span className="flex-1 truncate">{t('shell.search')}</span>
         <kbd className="tabular hidden rounded-sm border border-border bg-surface-100 px-1.5 text-caption sm:inline">
           Ctrl K
@@ -88,9 +91,10 @@ export function Topbar({ user, onOpenMenu, onOpenSearch }: TopbarProps) {
       <div className="ms-auto flex items-center gap-2">
         <Link
           to={paths.pos}
-          className="hidden h-10 items-center rounded-md bg-brand px-4 text-body font-semibold text-on-brand hover:bg-brand-strong sm:flex"
+          className="hidden h-10 items-center gap-2 rounded-lg bg-brand px-4 text-body font-semibold text-on-brand shadow-card transition-colors hover:bg-brand-strong sm:flex"
         >
-          + {t('shell.newSale')}
+          <Plus aria-hidden className="size-4" strokeWidth={2.5} />
+          {t('shell.newSale')}
         </Link>
         {showAlerts && <AlertsMenu unread={unread} />}
         <UserMenu user={user} />

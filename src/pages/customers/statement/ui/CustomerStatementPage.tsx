@@ -1,3 +1,4 @@
+import { SearchX } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -44,7 +45,7 @@ export function CustomerStatementPage() {
   if (isError || !Number.isInteger(id)) {
     return (
       <EmptyState
-        icon="?"
+        icon={<SearchX className="size-6" />}
         title={t('customerStatement.notFound')}
         actions={
           <Link to={paths.customers} className={buttonVariants({ variant: 'secondary' })}>
@@ -165,13 +166,13 @@ export function CustomerStatementPage() {
           </p>
           <p className="tabular mt-1 font-display text-title">{formatMoney(customer.debt)} ₪</p>
         </div>
-        <div className="rounded-lg border border-border bg-surface-100 p-4">
+        <div className="rounded-lg border border-border bg-surface-100 shadow-card p-4">
           <p className="text-small text-ink-muted">{t('customerStatement.limit')}</p>
           <p className="tabular mt-1 font-display text-title">
             {customer.creditAllowed ? `${formatMoney(customer.debtLimit)} ₪` : '—'}
           </p>
         </div>
-        <div className="rounded-lg border border-border bg-surface-100 p-4">
+        <div className="rounded-lg border border-border bg-surface-100 shadow-card p-4">
           <p className="text-small text-ink-muted">{t('customerStatement.thisMonth')}</p>
           <p className="tabular mt-1 font-display text-title">
             {formatMoney(data.purchasesThisMonth)} ₪
@@ -194,7 +195,7 @@ export function CustomerStatementPage() {
             />
           </div>
 
-          <div className="print-area overflow-x-auto rounded-lg border border-border bg-surface-100">
+          <div className="print-area overflow-x-auto rounded-lg border border-border bg-surface-100 shadow-card">
             <table className="w-full border-collapse text-body">
               <caption className="sr-only">{customer.name}</caption>
               <thead>
@@ -241,7 +242,7 @@ export function CustomerStatementPage() {
           {data.recent.length > 0 && (
             <section
               aria-labelledby="customer-recent"
-              className="rounded-lg border border-border bg-surface-100 p-4"
+              className="rounded-lg border border-border bg-surface-100 shadow-card p-4"
             >
               <h2 id="customer-recent" className="font-display text-body-strong">
                 {t('customerStatement.recent')}
@@ -287,7 +288,7 @@ export function CustomerStatementPage() {
           {customer.notes && (
             <section
               aria-labelledby="customer-notes"
-              className="rounded-lg border border-border bg-surface-100 p-4"
+              className="rounded-lg border border-border bg-surface-100 shadow-card p-4"
             >
               <h2 id="customer-notes" className="font-display text-body-strong">
                 {t('customerStatement.notes')}

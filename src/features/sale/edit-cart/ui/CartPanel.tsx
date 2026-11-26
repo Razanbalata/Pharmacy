@@ -121,7 +121,7 @@ export function CartPanel({ onPay, onHold, onDiscount, onAddCustomer }: CartPane
   return (
     <section
       aria-label={t('pos.cart')}
-      className="flex min-h-0 flex-col rounded-lg border border-border bg-surface-100"
+      className="flex min-h-0 flex-col rounded-lg border border-border bg-surface-100 shadow-card"
     >
       <div className="flex flex-col gap-2 border-b border-border p-3">
         <p className="flex items-center justify-between">

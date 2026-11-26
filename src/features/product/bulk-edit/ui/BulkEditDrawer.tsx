@@ -25,7 +25,7 @@ interface BulkEditDrawerProps {
 
 type Field = 'minStock' | 'supplier' | 'category' | 'prescription' | 'active' | 'price'
 
-const control = 'h-9 rounded-md border border-border-strong bg-surface-100 px-2 text-small'
+const control = 'h-9 rounded-lg border border-border bg-surface-100 px-2 text-small'
 
 function Row({
   field,

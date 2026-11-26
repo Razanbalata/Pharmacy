@@ -97,7 +97,7 @@ export function RecordDamageForm({
       noValidate
       onSubmit={submit}
       aria-labelledby="damage-form-title"
-      className="flex flex-col gap-4 rounded-lg border border-border bg-surface-100 p-5"
+      className="flex flex-col gap-4 rounded-lg border border-border bg-surface-100 shadow-card p-5"
     >
       <h2 id="damage-form-title" className="font-display text-title">
         {t('damage.formTitle')}
@@ -129,7 +129,7 @@ export function RecordDamageForm({
               {...field}
               value={batch?.code ?? ''}
               onChange={(event) => setBatchCode(event.target.value)}
-              className="h-10 rounded-md border border-border-strong bg-surface-100 px-3 text-body"
+              className="h-10 rounded-lg border border-border bg-surface-100 px-3 text-body"
             >
               {batches.map((item) => (
                 <option key={item.code} value={item.code}>

@@ -130,7 +130,10 @@ export function StaffPage() {
 
       <div className="grid gap-3 md:grid-cols-3">
         {(['manager', 'pharmacist', 'cashier'] as const).map((role) => (
-          <div key={role} className="rounded-lg border border-border bg-surface-100 p-4">
+          <div
+            key={role}
+            className="rounded-lg border border-border bg-surface-100 shadow-card p-4"
+          >
             <p className="font-display text-body-strong">{t(`staff.roles.${role}.title`)}</p>
             <p className="mt-1 text-small text-ink-muted">{t(`staff.roles.${role}.body`)}</p>
           </div>

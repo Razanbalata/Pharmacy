@@ -14,10 +14,10 @@
   --ps-surface-0: #f4f7f7;
   --ps-surface-100: #ffffff;
   --ps-surface-200: #ecf2f2;
-  --ps-border: #d6e0e1;
+  --ps-border: #d2dcdf;
   --ps-border-strong: #76879a;
   --ps-ink: #0f1f33;
-  --ps-ink-muted: #4f5f6e;
+  --ps-ink-muted: #3f4e5d;
   --ps-brand: #0e7c7b;
   --ps-brand-strong: #0a5f5e;
   --ps-brand-soft: #d7efed;
@@ -34,7 +34,7 @@
   --ps-info: #1f5fbf;
   --ps-info-soft: #e0eafa;
   --ps-focus: #0e7c7b;
-  --ps-shadow-card: 0 1px 2px rgba(15, 31, 51, 0.06), 0 4px 12px rgba(15, 31, 51, 0.05);
+  --ps-shadow-card: 0 1px 2px rgba(15, 31, 51, 0.05), 0 2px 8px rgba(15, 31, 51, 0.04);
   --ps-shadow-pop: 0 12px 32px rgba(15, 31, 51, 0.16);
 }
 
@@ -50,7 +50,7 @@
   --ps-border: #24364a;
   --ps-border-strong: #5b6f84;
   --ps-ink: #e8eef3;
-  --ps-ink-muted: #9aabbb;
+  --ps-ink-muted: #b0bfcc;
   --ps-brand: #2bb3ac;
   --ps-brand-strong: #5fd0c8;
   --ps-brand-soft: #0f3a3b;
@@ -103,7 +103,7 @@
   --shadow-pop: var(--ps-shadow-pop);
   --radius-sm: 6px;
   --radius-md: 10px;
-  --radius-lg: 16px;
+  --radius-lg: 14px;
   --radius-pill: 999px;
   --font-display: 'Readex Pro', 'IBM Plex Sans Arabic', system-ui, sans-serif;
   --font-sans: 'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, system-ui, sans-serif;
@@ -122,8 +122,8 @@
   --text-body-strong: 15px;
   --text-body-strong--line-height: 24px;
   --text-body-strong--font-weight: 600;
-  --text-small: 13px;
-  --text-small--line-height: 20px;
+  --text-small: 14px;
+  --text-small--line-height: 21px;
   --text-small--font-weight: 400;
   --text-caption: 12px;
   --text-caption--line-height: 16px;

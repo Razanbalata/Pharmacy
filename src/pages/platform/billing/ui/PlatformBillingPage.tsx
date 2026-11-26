@@ -1,3 +1,4 @@
+import { ExternalLink, Inbox } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
@@ -73,9 +74,10 @@ export function PlatformBillingPage() {
             target="_blank"
             rel="noreferrer"
             aria-label={t('billing.receiptOf', { name: payment.pharmacy.name })}
-            className="text-small font-semibold text-platform-accent hover:underline"
+            className="inline-flex items-center gap-1 text-small font-semibold text-platform-accent hover:underline"
           >
-            {t('billing.receipt')} ↗
+            {t('billing.receipt')}
+            <ExternalLink aria-hidden className="size-3.5" />
           </a>
         ) : (
           '—'
@@ -121,7 +123,7 @@ export function PlatformBillingPage() {
               {data.plans.map((plan) => (
                 <li
                   key={plan.key}
-                  className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-4"
+                  className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-4"
                 >
                   <div className="flex items-center justify-between gap-2">
                     <span className="font-display text-title">
@@ -162,7 +164,7 @@ export function PlatformBillingPage() {
           rows={data?.payments ?? []}
           getRowId={(payment) => String(payment.id)}
           loading={isPending}
-          empty={<EmptyState icon="—" title={t('billing.empty')} />}
+          empty={<EmptyState icon={<Inbox className="size-6" />} title={t('billing.empty')} />}
         />
       </section>
     </div>

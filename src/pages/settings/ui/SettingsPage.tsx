@@ -112,7 +112,7 @@ export function SettingsPage() {
       <div className="flex items-start gap-5">
         <nav
           aria-label={t('settings.title')}
-          className="sticky top-4 hidden w-52 shrink-0 flex-col rounded-lg border border-border bg-surface-100 p-2 lg:flex"
+          className="sticky top-4 hidden w-52 shrink-0 flex-col rounded-lg border border-border bg-surface-100 shadow-card p-2 lg:flex"
         >
           {SECTIONS.map((section) => (
             <a

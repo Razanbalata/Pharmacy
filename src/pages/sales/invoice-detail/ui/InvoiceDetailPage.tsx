@@ -1,3 +1,4 @@
+import { SearchX } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -39,7 +40,7 @@ export function InvoiceDetailPage() {
   if (isError || !Number.isInteger(id)) {
     return (
       <EmptyState
-        icon="?"
+        icon={<SearchX className="size-6" />}
         title={t('invoiceDetail.notFound')}
         actions={
           <Link to={paths.invoices} className={buttonVariants({ variant: 'secondary' })}>
@@ -52,7 +53,7 @@ export function InvoiceDetailPage() {
   if (isPending) return <PageSkeleton variant="detail" />
 
   const action = buttonVariants({ variant: 'secondary', size: 'sm' })
-  const card = 'rounded-lg border border-border bg-surface-100 p-4'
+  const card = 'rounded-lg border border-border bg-surface-100 shadow-card p-4'
 
   return (
     <div className="flex flex-col gap-5">
@@ -139,7 +140,7 @@ export function InvoiceDetailPage() {
       </dl>
 
       <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,1fr)_300px]">
-        <section className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-4">
+        <section className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-4">
           <div className="overflow-x-auto">
             <table className="w-full text-body">
               <caption className="sr-only">{invoice.number}</caption>
@@ -214,7 +215,7 @@ export function InvoiceDetailPage() {
           <p className="text-caption text-ink-muted">{t('invoiceDetail.locked')}</p>
         </section>
 
-        <section className="rounded-lg border border-border bg-surface-100 p-4">
+        <section className="rounded-lg border border-border bg-surface-100 shadow-card p-4">
           <h2 className="font-display text-body-strong">{t('invoiceDetail.log')}</h2>
           <ol className="mt-2 flex flex-col gap-2 text-small">
             {invoice.log.map((entry) => (

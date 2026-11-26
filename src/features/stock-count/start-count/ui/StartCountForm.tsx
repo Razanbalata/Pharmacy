@@ -39,7 +39,7 @@ export function StartCountForm() {
             onChange={(event) =>
               setCategoryId(event.target.value ? Number(event.target.value) : null)
             }
-            className="h-10 rounded-md border border-border-strong bg-surface-100 px-3 text-body"
+            className="h-10 rounded-lg border border-border bg-surface-100 px-3 text-body"
           >
             <option value="">{t('counts.wholePharmacy')}</option>
             {categories.map((category) => (

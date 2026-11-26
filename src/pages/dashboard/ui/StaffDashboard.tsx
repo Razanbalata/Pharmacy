@@ -65,7 +65,7 @@ export function StaffDashboard({ data, role }: { data: Dashboard; role: Role }) 
   const mine = (
     <section
       aria-labelledby="my-sales"
-      className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-4"
+      className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-4"
     >
       <h2 id="my-sales" className="font-display text-body-strong">
         {t('dashboard.mySales.title')}
@@ -98,7 +98,7 @@ export function StaffDashboard({ data, role }: { data: Dashboard; role: Role }) 
 
       <section
         aria-labelledby="today-tasks"
-        className="overflow-hidden rounded-lg border border-border bg-surface-100"
+        className="overflow-hidden rounded-lg border border-border bg-surface-100 shadow-card"
       >
         <h2
           id="today-tasks"
@@ -132,7 +132,7 @@ export function StaffDashboard({ data, role }: { data: Dashboard; role: Role }) 
       <div className="grid gap-5 lg:grid-cols-3">
         <section
           aria-labelledby="expiring-soon"
-          className="rounded-lg border border-border bg-surface-100 p-4"
+          className="rounded-lg border border-border bg-surface-100 shadow-card p-4"
         >
           <div className="flex items-center justify-between gap-2">
             <h2 id="expiring-soon" className="font-display text-body-strong">
@@ -170,7 +170,7 @@ export function StaffDashboard({ data, role }: { data: Dashboard; role: Role }) 
 
         <section
           aria-labelledby="running-low"
-          className="rounded-lg border border-border bg-surface-100 p-4"
+          className="rounded-lg border border-border bg-surface-100 shadow-card p-4"
         >
           <div className="flex items-center justify-between gap-2">
             <h2 id="running-low" className="font-display text-body-strong">

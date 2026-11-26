@@ -1,3 +1,4 @@
+import { Inbox } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -115,7 +116,7 @@ export function ExpensesPage() {
         {summary && (
           <section
             aria-labelledby="expenses-total"
-            className="flex flex-col gap-4 self-start rounded-lg border border-border bg-surface-100 p-4"
+            className="flex flex-col gap-4 self-start rounded-lg border border-border bg-surface-100 shadow-card p-4"
           >
             <div>
               <h2 id="expenses-total" className="text-small text-ink-muted">
@@ -158,7 +159,7 @@ export function ExpensesPage() {
           rows={expenses}
           getRowId={(expense) => String(expense.id)}
           loading={isPending}
-          empty={<EmptyState icon="—" title={t('expenses.empty')} />}
+          empty={<EmptyState icon={<Inbox className="size-6" />} title={t('expenses.empty')} />}
         />
       </div>
     </div>

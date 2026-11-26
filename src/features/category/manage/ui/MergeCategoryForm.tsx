@@ -48,7 +48,7 @@ export function MergeCategoryForm({ category, categories, onDone }: MergeCategor
           id={`merge-${category.id}`}
           value={targetId ?? ''}
           onChange={(event) => setTargetId(event.target.value ? Number(event.target.value) : null)}
-          className="h-9 rounded-md border border-border-strong bg-surface-100 px-2 text-small"
+          className="h-9 rounded-lg border border-border bg-surface-100 px-2 text-small"
         >
           <option value="">{t('categories.chooseTarget')}</option>
           {others.map((item) => (

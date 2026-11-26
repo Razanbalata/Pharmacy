@@ -1,3 +1,4 @@
+import { LayoutGrid } from 'lucide-react'
 import { useState, type ReactNode } from 'react'
 import { LanguageSwitcher } from '@/features/switch-language'
 import { ThemeSwitcher } from '@/features/switch-theme'
@@ -57,7 +58,7 @@ const categoryOptions: ComboboxOption[] = [
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <section className="flex flex-col gap-4 rounded-lg border border-border bg-surface-100 p-6 shadow-card">
+    <section className="flex flex-col gap-4 rounded-lg border border-border bg-surface-100 shadow-card p-6 shadow-card">
       <h2 className="font-display text-subheading">{title}</h2>
       {children}
     </section>
@@ -175,7 +176,7 @@ export function UiKitPage() {
       <Section title="الحالة الفاضية والتحميل">
         <div className="grid gap-4 sm:grid-cols-2">
           <EmptyState
-            icon="▦"
+            icon={<LayoutGrid className="size-6" />}
             tone="brand"
             title="لسا ما في أصناف"
             description="استوردي من Excel أو ضيفي أول صنف."

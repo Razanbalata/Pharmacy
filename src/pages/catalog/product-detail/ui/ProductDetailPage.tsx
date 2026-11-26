@@ -1,3 +1,4 @@
+import { SearchX } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -29,7 +30,9 @@ function Card({
   className?: string
 }) {
   return (
-    <section className={cn('rounded-lg border border-border bg-surface-100 p-4', className)}>
+    <section
+      className={cn('rounded-lg border border-border bg-surface-100 shadow-card p-4', className)}
+    >
       <h2 className="mb-3 font-display text-body-strong">{title}</h2>
       {children}
     </section>
@@ -38,7 +41,7 @@ function Card({
 
 function Stat({ label, value, sub }: { label: string; value: ReactNode; sub?: ReactNode }) {
   return (
-    <div className="rounded-lg border border-border bg-surface-100 p-4">
+    <div className="rounded-lg border border-border bg-surface-100 shadow-card p-4">
       <p className="text-small text-ink-muted">{label}</p>
       <p className="tabular mt-1 font-display text-title">{value}</p>
       {sub && <p className="mt-0.5 text-small text-ink-muted">{sub}</p>}
@@ -172,7 +175,7 @@ export function ProductDetailPage() {
   if (isError || !Number.isInteger(id)) {
     return (
       <EmptyState
-        icon="?"
+        icon={<SearchX className="size-6" />}
         title={t('products.detail.notFound')}
         actions={
           <Link to={paths.products} className={buttonVariants({ variant: 'secondary' })}>

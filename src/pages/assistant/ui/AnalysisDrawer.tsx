@@ -1,3 +1,4 @@
+import { RefreshCw } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
@@ -52,7 +53,8 @@ export function AnalysisDrawer({ open, onClose }: { open: boolean; onClose: () =
       }
       footer={
         <Button variant="secondary" size="sm" onClick={() => void refetch()} disabled={isFetching}>
-          ↻ {t('assistant.analysis.refresh')}
+          <RefreshCw className="size-4" />
+          {t('assistant.analysis.refresh')}
         </Button>
       }
     >

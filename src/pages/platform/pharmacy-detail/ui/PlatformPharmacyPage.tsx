@@ -1,3 +1,4 @@
+import { SearchX } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -42,7 +43,7 @@ export function PlatformPharmacyPage() {
   if (isError || !Number.isInteger(id)) {
     return (
       <EmptyState
-        icon="?"
+        icon={<SearchX className="size-6" />}
         title={t('tenant.notFound')}
         actions={
           <Link to={paths.platformPharmacies} className={buttonVariants({ variant: 'secondary' })}>
@@ -120,7 +121,7 @@ export function PlatformPharmacyPage() {
       <div className="grid gap-5 lg:grid-cols-3">
         <section
           aria-labelledby="tenant-details"
-          className="rounded-lg border border-border bg-surface-100 p-4"
+          className="rounded-lg border border-border bg-surface-100 shadow-card p-4"
         >
           <h2 id="tenant-details" className="font-display text-body-strong">
             {t('tenant.details')}
@@ -136,7 +137,7 @@ export function PlatformPharmacyPage() {
         </section>
         <section
           aria-labelledby="tenant-usage"
-          className="rounded-lg border border-border bg-surface-100 p-4"
+          className="rounded-lg border border-border bg-surface-100 shadow-card p-4"
         >
           <h2 id="tenant-usage" className="font-display text-body-strong">
             {t('tenant.usage')}
@@ -155,7 +156,7 @@ export function PlatformPharmacyPage() {
         </section>
         <section
           aria-labelledby="tenant-actions"
-          className="rounded-lg border border-border bg-surface-100 p-4"
+          className="rounded-lg border border-border bg-surface-100 shadow-card p-4"
         >
           <h2 id="tenant-actions" className="font-display text-body-strong">
             {t('tenant.actions')}
@@ -168,7 +169,7 @@ export function PlatformPharmacyPage() {
 
       <section
         aria-labelledby="tenant-history"
-        className="rounded-lg border border-border bg-surface-100 p-4"
+        className="rounded-lg border border-border bg-surface-100 shadow-card p-4"
       >
         <h2 id="tenant-history" className="font-display text-body-strong">
           {t('tenant.history')}

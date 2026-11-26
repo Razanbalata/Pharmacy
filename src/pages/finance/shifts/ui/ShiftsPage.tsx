@@ -1,3 +1,4 @@
+import { Inbox } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -23,7 +24,7 @@ import { Segmented } from '@/shared/ui/segmented'
 import { DataTable, type Column } from '@/shared/ui/table'
 
 const DAY_MS = 86_400_000
-const select = 'h-9 rounded-md border border-border-strong bg-surface-100 px-3 text-body'
+const select = 'h-9 rounded-lg border border-border bg-surface-100 px-3 text-body'
 
 /** A difference with its sign in front: "+ 2.00", "− 6.00", or "0.00". */
 function signed(value: number): string {
@@ -42,7 +43,7 @@ interface StatProps {
 
 function Stat({ label, value, tone, ltr = false }: StatProps) {
   return (
-    <div className="rounded-lg border border-border bg-surface-100 p-4">
+    <div className="rounded-lg border border-border bg-surface-100 shadow-card p-4">
       <p className="text-small text-ink-muted">{label}</p>
       <p className={cn('tabular mt-1 font-display text-title', tone)}>
         {ltr ? <bdi dir="ltr">{value}</bdi> : value}
@@ -302,7 +303,7 @@ export function ShiftsPage() {
         rows={shifts}
         getRowId={(shift) => String(shift.id)}
         loading={isPending}
-        empty={<EmptyState icon="—" title={t('shifts.empty')} />}
+        empty={<EmptyState icon={<Inbox className="size-6" />} title={t('shifts.empty')} />}
       />
     </div>
   )

@@ -199,7 +199,7 @@ export function SupplierPaymentDrawer({ open, onClose, supplier }: SupplierPayme
               onChange={(event) =>
                 setOrderId(event.target.value ? Number(event.target.value) : null)
               }
-              className="h-10 rounded-md border border-border-strong bg-surface-100 px-3 text-body"
+              className="h-10 rounded-lg border border-border bg-surface-100 px-3 text-body"
             >
               <option value="">{t('suppliers.payment.general')}</option>
               {invoices.map((invoice) => (

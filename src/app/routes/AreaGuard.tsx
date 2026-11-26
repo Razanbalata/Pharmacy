@@ -1,3 +1,4 @@
+import { Lock } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
@@ -15,13 +16,13 @@ export function AreaGuard({ area, children }: { area: Area; children: ReactNode 
   if (user && 'pharmacy' in user && !canAccess(user.role, area)) {
     return (
       <EmptyState
-        icon="⚿"
+        icon={<Lock className="size-6" />}
         title={t('forbidden.title')}
         description={t('forbidden.body')}
         actions={
           <Link
             to={paths.dashboard}
-            className="rounded-md border border-border-strong px-4 py-2 text-body"
+            className="rounded-lg border border-border px-4 py-2 text-body"
           >
             {t('notFound.back')}
           </Link>

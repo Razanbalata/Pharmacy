@@ -136,7 +136,7 @@ export function CountSheet({ count, canApprove }: CountSheetProps) {
             ['value', `${value < 0 ? '− ' : ''}${formatMoney(Math.abs(value))} ₪`],
           ] as const
         ).map(([key, text]) => (
-          <div key={key} className="rounded-lg border border-border bg-surface-100 p-4">
+          <div key={key} className="rounded-lg border border-border bg-surface-100 shadow-card p-4">
             <dt className="text-small text-ink-muted">{t(`counts.${key}`)}</dt>
             <dd
               className={cn(
@@ -170,7 +170,7 @@ export function CountSheet({ count, canApprove }: CountSheetProps) {
         ))}
       </fieldset>
 
-      <div className="overflow-x-auto rounded-lg border border-border bg-surface-100">
+      <div className="overflow-x-auto rounded-lg border border-border bg-surface-100 shadow-card">
         <table className="w-full border-collapse text-body">
           <caption className="sr-only">{t('counts.title')}</caption>
           <thead>

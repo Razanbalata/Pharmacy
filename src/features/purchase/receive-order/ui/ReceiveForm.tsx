@@ -142,7 +142,7 @@ export function ReceiveForm({ order, onDone }: ReceiveFormProps) {
 
   return (
     <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_320px]">
-      <section className="flex flex-col gap-4 rounded-lg border border-border bg-surface-100 p-5">
+      <section className="flex flex-col gap-4 rounded-lg border border-border bg-surface-100 shadow-card p-5">
         <Field label={t('purchases.receive.invoice')} optional className="max-w-xs">
           {(field) => (
             <Input
@@ -271,7 +271,7 @@ export function ReceiveForm({ order, onDone }: ReceiveFormProps) {
       </section>
 
       <aside className="flex flex-col gap-4 lg:sticky lg:top-20">
-        <section className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-4">
+        <section className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-4">
           <h2 className="font-display text-body-strong">{t('purchases.receive.payTitle')}</h2>
           <Field label={t('purchases.receive.paidNow')}>
             {(field) => (
@@ -301,7 +301,7 @@ export function ReceiveForm({ order, onDone }: ReceiveFormProps) {
                 {...field}
                 value={source}
                 onChange={(event) => setSource(event.target.value as Source)}
-                className="h-10 rounded-md border border-border-strong bg-surface-100 px-3 text-body"
+                className="h-10 rounded-lg border border-border bg-surface-100 px-3 text-body"
               >
                 {SOURCES.map((item) => (
                   <option key={item} value={item}>
@@ -316,7 +316,7 @@ export function ReceiveForm({ order, onDone }: ReceiveFormProps) {
           )}
         </section>
 
-        <section className="flex flex-col gap-2 rounded-lg border border-border bg-surface-100 p-4 text-body">
+        <section className="flex flex-col gap-2 rounded-lg border border-border bg-surface-100 shadow-card p-4 text-body">
           <dl className="flex flex-col gap-2">
             {(
               [

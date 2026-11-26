@@ -1,3 +1,4 @@
+import { Hourglass, XCircle } from 'lucide-react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router'
@@ -44,7 +45,7 @@ export function ActivatePage() {
       {activation.isPending && <FormSkeleton />}
       {error?.isGone && (
         <EmptyState
-          icon="⌛"
+          icon={<Hourglass className="size-6" />}
           tone="neutral"
           title={t('auth.activate.expiredTitle')}
           description={t('auth.activate.expiredBody')}
@@ -57,7 +58,7 @@ export function ActivatePage() {
       )}
       {activation.isError && !error?.isGone && (
         <EmptyState
-          icon="✕"
+          icon={<XCircle className="size-6" />}
           title={t('auth.activate.unknownTitle')}
           description={t('auth.activate.unknownBody')}
         />

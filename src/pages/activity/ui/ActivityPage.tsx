@@ -122,7 +122,7 @@ export function ActivityPage() {
       <section
         aria-busy={isFetching}
         className={cn(
-          'rounded-lg border border-border bg-surface-100',
+          'rounded-lg border border-border bg-surface-100 shadow-card',
           isFetching && !isPending && 'opacity-70',
         )}
       >

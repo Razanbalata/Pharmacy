@@ -1,3 +1,4 @@
+import { SearchX } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate, useParams } from 'react-router'
@@ -22,7 +23,7 @@ export function PurchaseReceivePage() {
   })
 
   if (isError || !Number.isInteger(id)) {
-    return <EmptyState icon="?" title={t('purchases.form.notFound')} />
+    return <EmptyState icon={<SearchX className="size-6" />} title={t('purchases.form.notFound')} />
   }
   if (isPending) return <PageSkeleton variant="form" />
 

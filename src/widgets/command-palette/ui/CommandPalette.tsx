@@ -1,5 +1,6 @@
 /* Same ARIA combobox + listbox pattern as shared/ui/combobox: driven from the input with the keyboard. */
 /* oxlint-disable jsx-a11y/prefer-tag-over-role, jsx-a11y/click-events-have-key-events */
+import { Search } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router'
@@ -125,9 +126,7 @@ export function CommandPalette({ role }: { role: Role }) {
       className="mx-auto mt-[12vh] w-[min(680px,calc(100vw-2rem))] flex-col overflow-hidden rounded-lg bg-surface-100 text-ink shadow-pop backdrop:bg-navy/50 open:flex"
     >
       <div className="flex items-center gap-3 border-b border-border px-5 py-4">
-        <span aria-hidden className="text-ink-muted">
-          ⌕
-        </span>
+        <Search aria-hidden className="size-5 text-ink-muted" />
         <input
           // The palette exists to type into, so focusing it on open is expected.
           // oxlint-disable-next-line jsx-a11y/no-autofocus

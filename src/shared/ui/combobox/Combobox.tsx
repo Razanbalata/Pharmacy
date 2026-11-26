@@ -122,7 +122,7 @@ export function Combobox({
         onBlur={close}
         onKeyDown={onKeyDown}
         className={cn(
-          'h-10 w-full rounded-md border border-border-strong bg-surface-100 ps-3 pe-9 text-body text-ink',
+          'h-10 w-full rounded-lg border border-border bg-surface-100 ps-3 pe-9 text-body text-ink',
           'placeholder:text-ink-muted focus:border-brand focus:ring-3 focus:ring-brand-soft focus:outline-none',
           'disabled:cursor-not-allowed disabled:bg-surface-200 aria-invalid:border-danger',
         )}
@@ -137,7 +137,7 @@ export function Combobox({
         <div
           id={listId}
           role="listbox"
-          className="absolute inset-x-0 top-full z-20 mt-1 max-h-72 overflow-auto rounded-lg border border-border bg-surface-100 p-1 shadow-pop"
+          className="absolute inset-x-0 top-full z-20 mt-1 max-h-72 overflow-auto rounded-lg border border-border bg-surface-100 shadow-card p-1 shadow-pop"
         >
           {filtered.map((option, index) => (
             <div

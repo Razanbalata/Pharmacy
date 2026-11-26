@@ -1,3 +1,4 @@
+import { SearchX } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -37,7 +38,7 @@ export function SupplierStatementPage() {
   if (isError || !Number.isInteger(id)) {
     return (
       <EmptyState
-        icon="?"
+        icon={<SearchX className="size-6" />}
         title={t('suppliers.statement.notFound')}
         actions={
           <Link to={paths.suppliers} className={buttonVariants({ variant: 'secondary' })}>
@@ -107,16 +108,16 @@ export function SupplierStatementPage() {
           <p className="text-small text-warning">{t('suppliers.statement.owedNow')}</p>
           <p className="tabular mt-1 font-display text-title">{formatMoney(supplier.balance)} ₪</p>
         </div>
-        <div className="rounded-lg border border-border bg-surface-100 p-4">
+        <div className="rounded-lg border border-border bg-surface-100 shadow-card p-4">
           <p className="text-small text-ink-muted">{t('suppliers.statement.purchases')}</p>
           <p className="tabular mt-1 font-display text-title">{formatMoney(data.purchases)} ₪</p>
         </div>
-        <div className="rounded-lg border border-border bg-surface-100 p-4">
+        <div className="rounded-lg border border-border bg-surface-100 shadow-card p-4">
           <p className="text-small text-ink-muted">{t('suppliers.statement.paid')}</p>
           <p className="tabular mt-1 font-display text-title">{formatMoney(data.paid)} ₪</p>
         </div>
         {data.draft && (
-          <div className="rounded-lg border border-border bg-surface-100 p-4">
+          <div className="rounded-lg border border-border bg-surface-100 shadow-card p-4">
             <p className="text-small text-ink-muted">{t('suppliers.statement.draft')}</p>
             <Link
               to={to(paths.purchaseDetail, { id: data.draft.id })}
@@ -141,7 +142,7 @@ export function SupplierStatementPage() {
         />
       </div>
 
-      <div className="print-area overflow-x-auto rounded-lg border border-border bg-surface-100">
+      <div className="print-area overflow-x-auto rounded-lg border border-border bg-surface-100 shadow-card">
         <table className="w-full border-collapse text-body">
           <caption className="sr-only">{supplier.name}</caption>
           <thead>

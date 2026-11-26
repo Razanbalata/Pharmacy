@@ -5,6 +5,8 @@ import { navigationFor, type CurrentUser } from '@/entities/session'
 import { paths } from '@/shared/config'
 import { cn } from '@/shared/lib/cn'
 import { daysUntil } from '@/shared/lib/date'
+import { NAV_ICONS } from '@/shared/ui/icon'
+import { Sparkles } from 'lucide-react'
 
 interface SidebarProps {
   user: CurrentUser
@@ -30,27 +32,27 @@ export function Sidebar({ user, onNavigate }: SidebarProps) {
   return (
     <nav
       aria-label={t('nav.main')}
-      className="flex h-full min-h-0 flex-col gap-1 bg-navy px-3.5 py-5 text-on-navy"
+      className="flex h-full min-h-0 flex-col gap-1 bg-navy px-3 py-5 text-on-navy"
     >
       <Link
         to={paths.dashboard}
         onClick={onNavigate}
-        className="flex items-center gap-2.5 px-2 pb-4"
+        className="flex items-center gap-3 px-2.5 pb-5"
       >
-        <span className="flex size-9 items-center justify-center rounded-md bg-brand font-display text-subheading text-on-brand">
+        <span className="flex size-10 items-center justify-center rounded-lg bg-brand font-display text-subheading text-on-brand shadow-card">
           ف
         </span>
         <span className="flex flex-col">
           <span className="font-display text-body-strong">{t('app.name')}</span>
-          <span className="text-caption opacity-70">{user.pharmacy.name}</span>
+          <span className="text-small text-on-navy/70">{user.pharmacy.name}</span>
         </span>
       </Link>
 
-      <div className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto">
+      <div className="nav-scroll -mx-1 flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto px-1">
         {groups.map((group) => (
           <div key={group.title ?? 'top'} className="flex flex-col gap-0.5">
             {group.title && (
-              <p className="px-3 pt-4 pb-1 text-caption opacity-60">
+              <p className="px-3 pt-5 pb-1.5 text-caption tracking-wide text-on-navy/50">
                 {t(`nav.groups.${group.title}`)}
               </p>
             )}
@@ -65,14 +67,20 @@ export function Sidebar({ user, onNavigate }: SidebarProps) {
                   onClick={onNavigate}
                   className={({ isActive }) =>
                     cn(
-                      'flex items-center justify-between rounded-md px-3 py-2 text-body transition-colors',
+                      'flex items-center gap-3 rounded-lg px-3 py-2.5 text-body font-medium transition-colors',
                       isActive || related
-                        ? 'bg-brand font-semibold text-on-brand'
-                        : 'hover:bg-navy-soft',
+                        ? 'bg-brand font-semibold text-on-brand shadow-card'
+                        : 'text-on-navy/85 hover:bg-navy-soft hover:text-on-navy',
                     )
                   }
                 >
-                  <span>{t(`nav.${item.key}`)}</span>
+                  {(() => {
+                    const Icon = NAV_ICONS[item.key]
+                    return Icon ? (
+                      <Icon aria-hidden className="size-[18px] shrink-0" strokeWidth={2} />
+                    ) : null
+                  })()}
+                  <span className="flex-1">{t(`nav.${item.key}`)}</span>
                   {count !== null && (
                     <span className="tabular rounded-pill bg-warning px-2 text-caption text-navy">
                       {count}
@@ -88,10 +96,8 @@ export function Sidebar({ user, onNavigate }: SidebarProps) {
       <div className="flex flex-col gap-2.5 pt-4">
         {user.role !== 'cashier' && (
           <div className="flex flex-col gap-2 rounded-lg border border-navy-soft bg-navy-soft/50 p-3.5">
-            <p className="font-display text-small font-semibold">
-              <span aria-hidden className="text-brand">
-                ✦{' '}
-              </span>
+            <p className="flex items-center gap-2 font-display text-small font-semibold">
+              <Sparkles aria-hidden className="size-4 text-brand" />
               {t('shell.assistantTitle')}
             </p>
             <p className="text-caption opacity-70">{t('shell.assistantBody')}</p>

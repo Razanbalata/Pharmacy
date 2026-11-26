@@ -32,7 +32,7 @@ export function SettingsSection({
     <section
       id={id}
       aria-labelledby={`${id}-title`}
-      className="flex scroll-mt-6 flex-col gap-1 rounded-lg border border-border bg-surface-100 px-5 py-4"
+      className="flex scroll-mt-6 flex-col gap-1 rounded-lg border border-border bg-surface-100 shadow-card px-5 py-4"
     >
       <h2 id={`${id}-title`} className="pb-2 font-display text-subheading">
         {title}

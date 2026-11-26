@@ -1,3 +1,4 @@
+import { Power } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -74,7 +75,7 @@ export function PosPage() {
         <TillHeader />
         <main className="p-6">
           <EmptyState
-            icon="⏻"
+            icon={<Power className="size-6" />}
             title={t('pos.noShift')}
             description={t('pos.noShiftBody')}
             actions={

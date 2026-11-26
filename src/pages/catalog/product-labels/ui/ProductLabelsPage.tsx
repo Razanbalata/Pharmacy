@@ -147,7 +147,7 @@ export function ProductLabelsPage() {
 
       <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
         <div className="flex flex-col gap-4">
-          <section className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-4">
+          <section className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-4">
             <h2 className="font-display text-body-strong">{t('products.labels.items')}</h2>
             {products.length === 0 && (
               <p className="text-small text-ink-muted">{t('products.labels.empty')}</p>
@@ -246,7 +246,7 @@ export function ProductLabelsPage() {
             </div>
           </section>
 
-          <section className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-4">
+          <section className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-4">
             <h2 className="font-display text-body-strong">{t('products.labels.format')}</h2>
             <Segmented<LabelSize>
               label={t('products.labels.format')}
@@ -300,7 +300,7 @@ export function ProductLabelsPage() {
 
         <section
           aria-labelledby="labels-preview"
-          className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-4"
+          className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-4"
         >
           <h2 id="labels-preview" className="font-display text-body-strong">
             {t('products.labels.preview')}

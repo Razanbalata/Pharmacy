@@ -15,7 +15,7 @@ import { Button } from '@/shared/ui/button'
 import { Field, Input } from '@/shared/ui/field'
 import { toast } from '@/shared/ui/toast'
 
-const select = 'h-10 rounded-md border border-border-strong bg-surface-100 px-3 text-body'
+const select = 'h-10 rounded-lg border border-border bg-surface-100 px-3 text-body'
 
 /**
  * One line to record an expense. Cash from the open shift's drawer is dated today and
@@ -83,7 +83,7 @@ export function ExpenseForm() {
       noValidate
       onSubmit={submit}
       aria-labelledby="expense-form"
-      className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-4"
+      className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-4"
     >
       <h2 id="expense-form" className="font-display text-body-strong">
         {t('expenses.addTitle')}

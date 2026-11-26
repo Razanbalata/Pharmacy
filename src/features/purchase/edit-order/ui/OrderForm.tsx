@@ -193,7 +193,7 @@ export function OrderForm({
   return (
     <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_300px]">
       <div className="flex flex-col gap-5">
-        <section className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-5">
+        <section className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-5">
           <Field label={t('purchases.form.supplier')}>
             {(field) => (
               <Combobox
@@ -225,7 +225,7 @@ export function OrderForm({
           )}
         </section>
 
-        <section className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-5">
+        <section className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-5">
           <div className="flex flex-wrap items-center gap-2">
             {shortages.length > 0 && (
               <Button
@@ -405,7 +405,7 @@ export function OrderForm({
         </section>
       </div>
 
-      <aside className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-4 lg:sticky lg:top-20">
+      <aside className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-4 lg:sticky lg:top-20">
         <p className="text-small text-ink-muted">
           {t('purchases.form.count', { lines: lines.length, units })}
         </p>

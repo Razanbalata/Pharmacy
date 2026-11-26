@@ -74,13 +74,13 @@ export function DataTable<Row>({
   }
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-border bg-surface-100">
+    <div className="overflow-x-auto rounded-lg border border-border bg-surface-100 shadow-card">
       <table className="w-full border-collapse text-body">
         <caption className="sr-only">{caption}</caption>
         <thead>
           <tr>
             {selection && (
-              <th scope="col" className="w-10 border-b border-border px-3 py-3">
+              <th scope="col" className="w-10 border-b border-border bg-surface-200/50 px-3 py-3">
                 <input
                   type="checkbox"
                   aria-label={t('common.selectAll')}
@@ -98,7 +98,7 @@ export function DataTable<Row>({
                 key={column.id}
                 scope="col"
                 className={cn(
-                  'border-b border-border px-3.5 py-3 text-start text-small font-semibold whitespace-nowrap text-ink-muted',
+                  'border-b border-border bg-surface-200/50 px-4 py-3 text-start text-small font-semibold whitespace-nowrap text-ink-muted',
                   column.numeric && 'text-end',
                   column.className,
                 )}
@@ -116,10 +116,13 @@ export function DataTable<Row>({
               <tr
                 key={id}
                 aria-selected={selection ? isSelected : undefined}
-                className={cn('hover:bg-surface-200/60', isSelected && 'bg-brand-soft/40')}
+                className={cn(
+                  'transition-colors hover:bg-surface-200/50 [&:last-child>td]:border-b-0',
+                  isSelected && 'bg-brand-soft/40',
+                )}
               >
                 {selection && (
-                  <td className="border-b border-surface-200 px-3 py-3">
+                  <td className="border-b border-border/60 px-3 py-3.5">
                     <input
                       type="checkbox"
                       aria-label={t('common.selectRow', { name: selection.rowLabel(id) })}
@@ -133,7 +136,7 @@ export function DataTable<Row>({
                   <td
                     key={column.id}
                     className={cn(
-                      'border-b border-surface-200 px-3.5 py-3 whitespace-nowrap',
+                      'border-b border-border/60 px-4 py-3.5 whitespace-nowrap',
                       column.numeric && 'tabular text-end',
                       column.className,
                     )}

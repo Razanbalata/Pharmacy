@@ -72,7 +72,7 @@ function History({ counts }: { counts: CountSummary[] }) {
       <h2 id="count-history" className="font-display text-body-strong">
         {t('counts.history')}
       </h2>
-      <ul className="flex flex-col rounded-lg border border-border bg-surface-100">
+      <ul className="flex flex-col rounded-lg border border-border bg-surface-100 shadow-card">
         {counts.map((count) => (
           <li
             key={count.id}

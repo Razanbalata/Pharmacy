@@ -1,3 +1,4 @@
+import { Phone, Plus } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -16,7 +17,7 @@ type Open = { kind: 'add' } | { kind: 'pay'; supplier: Supplier } | null
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg border border-border bg-surface-100 p-4">
+    <div className="rounded-lg border border-border bg-surface-100 shadow-card p-4">
       <p className="text-small text-ink-muted">{label}</p>
       <p className="tabular mt-1 font-display text-title">{value}</p>
     </div>
@@ -75,7 +76,7 @@ export function SuppliersPage() {
               aria-label={t('suppliers.call', { name: supplier.name })}
               className="text-small text-brand-strong hover:underline"
             >
-              ☎
+              <Phone className="size-4" />
             </a>
           </span>
         ) : (
@@ -173,7 +174,13 @@ export function SuppliersPage() {
         rows={suppliers}
         getRowId={(supplier) => String(supplier.id)}
         loading={isPending}
-        empty={<EmptyState icon="+" tone="brand" title={t('suppliers.empty')} />}
+        empty={
+          <EmptyState
+            icon={<Plus className="size-6" />}
+            tone="brand"
+            title={t('suppliers.empty')}
+          />
+        }
       />
 
       {open?.kind === 'add' && <SupplierFormDrawer open onClose={() => setOpen(null)} />}

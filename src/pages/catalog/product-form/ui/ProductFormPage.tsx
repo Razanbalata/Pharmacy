@@ -1,3 +1,4 @@
+import { SearchX } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate, useParams } from 'react-router'
@@ -25,7 +26,7 @@ export function ProductFormPage() {
   if (editing && (product.isError || !Number.isInteger(id))) {
     return (
       <EmptyState
-        icon="?"
+        icon={<SearchX className="size-6" />}
         title={t('products.detail.notFound')}
         actions={
           <Link to={paths.products} className={buttonVariants({ variant: 'secondary' })}>

@@ -76,7 +76,7 @@ export function SetupPharmacyForm() {
       onSubmit={handleSubmit((values) => mutation.mutate(values))}
       className="grid items-start gap-5 lg:grid-cols-[1.1fr_1fr]"
     >
-      <section className="flex flex-col gap-4 rounded-lg border border-border bg-surface-100 p-6">
+      <section className="flex flex-col gap-4 rounded-lg border border-border bg-surface-100 shadow-card p-6">
         <div>
           <h1 className="font-display text-heading">{t('auth.setup.title')}</h1>
           <p className="mt-1.5 text-small text-ink-muted">{t('auth.setup.subtitle')}</p>
@@ -123,7 +123,7 @@ export function SetupPharmacyForm() {
         </div>
       </section>
 
-      <section className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-6">
+      <section className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-6">
         <div>
           <h2 className="font-display text-subheading">{t('auth.setup.startTitle')}</h2>
           <p className="mt-1.5 text-small text-ink-muted">{t('auth.setup.startSubtitle')}</p>

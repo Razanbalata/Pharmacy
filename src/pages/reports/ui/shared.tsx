@@ -24,7 +24,7 @@ export function Card({
     <section
       aria-labelledby={title ? id : undefined}
       className={cn(
-        'flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-4',
+        'flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-4',
         className,
       )}
     >
@@ -50,7 +50,7 @@ export function Stat({
   tone?: string | undefined
 }) {
   return (
-    <div className="rounded-lg border border-border bg-surface-100 p-4">
+    <div className="rounded-lg border border-border bg-surface-100 shadow-card p-4">
       <p className="text-small text-ink-muted">{label}</p>
       <p className={cn('tabular mt-1 font-display text-title', tone)}>{value}</p>
       {sub && <p className="mt-1 text-caption text-ink-muted">{sub}</p>}

@@ -26,6 +26,15 @@
     font-variant-numeric: tabular-nums;
   }
 
+  /* Thin, quiet scrollbars that match the surface instead of the bright default. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border-strong) transparent;
+  }
+  .nav-scroll {
+    scrollbar-color: color-mix(in oklab, var(--color-on-navy) 25%, transparent) transparent;
+  }
+
   :focus-visible {
     outline: 3px solid var(--color-focus);
     outline-offset: 2px;

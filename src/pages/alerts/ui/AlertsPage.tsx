@@ -1,3 +1,4 @@
+import { CheckCheck } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -93,7 +94,7 @@ export function AlertsPage() {
           {isPending && <SkeletonRows rows={6} />}
           {!isPending && groups.length === 0 && (
             <EmptyState
-              icon="✓"
+              icon={<CheckCheck className="size-6" />}
               tone="brand"
               title={filter === 'all' ? t('alerts.empty') : t('alerts.emptyGroup')}
             />
@@ -102,7 +103,7 @@ export function AlertsPage() {
             <section
               key={group}
               aria-labelledby={`alerts-${group}`}
-              className="overflow-hidden rounded-lg border border-border bg-surface-100"
+              className="overflow-hidden rounded-lg border border-border bg-surface-100 shadow-card"
             >
               <h2
                 id={`alerts-${group}`}
@@ -126,7 +127,7 @@ export function AlertsPage() {
 
         <aside
           aria-labelledby="alert-channels"
-          className="flex flex-col gap-3 self-start rounded-lg border border-border bg-surface-100 p-4"
+          className="flex flex-col gap-3 self-start rounded-lg border border-border bg-surface-100 shadow-card p-4"
         >
           <h2 id="alert-channels" className="font-display text-body-strong">
             {t('alerts.channels.title')}

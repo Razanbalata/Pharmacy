@@ -1,3 +1,13 @@
+import {
+  CalendarX2,
+  HandCoins,
+  Hourglass,
+  PackageCheck,
+  PackagePlus,
+  ShoppingCart,
+  Sparkles,
+  TriangleAlert,
+} from 'lucide-react'
 import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
@@ -17,7 +27,7 @@ const TONES = {
 
 interface Card {
   key: string
-  icon: string
+  icon: ReactNode
   title: string
   sub: ReactNode
   href: string
@@ -46,7 +56,7 @@ export function ManagerDashboard({ data }: { data: Dashboard }) {
     const count = attention.expired.batches
     cards.push({
       key: 'expired',
-      icon: '⏱',
+      icon: <CalendarX2 className="size-5" />,
       title:
         count === 1 ? t('dashboard.cards.expiredOne') : t('dashboard.cards.expired', { count }),
       sub: t('dashboard.cards.expiredSub'),
@@ -58,7 +68,7 @@ export function ManagerDashboard({ data }: { data: Dashboard }) {
     const { count, nearest } = attention.expiring
     cards.push({
       key: 'expiring',
-      icon: '⌛',
+      icon: <Hourglass className="size-5" />,
       title:
         count === 1 ? t('dashboard.cards.expiringOne') : t('dashboard.cards.expiring', { count }),
       sub: t('dashboard.cards.expiringSub', {
@@ -73,7 +83,7 @@ export function ManagerDashboard({ data }: { data: Dashboard }) {
     const { count, urgent } = attention.low
     cards.push({
       key: 'low',
-      icon: '⚠',
+      icon: <TriangleAlert className="size-5" />,
       title: count === 1 ? t('dashboard.cards.lowOne') : t('dashboard.cards.low', { count }),
       // The English name on its own, so the Arabic around it keeps its order.
       sub: (
@@ -89,7 +99,7 @@ export function ManagerDashboard({ data }: { data: Dashboard }) {
     const { count, amount } = attention.lateDebts
     cards.push({
       key: 'debts',
-      icon: '₪',
+      icon: <HandCoins className="size-5" />,
       title: t('dashboard.cards.debts', { amount: formatMoney(amount) }),
       sub:
         count === 1 ? t('dashboard.cards.debtsSubOne') : t('dashboard.cards.debtsSub', { count }),
@@ -183,10 +193,10 @@ export function ManagerDashboard({ data }: { data: Dashboard }) {
   }
 
   const actions = [
-    ['+', 'sale', paths.pos],
-    ['↓', 'receive', paths.purchases],
-    ['◫', 'product', paths.productNew],
-    ['₪', 'debt', paths.customers],
+    [ShoppingCart, 'sale', paths.pos],
+    [PackageCheck, 'receive', paths.purchases],
+    [PackagePlus, 'product', paths.productNew],
+    [HandCoins, 'debt', paths.customers],
   ] as const
 
   return (
@@ -203,7 +213,8 @@ export function ManagerDashboard({ data }: { data: Dashboard }) {
           to={`${paths.assistant}?view=analysis`}
           className={buttonVariants({ variant: 'secondary' })}
         >
-          ✦ {t('dashboard.assistant')}
+          <Sparkles className="size-4" />
+          {t('dashboard.assistant')}
         </Link>
       </div>
 
@@ -218,7 +229,7 @@ export function ManagerDashboard({ data }: { data: Dashboard }) {
                   TONES[card.tone],
                 )}
               >
-                <span aria-hidden className="font-display text-title">
+                <span aria-hidden className="mt-0.5 shrink-0">
                   {card.icon}
                 </span>
                 <span className="flex flex-col gap-0.5">
@@ -236,7 +247,7 @@ export function ManagerDashboard({ data }: { data: Dashboard }) {
           <li key={kpi.key}>
             <Link
               to={kpi.href}
-              className="flex h-full flex-col rounded-lg border border-border bg-surface-100 p-4 hover:border-border-strong"
+              className="flex h-full flex-col rounded-lg border border-border bg-surface-100 shadow-card p-4 hover:border-border-strong"
             >
               <span className="text-small text-ink-muted">{kpi.label}</span>
               <span className={cn('tabular mt-1 font-display text-title', kpi.tone)}>
@@ -252,10 +263,11 @@ export function ManagerDashboard({ data }: { data: Dashboard }) {
         <SalesTrend />
         <section
           aria-labelledby="quick-notes"
-          className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-4"
+          className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-4"
         >
-          <h2 id="quick-notes" className="font-display text-body-strong">
-            ✦ {t('dashboard.notes.title')}
+          <h2 id="quick-notes" className="flex items-center gap-2 font-display text-body-strong">
+            <Sparkles aria-hidden className="size-4 text-brand" />
+            {t('dashboard.notes.title')}
           </h2>
           {data.notes.length === 0 ? (
             <p className="text-small text-ink-muted">{t('dashboard.notes.none')}</p>
@@ -289,20 +301,20 @@ export function ManagerDashboard({ data }: { data: Dashboard }) {
       <div className="grid gap-5 lg:grid-cols-2">
         <section
           aria-labelledby="quick-actions"
-          className="rounded-lg border border-border bg-surface-100 p-4"
+          className="rounded-lg border border-border bg-surface-100 shadow-card p-4"
         >
           <h2 id="quick-actions" className="font-display text-body-strong">
             {t('dashboard.actions.title')}
           </h2>
           <ul className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {actions.map(([icon, key, href]) => (
+            {actions.map(([Icon, key, href]) => (
               <li key={key}>
                 <Link
                   to={href}
-                  className="flex flex-col items-center gap-2 rounded-md border border-border p-3 text-small hover:border-brand hover:text-brand-strong"
+                  className="flex flex-col items-center gap-2 rounded-lg border border-border p-3.5 text-small font-medium transition-colors hover:border-brand hover:bg-brand-soft/40 hover:text-brand-strong"
                 >
-                  <span aria-hidden className="font-display text-title text-brand">
-                    {icon}
+                  <span className="flex size-10 items-center justify-center rounded-lg bg-brand-soft text-brand-strong">
+                    <Icon aria-hidden className="size-5" />
                   </span>
                   {t(`dashboard.actions.${key}`)}
                 </Link>
@@ -312,7 +324,7 @@ export function ManagerDashboard({ data }: { data: Dashboard }) {
         </section>
         <section
           aria-labelledby="today-activity"
-          className="rounded-lg border border-border bg-surface-100 p-4"
+          className="rounded-lg border border-border bg-surface-100 shadow-card p-4"
         >
           <h2 id="today-activity" className="font-display text-body-strong">
             {t('dashboard.activity.title')}

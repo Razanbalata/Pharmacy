@@ -12,7 +12,7 @@ import { DataTable, type Column } from '@/shared/ui/table'
 
 function Stat({ label, value, sub }: { label: string; value: string; sub?: string }) {
   return (
-    <div className="rounded-lg border border-border bg-surface-100 p-4">
+    <div className="rounded-lg border border-border bg-surface-100 shadow-card p-4">
       <p className="text-small text-ink-muted">{label}</p>
       <p className="tabular mt-1 font-display text-title">{value}</p>
       {sub && <p className="mt-0.5 text-small text-ink-muted">{sub}</p>}

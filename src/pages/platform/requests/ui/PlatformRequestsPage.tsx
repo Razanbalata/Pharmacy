@@ -43,7 +43,7 @@ function Details({ request }: { request: JoinRequest }) {
     [t('platform.requests.received'), formatDate(request.createdAt, i18n.language), false],
   ]
   return (
-    <section className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-5">
+    <section className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-5">
       <div className="flex items-center justify-between gap-3">
         <h2 className="font-display text-subheading">{request.pharmacyName}</h2>
         <span className="tabular text-caption text-ink-muted">{request.reference}</span>
@@ -139,7 +139,7 @@ export function PlatformRequestsPage() {
       </div>
 
       <div className="grid items-start gap-5 lg:grid-cols-[1fr_420px]">
-        <div className="overflow-hidden rounded-lg border border-border bg-surface-100">
+        <div className="overflow-hidden rounded-lg border border-border bg-surface-100 shadow-card">
           {all.isPending && (
             <div className="p-4">
               <SkeletonRows rows={5} />

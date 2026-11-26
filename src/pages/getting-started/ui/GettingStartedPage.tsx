@@ -64,7 +64,7 @@ export function GettingStartedPage() {
       </section>
 
       <div className="grid items-start gap-5 lg:grid-cols-[1.6fr_1fr]">
-        <section className="overflow-hidden rounded-lg border border-border bg-surface-100">
+        <section className="overflow-hidden rounded-lg border border-border bg-surface-100 shadow-card">
           <ol>
             {onboarding.steps.map((step, index) => {
               const isNext = step.key === firstOpen
@@ -121,7 +121,7 @@ export function GettingStartedPage() {
         </section>
 
         <aside className="flex flex-col gap-4">
-          <div className="rounded-lg border border-border bg-surface-100 p-5">
+          <div className="rounded-lg border border-border bg-surface-100 shadow-card p-5">
             <p className="font-display text-body-strong">{t('auth.onboarding.tryTitle')}</p>
             <p className="mt-1 text-small text-ink-muted">{t('auth.onboarding.tryBody')}</p>
             <Link
@@ -131,7 +131,7 @@ export function GettingStartedPage() {
               {t('auth.onboarding.tryCta')} ←
             </Link>
           </div>
-          <div className="rounded-lg border border-border bg-surface-100 p-5">
+          <div className="rounded-lg border border-border bg-surface-100 shadow-card p-5">
             <p className="font-display text-body-strong">{t('auth.onboarding.shortcutsTitle')}</p>
             <p className="mt-2 flex justify-between text-small">
               <span>{t('auth.onboarding.shortcutSearch')}</span>

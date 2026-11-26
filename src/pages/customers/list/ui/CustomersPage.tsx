@@ -1,3 +1,4 @@
+import { Plus } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { useDeferredValue, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -280,7 +281,7 @@ export function CustomersPage() {
         loading={isPending}
         empty={
           <EmptyState
-            icon="+"
+            icon={<Plus className="size-6" />}
             tone="brand"
             title={filter === 'all' && !deferred ? t('customers.emptyAll') : t('customers.empty')}
           />

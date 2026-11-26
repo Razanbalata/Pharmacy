@@ -139,7 +139,7 @@ export function ReturnForm({ invoice, onDone }: ReturnFormProps) {
         <p className="text-small text-success">{t('returns.withinPeriod', { count: left })}</p>
         <section
           aria-labelledby="return-lines"
-          className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-5"
+          className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-5"
         >
           <h2 id="return-lines" className="font-display text-body-strong">
             2 · {t('returns.stepLines')}
@@ -250,7 +250,7 @@ export function ReturnForm({ invoice, onDone }: ReturnFormProps) {
 
         <section
           aria-labelledby="return-refund"
-          className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-5"
+          className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-5"
         >
           <h2 id="return-refund" className="font-display text-body-strong">
             3 · {t('returns.stepRefund')}
@@ -284,7 +284,7 @@ export function ReturnForm({ invoice, onDone }: ReturnFormProps) {
                 onChange={(event) =>
                   setApproverId(event.target.value ? Number(event.target.value) : null)
                 }
-                className="h-10 rounded-md border border-border-strong bg-surface-100 px-3 text-body"
+                className="h-10 rounded-lg border border-border bg-surface-100 px-3 text-body"
               >
                 <option value="">{t('returns.chooseApprover')}</option>
                 {approvers.map((member) => (
@@ -298,7 +298,7 @@ export function ReturnForm({ invoice, onDone }: ReturnFormProps) {
         </section>
       </div>
 
-      <aside className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-4 lg:sticky lg:top-20">
+      <aside className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-4 lg:sticky lg:top-20">
         <h2 className="font-display text-body-strong">{t('returns.summary')}</h2>
         <ul className="flex flex-col gap-1 text-small">
           {chosen.map(({ line, entry }) => (

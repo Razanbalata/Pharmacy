@@ -187,7 +187,7 @@ export function ImportWizard({ productsLink }: ImportWizardProps) {
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="overflow-x-auto rounded-lg border border-border bg-surface-100 px-4 py-3">
+      <div className="overflow-x-auto rounded-lg border border-border bg-surface-100 shadow-card px-4 py-3">
         <Steps
           current={step}
           steps={[
@@ -200,7 +200,7 @@ export function ImportWizard({ productsLink }: ImportWizardProps) {
       </div>
 
       {step === 0 && (
-        <section className="flex flex-col gap-4 rounded-lg border border-border bg-surface-100 p-5">
+        <section className="flex flex-col gap-4 rounded-lg border border-border bg-surface-100 shadow-card p-5">
           <h2 className="font-display text-title">{t('products.import.stepKind')}</h2>
           <fieldset className="flex flex-wrap gap-2">
             <legend className="sr-only">{t('products.import.stepKind')}</legend>
@@ -282,7 +282,7 @@ export function ImportWizard({ productsLink }: ImportWizardProps) {
       )}
 
       {step === 1 && table && (
-        <section className="flex flex-col gap-4 rounded-lg border border-border bg-surface-100 p-5">
+        <section className="flex flex-col gap-4 rounded-lg border border-border bg-surface-100 shadow-card p-5">
           <div>
             <h2 className="font-display text-title">{t('products.import.stepMap')}</h2>
             <p className="mt-0.5 text-small text-ink-muted">
@@ -380,7 +380,7 @@ export function ImportWizard({ productsLink }: ImportWizardProps) {
       )}
 
       {step === 2 && (
-        <section className="flex flex-col gap-4 rounded-lg border border-border bg-surface-100 p-5">
+        <section className="flex flex-col gap-4 rounded-lg border border-border bg-surface-100 shadow-card p-5">
           <h2 className="font-display text-title">{t('products.import.stepCheck')}</h2>
           {!preview ? (
             <p className="text-small text-ink-muted">{t('products.import.checking')}</p>
@@ -466,7 +466,7 @@ export function ImportWizard({ productsLink }: ImportWizardProps) {
                                     [issue.line]: event.target.value as DuplicateChoice,
                                   })
                                 }
-                                className="h-9 rounded-md border border-border-strong bg-surface-100 px-2 text-small"
+                                className="h-9 rounded-lg border border-border bg-surface-100 px-2 text-small"
                               >
                                 <option value="update">
                                   {t('products.import.duplicateUpdate')}
@@ -524,7 +524,7 @@ export function ImportWizard({ productsLink }: ImportWizardProps) {
       )}
 
       {step === 3 && result && (
-        <section className="flex flex-col items-center gap-3 rounded-lg border border-border bg-surface-100 p-8 text-center">
+        <section className="flex flex-col items-center gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-8 text-center">
           <span
             aria-hidden
             className="flex size-12 items-center justify-center rounded-pill bg-success-soft text-title text-success"

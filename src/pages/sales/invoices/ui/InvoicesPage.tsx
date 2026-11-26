@@ -183,7 +183,7 @@ export function InvoicesPage() {
       </div>
 
       {data && (
-        <dl className="flex flex-wrap gap-x-6 gap-y-1 rounded-lg border border-border bg-surface-100 px-4 py-3 text-body">
+        <dl className="flex flex-wrap gap-x-6 gap-y-1 rounded-lg border border-border bg-surface-100 shadow-card px-4 py-3 text-body">
           <div className="flex gap-2">
             <dt className="text-ink-muted">{t('invoices.summaryCount')}</dt>
             <dd className="tabular font-semibold">{data.totals.count}</dd>

@@ -1,3 +1,4 @@
+import { SearchX } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router'
@@ -21,7 +22,7 @@ function OrderView({ order }: { order: PurchaseOrder }) {
   const open = order.status === 'sent' || order.status === 'partial'
   return (
     <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_300px]">
-      <section className="print-area flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-5">
+      <section className="print-area flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-5">
         {order.status === 'sent' && (
           <p className="rounded-md bg-info-soft px-3 py-2 text-small text-info">
             {t('purchases.form.readOnly')}
@@ -77,7 +78,7 @@ function OrderView({ order }: { order: PurchaseOrder }) {
         </div>
         {order.note && <p className="text-small text-ink-muted">{order.note}</p>}
       </section>
-      <aside className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-4">
+      <aside className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-4">
         <dl className="flex flex-col gap-2 text-body">
           {(
             [
@@ -131,7 +132,7 @@ export function PurchaseOrderPage() {
   if (id !== null && (order.isError || !Number.isInteger(id))) {
     return (
       <EmptyState
-        icon="?"
+        icon={<SearchX className="size-6" />}
         title={t('purchases.form.notFound')}
         actions={
           <Link to={paths.purchases} className={buttonVariants({ variant: 'secondary' })}>

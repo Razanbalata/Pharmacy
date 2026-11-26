@@ -45,7 +45,7 @@ export function OpenShiftForm({ onOpened }: { onOpened: () => void }) {
       noValidate
       onSubmit={submit}
       aria-labelledby="open-shift"
-      className="flex w-full max-w-md flex-col gap-4 rounded-lg border border-border bg-surface-100 p-6"
+      className="flex w-full max-w-md flex-col gap-4 rounded-lg border border-border bg-surface-100 shadow-card p-6"
     >
       <div>
         <h1 id="open-shift" className="font-display text-title">

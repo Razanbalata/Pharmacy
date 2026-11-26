@@ -1,3 +1,4 @@
+import { Sparkles } from 'lucide-react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -122,7 +123,7 @@ export function AssistantPage() {
 
         <section
           aria-label={conversation?.title || t('assistant.untitled')}
-          className="flex min-h-[32rem] flex-col rounded-lg border border-border bg-surface-100"
+          className="flex min-h-[32rem] flex-col rounded-lg border border-border bg-surface-100 shadow-card"
         >
           <details className="border-b border-border px-4 py-2.5 text-small text-ink-muted">
             <summary className="cursor-pointer">
@@ -143,7 +144,10 @@ export function AssistantPage() {
               <>
                 <Message message={{ id: -1, role: 'user', at: '', text: asking }} />
                 <li className="flex flex-col gap-2 self-start">
-                  <span className="text-caption text-ink-muted">✦ {t('assistant.thinking')}</span>
+                  <span className="flex items-center gap-1.5 text-caption text-ink-muted">
+                    <Sparkles aria-hidden className="size-3.5 text-brand" />
+                    {t('assistant.thinking')}
+                  </span>
                   <SkeletonRows rows={2} />
                 </li>
               </>
@@ -208,7 +212,7 @@ function Message({ message }: { message: AssistantMessage | Conversation['messag
         aria-hidden
         className="mt-1 flex size-7 shrink-0 items-center justify-center rounded-pill bg-brand-soft text-brand-strong"
       >
-        ✦
+        <Sparkles className="size-4" />
       </span>
       <div className="rounded-lg rounded-es-sm border border-border bg-surface-0 px-3.5 py-2.5">
         <span className="sr-only">{t('assistant.bot')}: </span>

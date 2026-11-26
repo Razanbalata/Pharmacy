@@ -146,7 +146,7 @@ export function IngredientsPage() {
         <div className="grid items-start gap-4 lg:grid-cols-[300px_minmax(0,1fr)]">
           <nav
             aria-label={t('ingredients.list')}
-            className="flex flex-col gap-2 rounded-lg border border-border bg-surface-100 p-3"
+            className="flex flex-col gap-2 rounded-lg border border-border bg-surface-100 shadow-card p-3"
           >
             <Input
               type="search"
@@ -186,7 +186,7 @@ export function IngredientsPage() {
           {selected ? (
             <section
               aria-labelledby="ingredient-title"
-              className="flex flex-col gap-4 rounded-lg border border-border bg-surface-100 p-5"
+              className="flex flex-col gap-4 rounded-lg border border-border bg-surface-100 shadow-card p-5"
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>

@@ -38,7 +38,7 @@ export function CategoriesPage() {
       {isPending ? (
         <SkeletonRows />
       ) : (
-        <div className="overflow-x-auto rounded-lg border border-border bg-surface-100">
+        <div className="overflow-x-auto rounded-lg border border-border bg-surface-100 shadow-card">
           <table className="w-full border-collapse text-body">
             <caption className="sr-only">{t('categories.title')}</caption>
             <thead>

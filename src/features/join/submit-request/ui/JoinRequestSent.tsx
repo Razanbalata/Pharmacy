@@ -6,7 +6,7 @@ export function JoinRequestSent({ reference, phone }: { reference: string; phone
   return (
     <section
       aria-live="polite"
-      className="flex flex-col items-center gap-3 rounded-lg border border-border bg-surface-100 p-6 text-center shadow-card"
+      className="flex flex-col items-center gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-6 text-center shadow-card"
     >
       <span
         aria-hidden

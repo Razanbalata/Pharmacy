@@ -1,3 +1,4 @@
+import { Inbox } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { useDeferredValue, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -21,7 +22,7 @@ import { DataTable, type Column } from '@/shared/ui/table'
 
 function Stat({ label, value, tone }: { label: string; value: number; tone?: string | undefined }) {
   return (
-    <div className="rounded-lg border border-border bg-surface-100 p-4">
+    <div className="rounded-lg border border-border bg-surface-100 shadow-card p-4">
       <p className="text-small text-ink-muted">{label}</p>
       <p className={cn('tabular mt-1 font-display text-title', tone)}>{value}</p>
     </div>
@@ -148,7 +149,7 @@ export function PlatformPharmaciesPage() {
           aria-label={t('tenants.city')}
           value={city ?? ''}
           onChange={(event) => setCity(event.target.value || null)}
-          className="h-9 rounded-md border border-border-strong bg-surface-100 px-3 text-body"
+          className="h-9 rounded-lg border border-border bg-surface-100 px-3 text-body"
         >
           <option value="">{t('tenants.allCities')}</option>
           {summary?.cities.map((item) => (
@@ -172,7 +173,7 @@ export function PlatformPharmaciesPage() {
         rows={data?.data ?? []}
         getRowId={(item) => String(item.id)}
         loading={isPending}
-        empty={<EmptyState icon="—" title={t('tenants.empty')} />}
+        empty={<EmptyState icon={<Inbox className="size-6" />} title={t('tenants.empty')} />}
       />
     </div>
   )

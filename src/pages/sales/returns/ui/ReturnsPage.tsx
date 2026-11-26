@@ -49,7 +49,7 @@ export function ReturnsPage() {
 
       <section
         aria-labelledby="return-invoice"
-        className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 p-5"
+        className="flex flex-col gap-3 rounded-lg border border-border bg-surface-100 shadow-card p-5"
       >
         <h2 id="return-invoice" className="font-display text-body-strong">
           1 · {t('returns.stepInvoice')}

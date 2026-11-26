@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router'
 import { paths } from '@/shared/config'
 import { cn } from '@/shared/lib/cn'
+import { NAV_ICONS } from '@/shared/ui/icon'
 
 const ITEMS = ['platformRequests', 'platformPharmacies', 'platformBilling'] as const
 
@@ -29,11 +30,17 @@ export function PlatformNav({ footer }: { footer?: ReactNode }) {
           to={paths[key]}
           className={({ isActive }) =>
             cn(
-              'rounded-md px-3 py-2.5 text-body',
-              isActive ? 'bg-platform-accent font-semibold' : 'hover:bg-white/10',
+              'flex items-center gap-3 rounded-lg px-3 py-2.5 text-body font-medium transition-colors',
+              isActive
+                ? 'bg-platform-accent font-semibold shadow-card'
+                : 'text-white/85 hover:bg-white/10 hover:text-white',
             )
           }
         >
+          {(() => {
+            const Icon = NAV_ICONS[key]
+            return Icon ? <Icon aria-hidden className="size-[18px] shrink-0" /> : null
+          })()}
           {t(`nav.${key}`)}
         </NavLink>
       ))}

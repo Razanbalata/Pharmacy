@@ -27,7 +27,7 @@ function ListBody() {
           <Skeleton key={width} className={`h-9 rounded-pill ${width}`} />
         ))}
       </div>
-      <div className="flex flex-col gap-0 overflow-hidden rounded-lg border border-border bg-surface-100">
+      <div className="flex flex-col gap-0 overflow-hidden rounded-lg border border-border bg-surface-100 shadow-card">
         <Skeleton className="h-11 rounded-none" />
         {Array.from({ length: 8 }, (_, index) => (
           <div
@@ -77,7 +77,7 @@ function DetailBody() {
 
 function FormBody() {
   return (
-    <div className="flex max-w-3xl flex-col gap-5 rounded-lg border border-border bg-surface-100 p-6">
+    <div className="flex max-w-3xl flex-col gap-5 rounded-lg border border-border bg-surface-100 shadow-card p-6">
       {[0, 1, 2, 3].map((key) => (
         <div key={key} className="grid gap-4 sm:grid-cols-2">
           <div className="flex flex-col gap-2">

@@ -1,3 +1,4 @@
+import { Plus } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -315,7 +316,7 @@ export function ProductsPage() {
           ) : (
             <EmptyState
               tone="brand"
-              icon="+"
+              icon={<Plus className="size-6" />}
               title={t('products.empty.firstTitle')}
               description={t('products.empty.firstBody')}
               {...(canManage
