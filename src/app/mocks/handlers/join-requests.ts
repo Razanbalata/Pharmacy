@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw'
-import type { JoinRequest, JoinRequestInput } from '@/entities/join-request'
+import type { JoinRequest, JoinRequestInput } from '@/entities/platform/join-request'
 import { normalizePhone } from '@/shared/lib/validation'
 import { apiUrl } from '../api-url'
 import { db } from '../db'

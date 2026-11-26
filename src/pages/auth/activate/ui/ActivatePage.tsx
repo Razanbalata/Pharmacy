@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router'
-import { joinRequestQueries, resendActivation } from '@/entities/join-request'
+import { joinRequestQueries, resendActivation } from '@/entities/platform/join-request'
 import { ActivateForm } from '@/features/join/activate-account'
 import { ApiError } from '@/shared/api'
 import { Button } from '@/shared/ui/button'

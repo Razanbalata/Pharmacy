@@ -1,6 +1,5 @@
 import type { ComponentType } from 'react'
 import type { RouteObject } from 'react-router'
-import type { PathKey } from '@/shared/config'
 import { paths } from '@/shared/config'
 import type { Area } from '@/entities/session'
 import { AppLayout } from './AppLayout'
@@ -27,17 +26,6 @@ function guarded(path: string, area: Area, load: () => Promise<ComponentType>): 
           </AreaGuard>
         ),
       }
-    },
-  }
-}
-
-/** A screen whose module is not built yet: the link works and says when it comes. */
-function comingSoon(key: PathKey, module: number): RouteObject {
-  return {
-    path: paths[key],
-    lazy: async () => {
-      const { ComingSoonPage } = await import('@/pages/coming-soon')
-      return { Component: () => <ComingSoonPage navKey={key} module={module} /> }
     },
   }
 }
@@ -219,10 +207,17 @@ export const routes: RouteObject[] = [
         element: <PlatformLayout />,
         children: [
           page(paths.platformRequests, async () => ({
-            Component: (await import('@/pages/platform-requests')).PlatformRequestsPage,
+            Component: (await import('@/pages/platform/requests')).PlatformRequestsPage,
           })),
-          comingSoon('platformPharmacies', 11),
-          comingSoon('platformBilling', 11),
+          page(paths.platformPharmacies, async () => ({
+            Component: (await import('@/pages/platform/pharmacies')).PlatformPharmaciesPage,
+          })),
+          page(paths.platformPharmacyDetail, async () => ({
+            Component: (await import('@/pages/platform/pharmacy-detail')).PlatformPharmacyPage,
+          })),
+          page(paths.platformBilling, async () => ({
+            Component: (await import('@/pages/platform/billing')).PlatformBillingPage,
+          })),
         ],
       },
       {

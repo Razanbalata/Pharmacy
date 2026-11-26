@@ -7,6 +7,7 @@ import { customersEn } from './customers.en'
 import { financeEn } from './finance.en'
 import { alertsEn } from './alerts.en'
 import { reportsEn } from './reports.en'
+import { tenantsEn } from './tenants.en'
 
 /** Typed against Arabic: a missing or extra key fails the type check. */
 export const en: Messages = {
@@ -82,6 +83,7 @@ export const en: Messages = {
     gettingStarted: 'Getting started',
     platformRequests: 'Join requests',
     platformPharmacies: 'Pharmacies',
+    platformPharmacyDetail: 'Pharmacy details',
     platformBilling: 'Subscriptions & payments',
     activity: 'Activity log',
     main: 'Main menu',
@@ -540,6 +542,7 @@ export const en: Messages = {
   ...financeEn,
   ...alertsEn,
   ...reportsEn,
+  ...tenantsEn,
   forbidden: {
     title: 'This page is not part of your role',
     body: 'Ask the manager for access.',

@@ -6,6 +6,7 @@ import { customersAr } from './customers.ar'
 import { financeAr } from './finance.ar'
 import { alertsAr } from './alerts.ar'
 import { reportsAr } from './reports.ar'
+import { tenantsAr } from './tenants.ar'
 /** Arabic is the source of truth: every key starts here, English must match its shape. */
 export const ar = {
   app: { name: 'فارما سمارت' },
@@ -80,6 +81,7 @@ export const ar = {
     gettingStarted: 'قائمة البداية',
     platformRequests: 'طلبات الانضمام',
     platformPharmacies: 'الصيدليات',
+    platformPharmacyDetail: 'تفاصيل صيدلية',
     platformBilling: 'الاشتراكات والمدفوعات',
     activity: 'سجل العمليات',
     main: 'القائمة الرئيسية',
@@ -524,6 +526,7 @@ export const ar = {
   ...financeAr,
   ...alertsAr,
   ...reportsAr,
+  ...tenantsAr,
   forbidden: {
     title: 'هالصفحة مش ضمن صلاحياتك',
     body: 'اطلبي من المديرة تعطيكِ الصلاحية.',

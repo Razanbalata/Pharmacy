@@ -6,7 +6,7 @@ import {
   joinRequestQueries,
   rejectJoinRequest,
   type JoinRequest,
-} from '@/entities/join-request'
+} from '@/entities/platform/join-request'
 import { Button } from '@/shared/ui/button'
 import { Dialog } from '@/shared/ui/dialog'
 import { Field, Textarea } from '@/shared/ui/field'

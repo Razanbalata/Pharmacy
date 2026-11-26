@@ -5,7 +5,7 @@ import {
   joinRequestQueries,
   type JoinRequest,
   type JoinRequestStatus,
-} from '@/entities/join-request'
+} from '@/entities/platform/join-request'
 import { AddPharmacyDrawer, ReviewActions } from '@/features/platform/review-join-request'
 import { cn } from '@/shared/lib/cn'
 import { formatPhone } from '@/shared/lib/validation'

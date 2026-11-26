@@ -5,6 +5,7 @@ import { dashboardHandlers } from './dashboard'
 import { financeHandlers } from './finance'
 import { reportHandlers } from './reports'
 import { assistantHandlers } from './assistant'
+import { platformHandlers } from './platform'
 import { importHandlers } from './imports'
 import { purchaseHandlers } from './purchases'
 import { salesHandlers } from './sales'
@@ -31,4 +32,5 @@ export const handlers = [
   ...dashboardHandlers,
   ...reportHandlers,
   ...assistantHandlers,
+  ...platformHandlers,
 ]

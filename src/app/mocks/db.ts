@@ -1,10 +1,11 @@
 import type { AssistantMessage } from '@/pages/assistant'
 import type { ActivityEntry } from '@/entities/activity'
-import type { JoinRequest } from '@/entities/join-request'
+import type { JoinRequest } from '@/entities/platform/join-request'
 import type { OnboardingStatus, PharmacyProfile, PharmacySettings } from '@/entities/pharmacy'
 import type { StaffMember } from '@/entities/staff-member'
 import { initialCustomers } from './customers-data'
 import { initialFinance } from './finance-data'
+import { initialPlatform } from './platform-data'
 import { initialCatalog } from './catalog-data'
 import { initialPurchases } from './purchases-data'
 import { initialSales } from './sales-data'
@@ -285,6 +286,7 @@ function initial() {
     ...initialSales(catalog.products),
     ...initialCustomers(),
     ...initialFinance(),
+    ...initialPlatform(),
     /** Alerts already opened. These two were seen before; the other eight are new. */
     alertsRead: ['expiringMore', 'orderPartial:13'],
     /**

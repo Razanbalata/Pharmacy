@@ -12,6 +12,9 @@
 | `pharmacy/setup-pharmacy/`      | بيانات الصيدلية وطريقة البداية                                            |
 | `pharmacy/dismiss-onboarding/`  | زر "خفي القائمة"                                                          |
 | `platform/review-join-request/` | قبول الطلب أو رفضه، وإضافة صيدلية باليد                                   |
+| `platform/manage-pharmacy/`     | تمديد التجربة، تغيير الباقة، طلب دخول الدعم، إيقاف وإعادة تشغيل           |
+| `platform/review-payment/`      | تأكيد دفعة اشتراك وتفعيلها، أو رفضها بسبب                                 |
+| `platform/set-plan-price/`      | سعر كل باقة                                                               |
 | `staff/manage/`                 | نافذة إضافة موظف أو تعديله، والصلاحيات وحد الخصم                          |
 | `staff/toggle-status/`          | مفتاح إيقاف الموظف وتشغيله، مع تأكيد وزر تراجع                            |
 | `staff/reset-password/`         | كلمة مرور مؤقتة جديدة للموظف تنبعتله على واتساب                           |

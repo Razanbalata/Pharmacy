@@ -44,6 +44,7 @@ export const paths = {
   gettingStarted: '/getting-started',
   platformRequests: '/platform/requests',
   platformPharmacies: '/platform/pharmacies',
+  platformPharmacyDetail: '/platform/pharmacies/:id',
   platformBilling: '/platform/billing',
   uiKit: '/ui-kit',
 } as const
