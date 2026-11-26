@@ -53,7 +53,7 @@ export function AppLayout() {
           onOpenMenu={() => setMenuOpen(true)}
           onOpenSearch={() => openPalette(true)}
         />
-        <main className="mx-auto w-full max-w-[1600px] flex-1 px-4 py-5 sm:px-6 lg:px-8 lg:py-7">
+        <main className="mx-auto w-full max-w-[1800px] flex-1 px-4 py-5 sm:px-6 lg:px-8 lg:py-7">
           {nextPath ? <PageSkeleton variant={skeletonFor(nextPath)} /> : <Outlet />}
         </main>
       </div>

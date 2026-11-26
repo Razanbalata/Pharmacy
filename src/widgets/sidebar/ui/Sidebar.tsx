@@ -22,7 +22,10 @@ function PlanLine({ user }: { user: CurrentUser }) {
   return <>{days >= 0 ? t('shell.trial', { days }) : t('shell.trialEnded')}</>
 }
 
-/** The dark menu on the start side. Shows only what the user's role may open. */
+/**
+ * The menu on the start side: white by day, the page colour by night. Shows only what the
+ * user's role may open.
+ */
 export function Sidebar({ user, onNavigate }: SidebarProps) {
   const { t } = useTranslation()
   const { data: alerts } = useAlertSummary()
@@ -32,7 +35,7 @@ export function Sidebar({ user, onNavigate }: SidebarProps) {
   return (
     <nav
       aria-label={t('nav.main')}
-      className="flex h-full min-h-0 flex-col gap-1 bg-navy px-3 py-5 text-on-navy"
+      className="flex h-full min-h-0 flex-col gap-1 border-e border-border bg-sidebar px-3 py-5 text-ink"
     >
       <Link
         to={paths.dashboard}
@@ -44,7 +47,7 @@ export function Sidebar({ user, onNavigate }: SidebarProps) {
         </span>
         <span className="flex flex-col">
           <span className="font-display text-body-strong">{t('app.name')}</span>
-          <span className="text-small text-on-navy/70">{user.pharmacy.name}</span>
+          <span className="text-small text-ink-muted">{user.pharmacy.name}</span>
         </span>
       </Link>
 
@@ -52,7 +55,7 @@ export function Sidebar({ user, onNavigate }: SidebarProps) {
         {groups.map((group) => (
           <div key={group.title ?? 'top'} className="flex flex-col gap-0.5">
             {group.title && (
-              <p className="px-3 pt-5 pb-1.5 text-caption tracking-wide text-on-navy/50">
+              <p className="px-3 pt-5 pb-1.5 text-caption tracking-wide text-ink-muted/80">
                 {t(`nav.groups.${group.title}`)}
               </p>
             )}
@@ -69,8 +72,8 @@ export function Sidebar({ user, onNavigate }: SidebarProps) {
                     cn(
                       'flex items-center gap-3 rounded-lg px-3 py-2.5 text-body font-medium transition-colors',
                       isActive || related
-                        ? 'bg-brand font-semibold text-on-brand shadow-card'
-                        : 'text-on-navy/85 hover:bg-navy-soft hover:text-on-navy',
+                        ? 'bg-brand-soft font-semibold text-brand-strong'
+                        : 'text-ink/85 hover:bg-surface-200 hover:text-ink',
                     )
                   }
                 >
@@ -82,7 +85,7 @@ export function Sidebar({ user, onNavigate }: SidebarProps) {
                   })()}
                   <span className="flex-1">{t(`nav.${item.key}`)}</span>
                   {count !== null && (
-                    <span className="tabular rounded-pill bg-warning px-2 text-caption text-navy">
+                    <span className="tabular rounded-pill bg-warning-soft px-2 text-caption text-warning">
                       {count}
                     </span>
                   )}
@@ -95,22 +98,22 @@ export function Sidebar({ user, onNavigate }: SidebarProps) {
 
       <div className="flex flex-col gap-2.5 pt-4">
         {user.role !== 'cashier' && (
-          <div className="flex flex-col gap-2 rounded-lg border border-navy-soft bg-navy-soft/50 p-3.5">
+          <div className="flex flex-col gap-2 rounded-lg border border-border bg-surface-200/50 p-3.5">
             <p className="flex items-center gap-2 font-display text-small font-semibold">
               <Sparkles aria-hidden className="size-4 text-brand" />
               {t('shell.assistantTitle')}
             </p>
-            <p className="text-caption opacity-70">{t('shell.assistantBody')}</p>
+            <p className="text-caption text-ink-muted">{t('shell.assistantBody')}</p>
             <Link
               to={paths.assistant}
               onClick={onNavigate}
-              className="rounded-md bg-brand py-2 text-center text-small font-semibold text-on-brand"
+              className="rounded-lg bg-brand py-2 text-center text-small font-semibold text-on-brand hover:bg-brand-strong"
             >
               {t('shell.assistantCta')}
             </Link>
           </div>
         )}
-        <p className="px-3 text-caption opacity-70">
+        <p className="px-3 text-caption text-ink-muted">
           <PlanLine user={user} />
         </p>
       </div>

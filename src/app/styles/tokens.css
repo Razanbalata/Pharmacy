@@ -16,6 +16,10 @@
   --ps-surface-200: #ecf2f2;
   --ps-border: #d2dcdf;
   --ps-border-strong: #76879a;
+  /* Form fields: firmer than card borders so they read as places to type, as in the design. */
+  --ps-input: #8796a6;
+  /* By day the menu is white; by night it takes the page colour. */
+  --ps-sidebar: #ffffff;
   --ps-ink: #0f1f33;
   --ps-ink-muted: #3f4e5d;
   --ps-brand: #0e7c7b;
@@ -49,6 +53,8 @@
   --ps-surface-200: #162536;
   --ps-border: #24364a;
   --ps-border-strong: #5b6f84;
+  --ps-input: #45596f;
+  --ps-sidebar: #0a131e;
   --ps-ink: #e8eef3;
   --ps-ink-muted: #b0bfcc;
   --ps-brand: #2bb3ac;
@@ -99,6 +105,8 @@
   --color-info: var(--ps-info);
   --color-info-soft: var(--ps-info-soft);
   --color-focus: var(--ps-focus);
+  --color-input: var(--ps-input);
+  --color-sidebar: var(--ps-sidebar);
   --shadow-card: var(--ps-shadow-card);
   --shadow-pop: var(--ps-shadow-pop);
   --radius-sm: 6px;
@@ -118,13 +126,13 @@
   --text-subheading--font-weight: 600;
   --text-body: 15px;
   --text-body--line-height: 24px;
-  --text-body--font-weight: 400;
+  --text-body--font-weight: 500;
   --text-body-strong: 15px;
   --text-body-strong--line-height: 24px;
   --text-body-strong--font-weight: 600;
   --text-small: 14px;
   --text-small--line-height: 21px;
-  --text-small--font-weight: 400;
+  --text-small--font-weight: 500;
   --text-caption: 12px;
   --text-caption--line-height: 16px;
   --text-caption--font-weight: 600;

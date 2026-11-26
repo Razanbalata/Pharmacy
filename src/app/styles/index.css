@@ -17,7 +17,18 @@
     font-family: var(--font-sans);
     background: var(--color-surface-0);
     color: var(--color-ink);
+    /* 500, not 400: Arabic at 400 looks thin and washed out on Windows screens. */
+    font-weight: 500;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Every scrolling area glides instead of jumping, unless the user asked for less motion. */
+  @media (prefers-reduced-motion: no-preference) {
+    html,
+    * {
+      scroll-behavior: smooth;
+    }
   }
 
   /* Numbers line up in tables and totals. */
@@ -30,9 +41,6 @@
   * {
     scrollbar-width: thin;
     scrollbar-color: var(--color-border-strong) transparent;
-  }
-  .nav-scroll {
-    scrollbar-color: color-mix(in oklab, var(--color-on-navy) 25%, transparent) transparent;
   }
 
   :focus-visible {
