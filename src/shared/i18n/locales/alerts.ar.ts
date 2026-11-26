@@ -112,7 +112,7 @@ export const alertsAr = {
       expiringSub: 'أقربها {{name}} بـ {{date}}',
       lowOne: 'صنف تحت الحد الأدنى',
       low: '{{count}} أصناف تحت الحد الأدنى',
-      lowSub: '{{name}}: باقي {{quantity}} من {{minStock}}',
+      lowSub: 'باقي {{quantity}} من {{minStock}}',
       debts: 'ديون متأخرة {{amount}} ₪',
       debtsSubOne: 'زبون عليه دين أكتر من 30 يوم',
       debtsSub: '{{count}} زبائن عليهم دين أكتر من 30 يوم',

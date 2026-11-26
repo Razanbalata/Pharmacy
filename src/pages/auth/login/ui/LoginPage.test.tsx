@@ -54,7 +54,7 @@ describe('LoginPage', () => {
   it('skips the form for someone already signed in', async () => {
     localStorage.setItem('mockRole', 'pharmacist')
     const { router } = await renderApp('/login')
-    await screen.findByRole('heading', { level: 1, name: 'لوحة التحكم' })
+    await screen.findByRole('heading', { level: 1, name: /الخير يا/ })
     expect(router.state.location.pathname).toBe('/')
   })
 })

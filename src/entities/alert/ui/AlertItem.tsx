@@ -109,12 +109,10 @@ export function AlertItem({ alert, when, onOpen, compact = false }: AlertItemPro
       <span aria-hidden className={cn('mt-2 size-2 shrink-0 rounded-pill', DOT[alert.severity])} />
       <span className="flex min-w-0 flex-1 flex-col gap-0.5">
         <span className="font-semibold">
-          <bdi>{title}</bdi>
+          {title}
           {!alert.read && <span className="sr-only"> · {t('alerts.new')}</span>}
         </span>
-        <span className="text-small text-ink-muted">
-          <bdi>{detail}</bdi>
-        </span>
+        <span className="text-small text-ink-muted">{detail}</span>
       </span>
       {when && <span className="shrink-0 pt-0.5 text-caption text-ink-muted">{when}</span>}
       <Link

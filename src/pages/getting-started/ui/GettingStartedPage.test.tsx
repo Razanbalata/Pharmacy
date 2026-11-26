@@ -18,9 +18,7 @@ describe('GettingStartedPage', () => {
   it('hides the list and opens the dashboard', async () => {
     const { router } = await renderApp('/getting-started')
     await userEvent.click(await screen.findByRole('button', { name: 'خفي القائمة' }))
-    expect(
-      await screen.findByRole('heading', { level: 1, name: 'لوحة التحكم' }),
-    ).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { level: 1, name: /الخير يا/ })).toBeInTheDocument()
     expect(router.state.location.pathname).toBe('/')
   })
 })

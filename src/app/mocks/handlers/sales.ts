@@ -44,7 +44,7 @@ export function shiftView(shift: StoredShift): Shift {
   }
 }
 
-function shiftSummary(shift: StoredShift) {
+export function shiftSummary(shift: StoredShift) {
   const invoices = db.invoices.filter((invoice) => invoice.shiftNumber === shift.number)
   const sum = (pick: (invoice: StoredInvoice) => number) =>
     roundMoney(invoices.reduce((total, invoice) => total + pick(invoice), 0))

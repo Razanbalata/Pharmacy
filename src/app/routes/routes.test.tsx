@@ -31,9 +31,7 @@ describe('routes', () => {
   it('shows other roles the dashboard at /', async () => {
     localStorage.setItem('mockRole', 'pharmacist')
     renderAt('/')
-    expect(
-      await screen.findByRole('heading', { level: 1, name: 'لوحة التحكم' }),
-    ).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { level: 1, name: /الخير يا/ })).toBeInTheDocument()
     expect(screen.getAllByRole('navigation', { name: 'القائمة الرئيسية' }).length).toBeGreaterThan(
       0,
     )
@@ -75,9 +73,7 @@ describe('routes', () => {
   it('sends a pharmacy user away from the platform screens', async () => {
     localStorage.setItem('mockRole', 'pharmacist')
     const router = renderAt('/platform/requests')
-    expect(
-      await screen.findByRole('heading', { level: 1, name: 'لوحة التحكم' }),
-    ).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { level: 1, name: /الخير يا/ })).toBeInTheDocument()
     expect(router.state.location.pathname).toBe('/')
   })
 })

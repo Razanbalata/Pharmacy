@@ -113,7 +113,7 @@ export const alertsEn: typeof alertsAr = {
       expiringSub: 'The nearest: {{name}} on {{date}}',
       lowOne: 'A product below the minimum',
       low: '{{count}} products below the minimum',
-      lowSub: '{{name}}: {{quantity}} of {{minStock}} left',
+      lowSub: '{{quantity}} of {{minStock}} left',
       debts: 'Late debts {{amount}} ₪',
       debtsSubOne: 'A customer has owed for over 30 days',
       debtsSub: '{{count}} customers have owed for over 30 days',
