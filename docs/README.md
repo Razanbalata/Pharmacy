@@ -10,8 +10,8 @@
 | 3. الأصناف والتصنيفات       | [03-products-catalog.md](modules/03-products-catalog.md)       | خلصت   |
 | 4. المشتريات والموردون      | [04-purchases-suppliers.md](modules/04-purchases-suppliers.md) | خلصت   |
 | 5. المخزون                  | [05-stock.md](modules/05-stock.md)                             | خلصت   |
-| 6. البيع                    |                                                                | الجاية |
-| 7. الزبائن والديون          |                                                                |        |
+| 6. البيع                    | [06-sales.md](modules/06-sales.md)                             | خلصت   |
+| 7. الزبائن والديون          |                                                                | الجاية |
 | 8. الورديات والمصاريف       |                                                                |        |
 | 9. لوحة التحكم والتنبيهات   |                                                                |        |
 | 10. التقارير والمساعد الذكي |                                                                |        |
