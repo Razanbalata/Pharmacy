@@ -199,7 +199,10 @@ export function ManagerDashboard({ data }: { data: Dashboard }) {
               ? t('dashboard.attentionOne')
               : t('dashboard.attention', { count: cards.length })}
         </Greeting>
-        <Link to={paths.assistant} className={buttonVariants({ variant: 'secondary' })}>
+        <Link
+          to={`${paths.assistant}?view=analysis`}
+          className={buttonVariants({ variant: 'secondary' })}
+        >
           ✦ {t('dashboard.assistant')}
         </Link>
       </div>
@@ -275,7 +278,7 @@ export function ManagerDashboard({ data }: { data: Dashboard }) {
             </ul>
           )}
           <Link
-            to={paths.assistant}
+            to={`${paths.assistant}?view=analysis`}
             className="mt-auto text-small font-semibold text-brand-strong hover:underline"
           >
             {t('dashboard.notes.full')}

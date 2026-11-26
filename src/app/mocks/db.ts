@@ -1,3 +1,4 @@
+import type { AssistantMessage } from '@/pages/assistant'
 import type { ActivityEntry } from '@/entities/activity'
 import type { JoinRequest } from '@/entities/join-request'
 import type { OnboardingStatus, PharmacyProfile, PharmacySettings } from '@/entities/pharmacy'
@@ -286,6 +287,49 @@ function initial() {
     ...initialFinance(),
     /** Alerts already opened. These two were seen before; the other eight are new. */
     alertsRead: ['expiringMore', 'orderPartial:13'],
+    /**
+     * Earlier conversations with the assistant. Their answers are worked out from the data the
+     * first time each is opened (`pending`), so they always match the numbers on screen.
+     */
+    conversations: [
+      {
+        id: 4,
+        title: 'طلبيات هالأسبوع',
+        at: '2026-11-24T10:20:00Z',
+        messages: [] as AssistantMessage[],
+        pending: [
+          'شو الأصناف اللي لازم أطلبها هالأسبوع؟',
+          'وقديش ربحت هالشهر مقارنة بالشهر الماضي؟',
+        ],
+      },
+      {
+        id: 3,
+        title: 'ليش قل الربح؟',
+        at: '2026-11-20T09:00:00Z',
+        messages: [],
+        pending: ['قديش ربحت هالشهر؟'],
+      },
+      {
+        id: 2,
+        title: 'أكتر زبون مديون',
+        at: '2026-11-18T12:00:00Z',
+        messages: [],
+        pending: ['مين أكتر زبون متأخر بالدفع؟'],
+      },
+      {
+        id: 1,
+        title: 'الأصناف الراكدة',
+        at: '2026-11-15T15:00:00Z',
+        messages: [],
+        pending: ['شو الأصناف الراكدة؟'],
+      },
+    ] as {
+      id: number
+      title: string
+      at: string
+      messages: AssistantMessage[]
+      pending: string[]
+    }[],
     ...initialPurchases(),
     staff,
     activity,

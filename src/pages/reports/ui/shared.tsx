@@ -127,7 +127,10 @@ export function ReportActions({ name, rows }: { name: string; rows: () => (strin
   const { t } = useTranslation()
   return (
     <div className="flex flex-wrap gap-2 print:hidden">
-      <Link to={paths.assistant} className={buttonVariants({ variant: 'secondary', size: 'sm' })}>
+      <Link
+        to={`${paths.assistant}?view=analysis`}
+        className={buttonVariants({ variant: 'secondary', size: 'sm' })}
+      >
         {t('reports.assistant')}
       </Link>
       <Button size="sm" variant="secondary" onClick={() => downloadCsv(name, rows())}>

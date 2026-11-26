@@ -99,7 +99,7 @@ function salesIn(from: string, to: string) {
   return { invoices, shifts, total, count, cost }
 }
 
-function sales(period: ReportPeriod): SalesReport {
+export function salesReport(period: ReportPeriod): SalesReport {
   const range = rangeOf(period)
   const now = salesIn(range.from, range.to)
   const before = salesIn(range.compareFrom, range.compareTo)
@@ -175,7 +175,7 @@ function sales(period: ReportPeriod): SalesReport {
   }
 }
 
-function profit(period: ReportPeriod): ProfitReport {
+export function profitReport(period: ReportPeriod): ProfitReport {
   const range = rangeOf(period)
   const figures = (from: string, to: string) => {
     const found = salesIn(from, to)
@@ -255,7 +255,7 @@ function profit(period: ReportPeriod): ProfitReport {
   }
 }
 
-function stock(): StockReport {
+export function stockReport(): StockReport {
   const today = db.today
   const in30 = day(at(today) + 30 * DAY_MS)
   const in90 = day(at(today) + 90 * DAY_MS)
@@ -324,7 +324,7 @@ function stock(): StockReport {
   }
 }
 
-function debts(): DebtsReport {
+export function debtsReport(): DebtsReport {
   const customers = db.customers.map(customerView).filter((customer) => customer.debt > 0)
   const by = (age: string) =>
     roundMoney(
@@ -387,12 +387,14 @@ const forbidden = () => HttpResponse.json({ message: 'Forbidden.' }, { status: 4
 
 export const reportHandlers = [
   http.get(apiUrl('/api/reports/sales'), ({ request }) =>
-    HttpResponse.json({ data: sales(periodOf(request)) }),
+    HttpResponse.json({ data: salesReport(periodOf(request)) }),
   ),
   // Profit shows what everything cost: the manager's only.
   http.get(apiUrl('/api/reports/profit'), ({ request }) =>
-    me().role === 'manager' ? HttpResponse.json({ data: profit(periodOf(request)) }) : forbidden(),
+    me().role === 'manager'
+      ? HttpResponse.json({ data: profitReport(periodOf(request)) })
+      : forbidden(),
   ),
-  http.get(apiUrl('/api/reports/stock'), () => HttpResponse.json({ data: stock() })),
-  http.get(apiUrl('/api/reports/debts'), () => HttpResponse.json({ data: debts() })),
+  http.get(apiUrl('/api/reports/stock'), () => HttpResponse.json({ data: stockReport() })),
+  http.get(apiUrl('/api/reports/debts'), () => HttpResponse.json({ data: debtsReport() })),
 ]
