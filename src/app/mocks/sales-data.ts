@@ -16,6 +16,8 @@ export interface StoredShift {
   status: 'open' | 'closed'
   /** Sales of shifts older than the invoices kept here; newer shifts add up their invoices. */
   archivedSales?: number
+  /** The rest of an older shift's summary, for the reports. */
+  archived?: { invoices: number; cash: number; bank: number; credit: number; cost: number }
 }
 
 export interface StoredInvoice {
@@ -71,6 +73,19 @@ export function initialSales(products: StoredProduct[]) {
     note,
     status: 'closed',
     archivedSales,
+    // Cash is what the drawer should have held beyond the opening float; the rest went
+    // three to one by bank app and on credit. Cost follows the design's 71%.
+    archived: (() => {
+      const cash = Math.min(archivedSales, expectedCash - 200 + (number === 12 ? 250 : 0))
+      const bank = Math.round((archivedSales - cash) * 0.75)
+      return {
+        invoices: Math.round(archivedSales / 42),
+        cash,
+        bank,
+        credit: archivedSales - cash - bank,
+        cost: Math.round(archivedSales * 0.71),
+      }
+    })(),
   })
 
   const shifts: StoredShift[] = [

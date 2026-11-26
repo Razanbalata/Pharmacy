@@ -33,7 +33,7 @@ function invalid(field: string, code: string) {
 const notFound = () => HttpResponse.json({ message: 'Not found.' }, { status: 404 })
 const conflict = () => HttpResponse.json({ message: 'Not allowed now.' }, { status: 409 })
 
-function balanceOf(supplierId: number, until = '9999-12-31'): number {
+export function balanceOf(supplierId: number, until = '9999-12-31'): number {
   return roundMoney(
     db.ledger
       .filter((entry) => entry.supplierId === supplierId && entry.date <= until)

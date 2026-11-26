@@ -184,7 +184,11 @@ export const routes: RouteObject[] = [
             'finance',
             async () => (await import('@/pages/finance/expenses')).ExpensesPage,
           ),
-          comingSoon('reports', 10),
+          guarded(
+            paths.reports,
+            'reports',
+            async () => (await import('@/pages/reports')).ReportsPage,
+          ),
           comingSoon('assistant', 10),
           guarded(paths.staff, 'staff', async () => (await import('@/pages/staff')).StaffPage),
           guarded(
