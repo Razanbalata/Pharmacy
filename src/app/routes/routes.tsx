@@ -62,7 +62,7 @@ export const routes: RouteObject[] = [
           page(paths.gettingStarted, async () => ({
             Component: (await import('@/pages/getting-started')).GettingStartedPage,
           })),
-          comingSoon('alerts', 9),
+          guarded(paths.alerts, 'alerts', async () => (await import('@/pages/alerts')).AlertsPage),
           guarded(
             paths.invoices,
             'invoices',

@@ -4,6 +4,7 @@ import { stockAr } from './stock.ar'
 import { salesAr } from './sales.ar'
 import { customersAr } from './customers.ar'
 import { financeAr } from './finance.ar'
+import { alertsAr } from './alerts.ar'
 /** Arabic is the source of truth: every key starts here, English must match its shape. */
 export const ar = {
   app: { name: 'فارما سمارت' },
@@ -520,6 +521,7 @@ export const ar = {
   ...salesAr,
   ...customersAr,
   ...financeAr,
+  ...alertsAr,
   forbidden: {
     title: 'هالصفحة مش ضمن صلاحياتك',
     body: 'اطلبي من المديرة تعطيكِ الصلاحية.',

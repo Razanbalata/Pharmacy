@@ -284,6 +284,8 @@ function initial() {
     ...initialSales(catalog.products),
     ...initialCustomers(),
     ...initialFinance(),
+    /** Alerts already opened. These two were seen before; the other eight are new. */
+    alertsRead: ['expiringMore', 'orderPartial:13'],
     ...initialPurchases(),
     staff,
     activity,

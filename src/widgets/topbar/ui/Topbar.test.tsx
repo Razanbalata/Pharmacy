@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react'
+import { screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import { renderWithProviders } from '@test/render'
@@ -35,10 +35,18 @@ describe('Topbar', () => {
     renderWithProviders(
       <Topbar user={manager} onOpenMenu={vi.fn<() => void>()} onOpenSearch={vi.fn<() => void>()} />,
     )
-    expect(await screen.findByRole('link', { name: 'التنبيهات، 8 جديدة' })).toHaveAttribute(
+    const bell = await screen.findByRole('button', { name: 'التنبيهات، 8 جديدة' })
+    await userEvent.click(bell)
+    const menu = screen.getByRole('region', { name: 'التنبيهات' })
+    expect(await within(menu).findAllByRole('listitem')).toHaveLength(8)
+    expect(within(menu).getByText('8 جداد')).toBeInTheDocument()
+    expect(await within(menu).findByRole('link', { name: 'كل التنبيهات · 16' })).toHaveAttribute(
       'href',
       '/alerts',
     )
+
+    await userEvent.click(within(menu).getByRole('button', { name: 'تعليم الكل كمقروء' }))
+    expect(await screen.findByRole('button', { name: 'التنبيهات، 0 جديدة' })).toBeInTheDocument()
   })
 
   it('has no bell for the cashier', () => {
@@ -49,7 +57,7 @@ describe('Topbar', () => {
         onOpenSearch={vi.fn<() => void>()}
       />,
     )
-    expect(screen.queryByRole('link', { name: /التنبيهات/ })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /التنبيهات/ })).not.toBeInTheDocument()
   })
 
   it('opens the menu on small screens', async () => {

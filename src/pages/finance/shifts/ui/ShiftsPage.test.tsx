@@ -16,7 +16,7 @@ describe('ShiftsPage', () => {
     expect(screen.getByText('− 14.00 ₪')).toBeInTheDocument()
 
     const list = await rows()
-    expect(list).toHaveLength(7)
+    expect(list).toHaveLength(11)
     expect(within(list[0]!).getByRole('link', { name: 'افتحي ملخص الوردية 14' })).toHaveAttribute(
       'href',
       '/sales/shift',
@@ -39,8 +39,8 @@ describe('ShiftsPage', () => {
     await userEvent.click(screen.getByRole('checkbox', { name: 'فيها فرق بس' }))
     await userEvent.selectOptions(await screen.findByLabelText('الموظف'), 'سارة يوسف')
     expect(await screen.findByText('ورديات بالفترة')).toBeInTheDocument()
-    await screen.findByText((_, element) => element?.textContent === '2' && element.tagName === 'P')
-    expect(await rows()).toHaveLength(2)
+    await screen.findByText((_, element) => element?.textContent === '4' && element.tagName === 'P')
+    expect(await rows()).toHaveLength(4)
 
     await userEvent.selectOptions(screen.getByLabelText('الموظف'), '')
     await userEvent.click(screen.getByRole('radio', { name: 'اليوم' }))

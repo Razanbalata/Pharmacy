@@ -82,7 +82,7 @@ function ageOf(days: number, debt: number): DebtAge {
   return 'recent'
 }
 
-function customerView(customer: StoredCustomer): Customer {
+export function customerView(customer: StoredCustomer): Customer {
   const option = customerOption(customer)
   const oldest = option.debt > 0 ? oldestDebt(customer.id) : null
   const today = Date.parse(`${db.today}T23:59:59Z`)

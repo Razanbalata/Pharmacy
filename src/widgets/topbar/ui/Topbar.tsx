@@ -6,6 +6,7 @@ import { LogoutButton } from '@/features/auth/logout'
 import { LanguageSwitcher } from '@/features/switch-language'
 import { ThemeSwitcher } from '@/features/switch-theme'
 import { paths } from '@/shared/config'
+import { AlertsMenu } from './AlertsMenu'
 
 interface TopbarProps {
   user: CurrentUser
@@ -91,23 +92,7 @@ export function Topbar({ user, onOpenMenu, onOpenSearch }: TopbarProps) {
         >
           + {t('shell.newSale')}
         </Link>
-        {showAlerts && (
-          <Link
-            to={paths.alerts}
-            aria-label={t('shell.alertsCount', { count: unread })}
-            className="relative rounded-md px-2.5 py-2 hover:bg-surface-200"
-          >
-            <span aria-hidden>🔔</span>
-            {unread > 0 && (
-              <span
-                aria-hidden
-                className="tabular absolute -top-0.5 -end-0.5 rounded-pill bg-danger px-1.5 text-caption text-surface-100"
-              >
-                {unread}
-              </span>
-            )}
-          </Link>
-        )}
+        {showAlerts && <AlertsMenu unread={unread} />}
         <UserMenu user={user} />
       </div>
     </header>
