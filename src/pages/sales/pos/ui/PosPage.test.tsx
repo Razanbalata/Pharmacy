@@ -120,6 +120,32 @@ describe('PosPage', () => {
     expect(within(receipt).getByText('آجل على أبو أحمد الشوا')).toBeInTheDocument()
   })
 
+  it('will not sell on credit to a customer who pays on the spot', async () => {
+    await openTill()
+    await userEvent.type(screen.getByRole('searchbox', { name: 'الزبون' }), 'أحمد عودة')
+    await userEvent.click(await screen.findByRole('button', { name: /^أحمد عودة/ }))
+    await addProduct('ventolin', 'Ventolin Inhaler 100mcg')
+    await userEvent.click(within(cart()).getByRole('button', { name: 'الدفع F12' }))
+    const dialog = await screen.findByRole('dialog', { name: 'الدفع' })
+    await userEvent.click(within(dialog).getByRole('radio', { name: 'آجل' }))
+    expect(within(dialog).getByText(/أحمد عودة مش مسموح إله بالآجل/)).toBeInTheDocument()
+    expect(within(dialog).getByRole('button', { name: 'تأكيد الدفع ↵' })).toBeDisabled()
+  })
+
+  it('adds a new customer from the till, with name and phone only', async () => {
+    localStorage.setItem('mockRole', 'cashier')
+    await openTill()
+    await userEvent.type(screen.getByRole('searchbox', { name: 'الزبون' }), 'رامي')
+    await userEvent.click(await screen.findByRole('button', { name: '+ زبون جديد: رامي' }))
+    const drawer = screen.getByRole('dialog', { name: 'زبون جديد' })
+    expect(within(drawer).getByLabelText('الاسم')).toHaveValue('رامي')
+    expect(within(drawer).queryByLabelText('حد الدين')).not.toBeInTheDocument()
+    await userEvent.type(within(drawer).getByLabelText('رقم الهاتف'), '0598 222 333')
+    await userEvent.click(within(drawer).getByRole('button', { name: 'حفظ الزبون' }))
+    expect(await within(cart()).findByText('رامي')).toBeInTheDocument()
+    expect(within(cart()).getByText(/عليه 0.00 ₪ · الحد 300.00 ₪/)).toBeInTheDocument()
+  })
+
   it('holds a sale to serve the next customer, then resumes it', async () => {
     await openTill()
     await addProduct('ventolin', 'Ventolin Inhaler 100mcg')

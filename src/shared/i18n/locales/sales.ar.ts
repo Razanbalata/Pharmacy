@@ -81,6 +81,7 @@ export const salesAr = {
     short: 'المستلم أقل من المطلوب',
     bankHint: 'تأكدي إنه التحويل وصل على التطبيق قبل التأكيد.',
     creditNeedsCustomer: 'البيع الآجل بده زبون. اختاري الزبون من الفاتورة.',
+    noCredit: '{{name}} مش مسموح إله بالآجل. غيري طريقة الدفع أو عدّلي الزبون.',
     debtNow: 'الدين الحالي',
     debtAfter: 'بعد الفاتورة',
     limit: 'الحد',
@@ -156,6 +157,7 @@ export const salesAr = {
       creditNote: 'دين على زبائن',
       cashRefunds: 'مرتجعات نقدية',
       supplierPayments: 'دفعات موردين من الدرج',
+      debtPayments: 'تسديد ديون نقدي',
     },
     expected: 'النقد المتوقع بالدرج',
     counted: 'النقد الفعلي بعد العد',
@@ -282,5 +284,6 @@ export const salesAr = {
     nothing: 'اختاري كمية راجعة لصنف واحد على الأقل.',
     needApprover: 'اختاري مين وافق على المرتجع.',
     fullyReturned: 'كل أصناف هالفاتورة رجعت من قبل.',
+    moreThanDebt: 'المبلغ أكبر من دين {{name}}. رجعيه نقدي أو على التطبيق.',
   },
 }

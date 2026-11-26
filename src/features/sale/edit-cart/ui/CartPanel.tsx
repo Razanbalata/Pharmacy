@@ -19,6 +19,8 @@ interface CartPanelProps {
   onPay: () => void
   onHold: () => void
   onDiscount: () => void
+  /** Adds a customer not on the list yet, starting from the name typed. */
+  onAddCustomer?: (name: string) => void
 }
 
 function Line({ line, selected }: { line: CartLine; selected: boolean }) {
@@ -111,7 +113,7 @@ function Line({ line, selected }: { line: CartLine; selected: boolean }) {
 }
 
 /** The sale being made: customer, lines, totals, and what to do with it. */
-export function CartPanel({ onPay, onHold, onDiscount }: CartPanelProps) {
+export function CartPanel({ onPay, onHold, onDiscount, onAddCustomer }: CartPanelProps) {
   const { t } = useTranslation()
   const { lines, discount, selected, label, clear, setDiscount } = useCart()
   const totals = cartTotals(lines, discount)
@@ -126,7 +128,7 @@ export function CartPanel({ onPay, onHold, onDiscount }: CartPanelProps) {
           <span className="font-display text-body-strong">{t('pos.cart')}</span>
           <span className="text-small text-ink-muted">{label}</span>
         </p>
-        <CustomerPicker />
+        <CustomerPicker {...(onAddCustomer ? { onAddNew: onAddCustomer } : {})} />
       </div>
 
       {lines.length === 0 ? (

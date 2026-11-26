@@ -10,8 +10,13 @@ import { Input } from '@/shared/ui/field'
 
 export const CUSTOMER_INPUT_ID = 'pos-customer'
 
+interface CustomerPickerProps {
+  /** Shown under the results, so a new customer can be added without leaving the till. */
+  onAddNew?: (name: string) => void
+}
+
 /** Walk-in by default; a customer is needed to sell on credit. */
-export function CustomerPicker() {
+export function CustomerPicker({ onAddNew }: CustomerPickerProps) {
   const { t } = useTranslation()
   const customer = useCart((state) => state.customer)
   const setCustomer = useCart((state) => state.setCustomer)
@@ -54,7 +59,7 @@ export function CustomerPicker() {
         autoComplete="off"
         className="h-9"
       />
-      {deferred.trim().length >= 2 && found.length > 0 && (
+      {deferred.trim().length >= 2 && (found.length > 0 || onAddNew) && (
         <ul className="absolute inset-x-0 top-full z-10 mt-1 overflow-hidden rounded-md border border-border bg-surface-100 shadow-card">
           {found.map((item) => (
             <li key={item.id}>
@@ -73,6 +78,20 @@ export function CustomerPicker() {
               </button>
             </li>
           ))}
+          {onAddNew && (
+            <li className="border-t border-border">
+              <button
+                type="button"
+                onClick={() => {
+                  onAddNew(search.trim())
+                  setSearch('')
+                }}
+                className="w-full px-3 py-2 text-start text-brand-strong hover:bg-surface-200"
+              >
+                {t('customerForm.quickAdd', { name: search.trim() })}
+              </button>
+            </li>
+          )}
         </ul>
       )}
     </div>

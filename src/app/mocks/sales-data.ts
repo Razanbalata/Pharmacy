@@ -1,4 +1,3 @@
-import type { CustomerOption } from '@/entities/customer'
 import type { HeldSale, InvoiceLine, InvoicePayment, InvoiceStatus } from '@/entities/invoice'
 import type { RefundMethod } from '@/entities/sale-return'
 import type { StoredProduct } from './catalog-data'
@@ -46,13 +45,6 @@ export interface StoredReturn {
 }
 
 export function initialSales(products: StoredProduct[]) {
-  const customers: CustomerOption[] = [
-    { id: 1, name: 'أبو أحمد الشوا', phone: '0599123456', debt: 180, debtLimit: 300 },
-    { id: 2, name: 'محمود عياد', phone: '0597223344', debt: 95, debtLimit: 500 },
-    { id: 3, name: 'أم خالد', phone: '0598111999', debt: 0, debtLimit: 200 },
-    { id: 4, name: 'هبة نصار', phone: '0599402219', debt: 0, debtLimit: 300 },
-  ]
-
   const shifts: StoredShift[] = [
     {
       id: 14,
@@ -214,5 +206,5 @@ export function initialSales(products: StoredProduct[]) {
 
   const returns: StoredReturn[] = []
 
-  return { customers, shifts, invoices, held, returns }
+  return { shifts, invoices, held, returns }
 }

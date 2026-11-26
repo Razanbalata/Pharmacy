@@ -82,6 +82,7 @@ export const salesEn: typeof salesAr = {
     short: 'Received is less than due',
     bankHint: 'Make sure the transfer arrived in the app before confirming.',
     creditNeedsCustomer: 'Credit needs a customer. Choose one on the sale.',
+    noCredit: '{{name}} may not buy on credit. Change the payment, or edit the customer.',
     debtNow: 'Owes now',
     debtAfter: 'After this sale',
     limit: 'Limit',
@@ -157,6 +158,7 @@ export const salesEn: typeof salesAr = {
       creditNote: 'owed by customers',
       cashRefunds: 'Cash refunds',
       supplierPayments: 'Supplier payments from the drawer',
+      debtPayments: 'Debt paid in cash',
     },
     expected: 'Expected cash in the drawer',
     counted: 'Cash counted',
@@ -283,5 +285,6 @@ export const salesEn: typeof salesAr = {
     nothing: 'Choose a returning quantity for at least one item.',
     needApprover: 'Choose who approved the return.',
     fullyReturned: 'Everything on this invoice was already returned.',
+    moreThanDebt: 'This is more than {{name}} owes. Refund it in cash or by bank app.',
   },
 }

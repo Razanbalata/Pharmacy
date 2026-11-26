@@ -45,6 +45,25 @@ describe('ReturnsPage', () => {
     await waitFor(() => expect(router.state.location.pathname).toBe('/sales/invoices/241'))
     expect(await screen.findByText('مرتجع جزئي')).toBeInTheDocument()
     expect(screen.getAllByText('رجع 1')).toHaveLength(2)
+
+    await router.navigate('/customers/2')
+    const table = await screen.findByRole('table', { name: 'محمود عياد' })
+    const last = within(table).getAllByRole('row').at(-1)!
+    expect(within(last).getByRole('link', { name: 'مرتجع RT-0013' })).toBeInTheDocument()
+    expect(within(last).getByText('34.00')).toBeInTheDocument()
+  })
+
+  it('will not take more off the debt than the customer owes', async () => {
+    await renderApp('/sales/returns?invoice=241')
+    const more = async (name: string) =>
+      userEvent.click(await screen.findByRole('button', { name: `زيدي ${name}` }))
+    await more('Glucophage 500mg 50 Tablets')
+    await more('Glucophage 500mg 50 Tablets')
+    await more('Vitamin D3 1000IU 30 Capsules')
+    await more('Zyrtec 10mg 20 Tablets')
+    await userEvent.click(screen.getByRole('radio', { name: 'خصم من دين محمود عياد' }))
+    await userEvent.click(screen.getByRole('button', { name: 'تأكيد المرتجع' }))
+    expect(await screen.findByRole('alert')).toHaveTextContent('المبلغ أكبر من دين محمود عياد')
   })
 
   it('needs something to return and someone to approve it', async () => {

@@ -1,5 +1,6 @@
 import { alertHandlers } from './alerts'
 import { catalogHandlers } from './catalog'
+import { customerHandlers } from './customers'
 import { importHandlers } from './imports'
 import { purchaseHandlers } from './purchases'
 import { salesHandlers } from './sales'
@@ -21,4 +22,5 @@ export const handlers = [
   ...purchaseHandlers,
   ...stockHandlers,
   ...salesHandlers,
+  ...customerHandlers,
 ]

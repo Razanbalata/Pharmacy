@@ -61,11 +61,15 @@ export function CloseShiftForm({ onClosed, onShowHeld }: CloseShiftFormProps) {
   const lines: [keyof ShiftSummary | 'opening', number, string | null, 1 | -1 | 0][] = [
     ['opening', summary.shift.openingCash, null, 1],
     ['cashSales', summary.cashSales, null, 1],
+    ['debtPayments', summary.debtPayments, null, 1],
     ['bankSales', summary.bankSales, t('shift.lines.bankNote'), 0],
     ['creditSales', summary.creditSales, t('shift.lines.creditNote'), 0],
     ['cashRefunds', summary.cashRefunds, null, -1],
     ['supplierPayments', summary.supplierPayments, null, -1],
   ]
+
+  // Debt paid in cash only shows on the shifts that took some.
+  const shown = lines.filter(([key, amount]) => key !== 'debtPayments' || amount > 0)
 
   return (
     <form
@@ -97,7 +101,7 @@ export function CloseShiftForm({ onClosed, onShowHeld }: CloseShiftFormProps) {
       )}
 
       <dl className="flex flex-col divide-y divide-border rounded-md border border-border">
-        {lines.map(([key, amount, aside, sign]) => (
+        {shown.map(([key, amount, aside, sign]) => (
           <div key={key} className="flex items-center justify-between px-3 py-2">
             <dt>
               {t(`shift.lines.${key as 'opening'}`)}

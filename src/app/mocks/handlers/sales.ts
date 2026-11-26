@@ -6,6 +6,7 @@ import { matchesSearch } from '@/shared/lib/arabic-search'
 import { roundMoney } from '@/shared/lib/money'
 import { apiUrl } from '../api-url'
 import { db } from '../db'
+import { addCustomerEntry, debtOf } from './customers'
 import { mockRole, users } from '../fixtures'
 import type { StoredInvoice, StoredShift } from '../sales-data'
 
@@ -64,6 +65,14 @@ function shiftSummary(shift: StoredShift) {
       )
       .reduce((total, entry) => total + entry.amount, 0),
   )
+  const debtPayments = roundMoney(
+    db.customerEntries
+      .filter(
+        (entry) =>
+          entry.kind === 'payment' && entry.method === 'cash' && entry.shiftNumber === shift.number,
+      )
+      .reduce((total, entry) => total + entry.credit, 0),
+  )
   return {
     shift: shiftView(shift),
     invoiceCount: invoices.length,
@@ -72,7 +81,10 @@ function shiftSummary(shift: StoredShift) {
     creditSales: sum((invoice) => invoice.payment.credit),
     cashRefunds,
     supplierPayments,
-    expectedCash: roundMoney(shift.openingCash + cashSales - cashRefunds - supplierPayments),
+    debtPayments,
+    expectedCash: roundMoney(
+      shift.openingCash + cashSales + debtPayments - cashRefunds - supplierPayments,
+    ),
     heldCount: db.held.length,
   }
 }
@@ -132,15 +144,6 @@ function inPeriod(iso: string, period: string): boolean {
 }
 
 export const salesHandlers = [
-  http.get(apiUrl('/api/customers/options'), ({ request }) => {
-    const search = new URL(request.url).searchParams.get('search') ?? ''
-    return HttpResponse.json({
-      data: db.customers.filter(
-        (customer) => !search || matchesSearch(`${customer.name} ${customer.phone}`, search),
-      ),
-    })
-  }),
-
   http.get(apiUrl('/api/shifts/current'), () => {
     const shift = openShift()
     const last = db.shifts
@@ -261,7 +264,8 @@ export const salesHandlers = [
     const customer = db.customers.find((item) => item.id === input.customerId)
     if (credit > 0) {
       if (!customer) return invalid('customerId', 'required')
-      if (customer.debt + credit > customer.debtLimit) {
+      if (!customer.creditAllowed) return invalid('customerId', 'noCredit')
+      if (debtOf(customer.id) + credit > customer.debtLimit) {
         if (!input.overLimitApproved) return invalid('payment.credit', 'overLimit')
         if (user.role !== 'manager')
           return HttpResponse.json({ message: 'Forbidden.' }, { status: 403 })
@@ -303,7 +307,21 @@ export const salesHandlers = [
         cost: (first?.cost ?? 0) / factorOf(product.units, line.unitIndex),
       })
     }
-    if (customer && credit > 0) customer.debt = roundMoney(customer.debt + credit)
+    if (customer && credit > 0) {
+      addCustomerEntry({
+        customerId: customer.id,
+        at,
+        kind: 'sale',
+        reference: number,
+        invoiceId: id,
+        method: null,
+        actor: user.name.split(' ')[0] ?? user.name,
+        items: lines.length,
+        debit: credit,
+        credit: 0,
+        shiftNumber: null,
+      })
+    }
     const invoice: StoredInvoice = {
       id,
       number,
@@ -400,6 +418,13 @@ export const salesHandlers = [
     if (input.refund === 'debt' && !customer) return invalid('refund', 'noCustomer')
 
     const share = invoice.subtotal > 0 ? invoice.total / invoice.subtotal : 1
+    if (input.refund === 'debt' && customer) {
+      const due = lines.reduce((sum, line) => {
+        const sold = invoice.lines.find((item) => item.productId === line.productId)
+        return sum + (sold ? sold.price * line.quantity * share : 0)
+      }, 0)
+      if (roundMoney(due) > debtOf(customer.id) + 1e-9) return invalid('refund', 'moreThanDebt')
+    }
     let amount = 0
     const at = new Date().toISOString()
     const id = db.returns.length + 13
@@ -459,8 +484,21 @@ export const salesHandlers = [
       }
     }
     amount = roundMoney(amount)
-    if (input.refund === 'debt' && customer)
-      customer.debt = roundMoney(Math.max(0, customer.debt - amount))
+    if (input.refund === 'debt' && customer) {
+      addCustomerEntry({
+        customerId: customer.id,
+        at,
+        kind: 'return',
+        reference: number,
+        invoiceId: invoice.id,
+        method: null,
+        actor: me().name.split(' ')[0] ?? '',
+        items: lines.length,
+        debit: 0,
+        credit: amount,
+        shiftNumber: null,
+      })
+    }
     invoice.status = invoice.lines.every((line) => line.returned >= line.quantity)
       ? 'returned'
       : 'partlyReturned'

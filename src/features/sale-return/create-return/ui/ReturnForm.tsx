@@ -15,6 +15,7 @@ import {
 import { useCurrentUser } from '@/entities/session'
 import { shiftQueries } from '@/entities/shift'
 import { staffQueries } from '@/entities/staff-member'
+import { ApiError } from '@/shared/api'
 import { formatMoney, roundMoney } from '@/shared/lib/money'
 import { Button } from '@/shared/ui/button'
 import { Field } from '@/shared/ui/field'
@@ -104,7 +105,12 @@ export function ReturnForm({ invoice, onDone }: ReturnFormProps) {
       window.print()
       onDone()
     },
-    onError: () => toast.error(t('validation.serverError')),
+    onError: (failure) => {
+      const code = failure instanceof ApiError ? failure.fieldErrors.refund?.[0] : undefined
+      if (code === 'moreThanDebt') {
+        setProblem(t('returns.moreThanDebt', { name: invoice.customer?.name ?? '' }))
+      } else toast.error(t('validation.serverError'))
+    },
   })
 
   function confirm() {

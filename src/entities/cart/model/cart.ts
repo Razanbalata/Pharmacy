@@ -31,6 +31,7 @@ export interface CartCustomer {
   phone: string
   debt: number
   debtLimit: number
+  creditAllowed: boolean
 }
 
 interface CartState {

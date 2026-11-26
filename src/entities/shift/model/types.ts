@@ -23,6 +23,8 @@ export interface ShiftSummary {
   cashRefunds: number
   /** Cash taken from the drawer to pay suppliers. */
   supplierPayments: number
+  /** Cash customers paid off their debt into the drawer. */
+  debtPayments: number
   expectedCash: number
   /** Held invoices still waiting; the shift cannot close with them. */
   heldCount: number

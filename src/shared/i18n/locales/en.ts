@@ -3,6 +3,7 @@ import { catalogEn } from './catalog.en'
 import { purchasesEn } from './purchases.en'
 import { stockEn } from './stock.en'
 import { salesEn } from './sales.en'
+import { customersEn } from './customers.en'
 
 /** Typed against Arabic: a missing or extra key fails the type check. */
 export const en: Messages = {
@@ -65,6 +66,7 @@ export const en: Messages = {
     purchaseNew: 'New purchase order',
     purchaseDetail: 'Purchase order',
     purchaseReceive: 'Receive order',
+    customerDetail: 'Customer statement',
     supplierDetail: 'Supplier statement',
     stockDamage: 'Damage',
     shift: 'Shift',
@@ -530,6 +532,7 @@ export const en: Messages = {
   ...purchasesEn,
   ...stockEn,
   ...salesEn,
+  ...customersEn,
   forbidden: {
     title: 'This page is not part of your role',
     body: 'Ask the manager for access.',

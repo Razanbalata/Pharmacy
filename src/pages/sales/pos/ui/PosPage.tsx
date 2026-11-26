@@ -5,6 +5,7 @@ import { Link, useSearchParams } from 'react-router'
 import { useCart } from '@/entities/cart'
 import type { Invoice } from '@/entities/invoice'
 import { shiftQueries } from '@/entities/shift'
+import { CustomerFormDrawer } from '@/features/customer/manage'
 import { PaymentDialog, ReceiptDialog } from '@/features/sale/checkout'
 import { DiscountDialog } from '@/features/sale/discount'
 import { CUSTOMER_INPUT_ID, CartPanel } from '@/features/sale/edit-cart'
@@ -34,6 +35,7 @@ export function PosPage() {
   const [params, setParams] = useSearchParams()
   const [open, setOpen] = useState<Open>(params.get('held') === '1' ? 'held' : null)
   const [receipt, setReceipt] = useState<Invoice | null>(null)
+  const [newCustomer, setNewCustomer] = useState<string | null>(null)
   const { data: current, isPending } = useQuery(shiftQueries.current())
   const { hold } = useHeldSales()
 
@@ -100,6 +102,7 @@ export function PosPage() {
           onPay={() => setOpen('pay')}
           onHold={() => void hold()}
           onDiscount={() => setOpen('discount')}
+          onAddCustomer={setNewCustomer}
         />
         <ProductSearch />
       </main>
@@ -123,6 +126,14 @@ export function PosPage() {
         />
       )}
       {open === 'discount' && <DiscountDialog open onClose={() => setOpen(null)} />}
+      {newCustomer !== null && (
+        <CustomerFormDrawer
+          open
+          initialName={newCustomer}
+          onClose={() => setNewCustomer(null)}
+          onSaved={(customer) => useCart.getState().setCustomer(customer)}
+        />
+      )}
       <HeldDrawer
         open={open === 'held'}
         onClose={() => {

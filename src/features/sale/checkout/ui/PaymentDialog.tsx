@@ -82,7 +82,8 @@ export function PaymentDialog({ open, onClose, onPaid }: PaymentDialogProps) {
 
   const blocked =
     (method === 'cash' && receivedValue < total) ||
-    ((method === 'credit' || (method === 'mixed' && creditPart > 0)) && !customer) ||
+    ((method === 'credit' || (method === 'mixed' && creditPart > 0)) &&
+      (!customer || !customer.creditAllowed)) ||
     (method === 'mixed' && (remaining !== 0 || creditPart < 0)) ||
     (over > 0 && Math.max(0, creditPart) > 0 && !approved)
 
@@ -120,7 +121,9 @@ export function PaymentDialog({ open, onClose, onPaid }: PaymentDialogProps) {
             ? t('payment.discountOver')
             : codes.some((code) => code === 'payment.credit:overLimit')
               ? t('payment.overLimit', { amount: formatMoney(over) })
-              : t('payment.failed'),
+              : codes.some((code) => code === 'customerId:noCredit')
+                ? t('payment.noCredit', { name: customer?.name ?? '' })
+                : t('payment.failed'),
       )
     },
   })
@@ -252,7 +255,11 @@ export function PaymentDialog({ open, onClose, onPaid }: PaymentDialogProps) {
         )}
 
         {(method === 'credit' || (method === 'mixed' && creditPart > 0)) &&
-          (customer ? (
+          (customer && !customer.creditAllowed ? (
+            <p className="rounded-md bg-warning-soft px-3 py-2 text-small text-warning">
+              {t('payment.noCredit', { name: customer.name })}
+            </p>
+          ) : customer ? (
             <div className="flex flex-col gap-2 rounded-md border border-border p-3">
               <p className="font-semibold">{customer.name}</p>
               <dl className="grid grid-cols-3 gap-2 text-center">

@@ -11,6 +11,7 @@ export const paths = {
   invoiceDetail: '/sales/invoices/:id',
   returns: '/sales/returns',
   customers: '/customers',
+  customerDetail: '/customers/:id',
   products: '/products',
   productNew: '/products/new',
   productImport: '/products/import',
