@@ -6,8 +6,10 @@ import { SettingRow, SettingsForm, SettingsSection } from '@/features/settings/e
 import { LanguageSwitcher } from '@/features/switch-language'
 import { ThemeSwitcher } from '@/features/switch-theme'
 import { cn } from '@/shared/lib/cn'
+import { buttonVariants } from '@/shared/ui/button'
 import { daysUntil } from '@/shared/lib/date'
 import { PageSkeleton } from '@/shared/ui/skeleton'
+import { useActiveSection } from '../model/useActiveSection'
 
 const SECTIONS = ['pharmacy', 'sale', 'stock', 'print', 'plan', 'backup', 'look'] as const
 const PLANS = [
@@ -23,7 +25,7 @@ function PlanSection() {
   return (
     <SettingsSection id="plan" title={t('settings.sections.plan')}>
       {pharmacy?.plan === 'trial' && (
-        <div className="mb-3 flex flex-wrap items-center justify-between gap-3 rounded-md bg-warning-soft px-4 py-3 text-body text-warning">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-warning/25 bg-warning-soft px-4 py-3 text-body font-medium text-warning">
           <span>{t('settings.trial', { days: Math.max(0, daysUntil(pharmacy.planEndsAt)) })}</span>
         </div>
       )}
@@ -32,8 +34,8 @@ function PlanSection() {
           <div
             key={plan.key}
             className={cn(
-              'rounded-lg border p-4 text-small',
-              plan.key === 'pro' ? 'border-2 border-brand' : 'border-border',
+              'rounded-xl border p-5 text-small',
+              plan.key === 'pro' ? 'border-2 border-brand bg-brand-soft/30' : 'border-border',
             )}
           >
             <p className="flex items-center gap-2 font-display text-body-strong">
@@ -71,10 +73,7 @@ function BackupSection({ lastBackupAt }: { lastBackupAt: string | null }) {
         <span className="text-small font-semibold text-success">{t('settings.done')}</span>
       </SettingRow>
       <SettingRow label={t('settings.download')} hint={t('settings.downloadHint')}>
-        <a
-          href={backupDownloadUrl}
-          className="flex h-10 items-center rounded-md border border-border-strong px-4 text-body hover:bg-surface-200"
-        >
+        <a href={backupDownloadUrl} className={buttonVariants({ variant: 'secondary' })}>
           {t('settings.downloadCta')}
         </a>
       </SettingRow>
@@ -100,38 +99,46 @@ export function SettingsPage() {
   const { t } = useTranslation()
   const profile = useQuery(pharmacyQueries.profile())
   const settings = useQuery(pharmacyQueries.settings())
+  const active = useActiveSection(SECTIONS, 200)
 
   if (!profile.data || !settings.data) return <PageSkeleton variant="form" />
 
   return (
-    <div className="flex flex-col gap-4">
-      <div>
-        <h1 className="font-display text-display">{t('settings.title')}</h1>
-        <p className="mt-1 text-body text-ink-muted">{t('settings.subtitle')}</p>
-      </div>
-      <div className="flex items-start gap-5">
+    <SettingsForm
+      profile={profile.data}
+      settings={settings.data}
+      header={
+        <>
+          <h1 className="font-display text-display">{t('settings.title')}</h1>
+          <p className="mt-1 text-body text-ink-muted">{t('settings.subtitle')}</p>
+        </>
+      }
+      nav={
         <nav
           aria-label={t('settings.title')}
-          className="sticky top-4 hidden w-52 shrink-0 flex-col rounded-lg border border-border bg-surface-100 shadow-card p-2 lg:flex"
+          className="sticky top-44 hidden w-56 shrink-0 flex-col gap-0.5 rounded-xl border border-border bg-surface-100 p-2 shadow-card lg:flex"
         >
           {SECTIONS.map((section) => (
             <a
               key={section}
               href={`#${section}`}
-              className="rounded-md px-3 py-2 text-body hover:bg-surface-200"
+              aria-current={active === section ? 'location' : undefined}
+              className={cn(
+                'rounded-lg px-3 py-2 text-body transition-colors',
+                active === section
+                  ? 'bg-brand-soft font-semibold text-brand-strong'
+                  : 'text-ink/85 hover:bg-surface-200 hover:text-ink',
+              )}
             >
               {t(`settings.sections.${section}`)}
             </a>
           ))}
         </nav>
-        <div className="min-w-0 flex-1">
-          <SettingsForm profile={profile.data} settings={settings.data}>
-            <PlanSection />
-            <BackupSection lastBackupAt={settings.data.backup.lastBackupAt} />
-            <LookSection />
-          </SettingsForm>
-        </div>
-      </div>
-    </div>
+      }
+    >
+      <PlanSection />
+      <BackupSection lastBackupAt={settings.data.backup.lastBackupAt} />
+      <LookSection />
+    </SettingsForm>
   )
 }

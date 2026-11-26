@@ -52,7 +52,9 @@ export async function request<T>(
     Accept: 'application/json',
     'X-Requested-With': 'XMLHttpRequest',
   }
-  if (options.body !== undefined) headers['Content-Type'] = 'application/json'
+  // A file upload (FormData) sets its own multipart header with the boundary.
+  const isForm = options.body instanceof FormData
+  if (options.body !== undefined && !isForm) headers['Content-Type'] = 'application/json'
   const xsrf = readCookie(XSRF_COOKIE)
   if (xsrf && method !== 'GET') headers['X-XSRF-TOKEN'] = xsrf
 
@@ -62,7 +64,12 @@ export async function request<T>(
       method,
       headers,
       credentials: 'include',
-      body: options.body === undefined ? null : JSON.stringify(options.body),
+      body:
+        options.body === undefined
+          ? null
+          : isForm
+            ? (options.body as FormData)
+            : JSON.stringify(options.body),
       signal: options.signal ?? null,
     })
   } catch (error) {

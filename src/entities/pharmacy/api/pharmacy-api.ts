@@ -16,6 +16,14 @@ export async function updatePharmacyProfile(input: PharmacyProfileInput): Promis
   return response.data
 }
 
+/** Logo for receipts and invoices. Saved right away, apart from the settings form. */
+export async function uploadPharmacyLogo(file: File): Promise<PharmacyProfile> {
+  const body = new FormData()
+  body.append('logo', file)
+  const response = await http.post<{ data: PharmacyProfile }>('/api/pharmacy/logo', body)
+  return response.data
+}
+
 export async function getCities(): Promise<string[]> {
   const response = await http.get<{ data: string[] }>('/api/cities')
   return response.data

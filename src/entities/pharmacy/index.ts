@@ -12,6 +12,7 @@ export {
   getOnboarding,
   getPharmacyProfile,
   updatePharmacyProfile,
+  uploadPharmacyLogo,
 } from './api/pharmacy-api'
 export { pharmacyQueries } from './api/queries'
 export { CityPicker } from './ui/CityPicker'

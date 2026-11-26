@@ -95,6 +95,7 @@
 | ------- | ------------------------- | --------------------------------------------------------------- | -------------------------------------------------- |
 | GET     | `/api/pharmacy`           |                                                                 | بيانات الصيدلية (معبّاة من طلب الانضمام)            |
 | PUT     | `/api/pharmacy`           | `name`، `city`، `address`، `phone`، `licenseNumber`، `currency` | البيانات بعد الحفظ                                 |
+| POST    | `/api/pharmacy/logo`      | ملف `logo` (multipart): صورة PNG أو JPG أو WebP، حدها 1 ميغا    | البيانات وفيها `logoUrl` الجديد، أو 422            |
 | GET     | `/api/cities`             |                                                                 | قائمة المدن                                        |
 | POST    | `/api/onboarding/start`   | `method`: `excel` أو `catalog` أو `sample` أو `empty`           | 204                                                |
 | GET     | `/api/onboarding`         |                                                                 | الخطوات الست وإذا كل وحدة خلصت، وإذا القائمة مخفية |
