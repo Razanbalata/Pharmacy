@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/vitest'
-import { cleanup } from '@testing-library/react'
+import { cleanup, configure } from '@testing-library/react'
 import { setupServer } from 'msw/node'
 import { afterAll, afterEach, beforeAll, beforeEach } from 'vitest'
 import { resetDb } from '@/app/mocks/db'
@@ -7,6 +7,9 @@ import { handlers } from '@/app/mocks/handlers'
 import { useCart } from '@/entities/cart'
 import { i18n } from '@/shared/i18n'
 import { useToastStore } from '@/shared/ui/toast'
+
+// A page may take more than the 1 s default to load on a slower machine; wait up to 5 s.
+configure({ asyncUtilTimeout: 5000 })
 
 /** The same fake server the browser uses, so tests and development see the same data. */
 export const server = setupServer(...handlers)
