@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Navigate, Outlet, useNavigation } from 'react-router'
+import { Navigate, Outlet, useLocation, useNavigation } from 'react-router'
 import { isPlatformOwner, useCurrentUser } from '@/entities/session'
 import { ApiError } from '@/shared/api'
 import { paths } from '@/shared/config'
@@ -20,12 +20,14 @@ export function AppLayout() {
   const { t } = useTranslation()
   const { data: user, error, isPending } = useCurrentUser()
   const navigation = useNavigation()
+  const location = useLocation()
   const openPalette = usePaletteStore((state) => state.setOpen)
   const [menuOpen, setMenuOpen] = useState(false)
   usePaletteHotkey()
 
+  // A visitor at the home address sees the public page; a deep link asks to sign in.
   if (error instanceof ApiError && error.isUnauthenticated)
-    return <Navigate to={paths.login} replace />
+    return <Navigate to={location.pathname === '/' ? paths.welcome : paths.login} replace />
   if (isPending || !user) return <AppSkeleton />
   if (isPlatformOwner(user)) return <Navigate to={paths.platformRequests} replace />
 

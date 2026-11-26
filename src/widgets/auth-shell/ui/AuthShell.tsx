@@ -1,7 +1,10 @@
 import type { ReactNode } from 'react'
+import { Check } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { LanguageSwitcher } from '@/features/switch-language'
-import { ThemeSwitcher } from '@/features/switch-theme'
+import { Link } from 'react-router'
+import { LanguageToggle } from '@/features/switch-language'
+import { ThemeToggle } from '@/features/switch-theme'
+import { paths } from '@/shared/config'
 
 interface AuthShellProps {
   children: ReactNode
@@ -23,9 +26,26 @@ export function AuthShell({ children, headline, sub, aside }: AuthShellProps) {
   return (
     <div className="flex min-h-dvh bg-surface-0">
       <div className="flex flex-1 flex-col px-5 py-6 sm:px-10">
-        <div className="flex flex-wrap justify-end gap-2">
-          <LanguageSwitcher />
-          <ThemeSwitcher />
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <Link
+            to={paths.welcome}
+            className="flex items-center gap-2 rounded-lg py-1 font-display text-body font-bold text-ink lg:invisible"
+          >
+            <span className="flex size-8 items-center justify-center rounded-md bg-brand text-on-brand">
+              ف
+            </span>
+            {t('app.name')}
+          </Link>
+          <div className="flex items-center">
+            <Link
+              to={paths.welcome}
+              className="hidden rounded-lg px-3 py-2 text-small font-medium text-ink-muted transition-colors hover:bg-surface-200 hover:text-ink lg:block"
+            >
+              {t('auth.aboutProduct')}
+            </Link>
+            <LanguageToggle />
+            <ThemeToggle />
+          </div>
         </div>
         <div className="mx-auto flex w-full max-w-5xl flex-1 items-center justify-center gap-8 py-8">
           <main className="flex w-full max-w-[440px] flex-col gap-5">{children}</main>
@@ -37,12 +57,12 @@ export function AuthShell({ children, headline, sub, aside }: AuthShellProps) {
           aria-hidden
           className="absolute -bottom-36 -start-28 size-[420px] rounded-pill bg-brand opacity-25"
         />
-        <div className="relative flex items-center gap-2.5">
+        <Link to={paths.welcome} className="relative flex items-center gap-2.5 self-start">
           <span className="flex size-10 items-center justify-center rounded-md bg-brand font-display text-subheading text-on-brand">
             ف
           </span>
           <span className="font-display text-subheading font-bold">{t('app.name')}</span>
-        </div>
+        </Link>
         <div className="relative mt-auto">
           <p className="font-display text-[34px] leading-[48px] font-bold">
             {headline ?? t('auth.brandHeadline')}
@@ -56,7 +76,7 @@ export function AuthShell({ children, headline, sub, aside }: AuthShellProps) {
                 aria-hidden
                 className="flex size-6 items-center justify-center rounded-pill bg-navy-soft text-brand"
               >
-                ✓
+                <Check className="size-3.5" strokeWidth={3} />
               </span>
               {point}
             </li>

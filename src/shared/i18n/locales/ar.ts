@@ -7,6 +7,7 @@ import { financeAr } from './finance.ar'
 import { alertsAr } from './alerts.ar'
 import { reportsAr } from './reports.ar'
 import { tenantsAr } from './tenants.ar'
+import { landingAr } from './landing.ar'
 /** Arabic is the source of truth: every key starts here, English must match its shape. */
 export const ar = {
   app: { name: 'فارما سمارت' },
@@ -58,6 +59,7 @@ export const ar = {
     assistant: 'المساعد الذكي',
     staff: 'الموظفون',
     settings: 'الإعدادات',
+    welcome: 'فارما سمارت',
     login: 'تسجيل الدخول',
     join: 'طلب انضمام',
     productNew: 'إضافة صنف',
@@ -132,6 +134,7 @@ export const ar = {
     hide: 'إخفاء',
   },
   auth: {
+    aboutProduct: 'عن فارما سمارت',
     brandHeadline: 'صيدليتك كلها بمكان واحد',
     brandSub: 'بيع أسرع، مخزون مضبوط، وتنبيهات قبل ما الدوا يخلص أو تنتهي صلاحيته.',
     brandPoints: [
@@ -532,6 +535,7 @@ export const ar = {
   ...alertsAr,
   ...reportsAr,
   ...tenantsAr,
+  ...landingAr,
   forbidden: {
     title: 'هالصفحة مش ضمن صلاحياتك',
     body: 'اطلبي من المديرة تعطيكِ الصلاحية.',

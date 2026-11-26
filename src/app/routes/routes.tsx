@@ -232,6 +232,9 @@ export const routes: RouteObject[] = [
           page(paths.setup, async () => ({ Component: (await import('@/pages/setup')).SetupPage })),
         ],
       },
+      page(paths.welcome, async () => ({
+        Component: (await import('@/pages/landing')).LandingPage,
+      })),
       page(paths.login, async () => ({
         Component: (await import('@/pages/auth/login')).LoginPage,
       })),

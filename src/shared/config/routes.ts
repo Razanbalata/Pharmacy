@@ -36,6 +36,7 @@ export const paths = {
   staff: '/staff',
   activity: '/staff/activity',
   settings: '/settings',
+  welcome: '/welcome',
   login: '/login',
   join: '/join',
   activate: '/activate/:token',

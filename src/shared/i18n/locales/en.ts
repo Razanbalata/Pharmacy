@@ -8,6 +8,7 @@ import { financeEn } from './finance.en'
 import { alertsEn } from './alerts.en'
 import { reportsEn } from './reports.en'
 import { tenantsEn } from './tenants.en'
+import { landingEn } from './landing.en'
 
 /** Typed against Arabic: a missing or extra key fails the type check. */
 export const en: Messages = {
@@ -60,6 +61,7 @@ export const en: Messages = {
     assistant: 'AI assistant',
     staff: 'Staff',
     settings: 'Settings',
+    welcome: 'PharmaSmart',
     login: 'Log in',
     join: 'Join request',
     productNew: 'Add product',
@@ -134,6 +136,7 @@ export const en: Messages = {
     hide: 'Hide',
   },
   auth: {
+    aboutProduct: 'About PharmaSmart',
     brandHeadline: 'Your whole pharmacy in one place',
     brandSub: 'Faster sales, accurate stock, and alerts before medicine runs out or expires.',
     brandPoints: [
@@ -548,6 +551,7 @@ export const en: Messages = {
   ...alertsEn,
   ...reportsEn,
   ...tenantsEn,
+  ...landingEn,
   forbidden: {
     title: 'This page is not part of your role',
     body: 'Ask the manager for access.',
