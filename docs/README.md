@@ -15,4 +15,4 @@
 | 8. الورديات والمصاريف       | [08-shifts-expenses.md](modules/08-shifts-expenses.md)         | خلصت   |
 | 9. لوحة التحكم والتنبيهات   | [09-dashboard-alerts.md](modules/09-dashboard-alerts.md)       | خلصت   |
 | 10. التقارير والمساعد الذكي | [10-reports-assistant.md](modules/10-reports-assistant.md)     | خلصت   |
-| 11. لوحة صاحبة المنصة       |                                                                | الجاية |
+| 11. لوحة صاحبة المنصة       | [11-platform.md](modules/11-platform.md)                       | خلصت   |
