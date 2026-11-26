@@ -1,0 +1,10 @@
+# Every text file is stored and checked out with LF line endings, on every system.
+# Without this, Git on Windows turns them into CRLF and the format check fails on files nobody changed.
+* text=auto eol=lf
+
+# Binary files are left alone.
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff binary
+*.woff2 binary
