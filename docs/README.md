@@ -17,3 +17,11 @@
 | 10. التقارير والمساعد الذكي  | [10-reports-assistant.md](modules/10-reports-assistant.md)     | خلصت   |
 | 11. لوحة صاحبة المنصة        | [11-platform.md](modules/11-platform.md)                       | خلصت   |
 | 12. تحسين الشكل وصفحة الزوار | [12-polish.md](modules/12-polish.md)                           | خلصت   |
+
+## الربط مع لارافيل
+
+دليل كامل للباك إند: لكل صفحة، الروابط وشكل البيانات والقواعد والجداول والكود.
+
+| الملف                                              |
+| -------------------------------------------------- |
+| [laravel-guide/README.md](laravel-guide/README.md) |

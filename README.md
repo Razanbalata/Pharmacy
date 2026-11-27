@@ -251,6 +251,7 @@ BACKEND_CONTRACT.md
 | `docs/README.md`                   | فهرس الوحدات                                                              |
 | `docs/modules/`                    | ملف لكل وحدة: الشاشات، الملفات، القرارات، الاختبارات، الأخطاء، وشو تعلمنا |
 | `BACKEND_CONTRACT.md`              | عقد الباك إند                                                             |
+| `docs/laravel-guide/`              | دليل الربط مع لارافيل: كل صفحة، شكل البيانات، والكود                      |
 | `src/*/README.md`                  | شرح كل طبقة وكل وحداتها                                                   |
 | `src/shared/lib/offline/README.md` | البيع بدون نت                                                             |
 
